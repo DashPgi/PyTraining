@@ -1,47 +1,15 @@
-import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QPushButton, QTextEdit, QVBoxLayout
-from PyQt6.QtGui import QIcon
+import requests
 
+api_key = "badf9130ed30e2e908674f78"
+url = f"https://v6.exchangerate-api.com/v6/{api_key}latest/USD"
 
-class Myapp(QWidget):
-    def __init__(self):
-        super().__init__()
+response = requests.get(url)
+data = response.json()
+if data["result"] == "success":
+    rates = data["conversion_rates"]
 
-        self.setWindowTitle("Hello World")
-        self.setWindowIcon(QIcon("icon.png"))
-        self.resize(300, 200)
+    print("1 USD =")
+    print("Toman:", int(rates["IRR"]/10),"Toman")
 
-        layout = QVBoxLayout()
-        self.setLayout(layout)
-
-        self.inputField = QLineEdit()
-
-        button = QPushButton("Click me", clicked=self.main)
-
-        self.outputField = QTextEdit()
-
-        layout.addWidget(self.inputField)
-        layout.addWidget(button)
-        layout.addWidget(self.outputField)
-
-    def main(self):
-        inputField = self.inputField.text()
-        self.outputField.setText(f"hello {inputField}")
-
-
-app = QApplication(sys.argv)
-
-app.setStyleSheet('''
-    QWidget{
-        font-size:25px;
-    }
-
-    QPushButton{
-        font-size:20px;
-    }
-''')
-
-window = Myapp()
-window.show()
-
-app.exec()
+else:
+    print("Error:", data)
