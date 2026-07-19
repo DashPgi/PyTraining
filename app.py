@@ -1,15 +1,40 @@
+
 import requests
 
-api_key = "badf9130ed30e2e908674f78"
-url = f"https://v6.exchangerate-api.com/v6/{api_key}latest/USD"
+API_KEY = "575310d0056b4736b19f40c4ccff12c1"
 
-response = requests.get(url)
-data = response.json()
-if data["result"] == "success":
-    rates = data["conversion_rates"]
+URL = f"https://openexchangerates.org/api/latest.json?app_id={API_KEY}"
 
-    print("1 USD =")
-    print("Toman:", int(rates["IRR"]/10),"Toman")
 
-else:
-    print("Error:", data)
+def get_rates():
+    response = requests.get(URL)
+    response.raise_for_status()
+    data = response.json()
+
+    print("پایه ارز (Base):", data["base"])
+    print("زمان به‌روزرسانی:", data["timestamp"])
+    print("-" * 40)
+
+
+    important_currencies = ["EUR", "GBP", "IRR", "JPY", "CNY", "AED", "TRY"]
+    for currency in important_currencies:
+        if currency in data["rates"]:
+            print(f"{currency}: {data['rates'][currency]}")
+
+    return data["rates"]
+
+
+def get_specific_rate(target_currency, all_rates):
+
+    if target_currency in all_rates:
+        return all_rates[target_currency]
+    else:
+        print(f"Arz {target_currency} پیدا نشد.")
+        return None
+
+
+if __name__ == "__main__":
+    rates = get_rates()
+
+
+    eur_rate = get_specific_rate("EUR", rates)
