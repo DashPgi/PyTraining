@@ -11,18 +11,13 @@ load_dotenv()
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-# آدرس صفحه GUI (bot_gui.html) که باید روی یک هاست HTTPS عمومی آپلود بشه.
-# مثال: https://yourdomain.com/bot_gui.html
-GUI_URL = os.getenv("GUI_URL", "")
-
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=OPENROUTER_API_KEY
 )
 
-MODEL = "anthropic/claude-sonnet-5"
-# اگه اعتبار حساب OpenRouter کم باشه، این عدد رو کاهش بده (مثلاً 1200)
-MAX_TOKENS = int(os.getenv("MAX_TOKENS", "1500"))
+MODEL = os.getenv("MODEL", "anthropic/claude-sonnet-5")
+MAX_TOKENS = int(os.getenv("MAX_TOKENS", "4000"))
 
 CREDIT_ERROR_MESSAGE = (
     "💳 اعتبار حساب OpenRouter شما کافی نیست (خطای ۴۰۲).\n\n"
@@ -33,9 +28,6 @@ CREDIT_ERROR_MESSAGE = (
     "۳. یا موقتاً یک مدل ارزان‌تر/رایگان‌تر رو در متغیر MODEL جایگزین کن."
 )
 
-# ---------------------------------------------------------
-# پرامپت‌های سیستمی
-# ---------------------------------------------------------
 
 CLASSIFIER_PROMPT = """
 تو یک کلاسیفایر هستی. وظیفه‌ات فقط این است که مشخص کنی آیا پیام کاربر
@@ -104,11 +96,15 @@ REFUSAL_MESSAGE = (
     "لطفاً فقط ایده یا مشخصات رباتی که می‌خواهی ساخته بشه رو بفرست."
 )
 
-# ---------------------------------------------------------
-# توابع کمکی برای فراخوانی مدل
-# ---------------------------------------------------------
-
 class InsufficientCreditsError(Exception):
+    pass
+
+
+class ModelEmptyResponseError(Exception):
+    pass
+
+
+class ModelUnavailableError(Exception):
     pass
 
 
@@ -123,12 +119,33 @@ def ask_model(system_prompt: str, user_content: str) -> str:
                 {"role": "user", "content": user_content},
             ],
         )
-        return response.choices[0].message.content.strip()
     except Exception as e:
         msg = str(e)
         if "402" in msg or "more credits" in msg or "afford" in msg:
             raise InsufficientCreditsError(msg) from e
+        if "404" in msg or "unavailable" in msg.lower() or "use this slug instead" in msg:
+            raise ModelUnavailableError(msg) from e
         raise
+
+    choice = response.choices[0]
+    content = choice.message.content
+
+    if not content:
+        refusal = getattr(choice.message, "refusal", None)
+        reason = getattr(choice, "finish_reason", "نامشخص")
+        detail = f" ({refusal})" if refusal else ""
+        raise ModelEmptyResponseError(
+            f"مدل پاسخ خالی برگردوند{detail} — دلیل توقف: {reason}. "
+            "معمولاً یعنی درخواست خیلی طولانی/پیچیده بوده یا MAX_TOKENS کافی نیست."
+        )
+
+    content = content.strip()
+    if getattr(choice, "finish_reason", None) == "length":
+        content += (
+            "\n\n⚠️ توجه: این خروجی به‌خاطر محدودیت MAX_TOKENS ممکنه ناقص/قطع‌شده باشه. "
+            "مقدار MAX_TOKENS رو در .env بیشتر کن و دوباره امتحان کن."
+        )
+    return content
 
 
 def classify_message(text: str) -> str:
@@ -144,24 +161,43 @@ async def show_typing(context: ContextTypes.DEFAULT_TYPE, chat_id: int):
         pass
 
 
-# ---------------------------------------------------------
-# state هر کاربر در context.user_data:
-#   "state"     -> None یا "awaiting_answers"
-#   "idea"      -> متن ایده اولیه کاربر
-#   "questions" -> سوالاتی که از کاربر پرسیده شد
-# ---------------------------------------------------------
+def extract_code(text: str) -> str:
+    """کد پایتون رو از داخل بلاک ```...``` (اگه وجود داشته باشه) استخراج می‌کنه."""
+    stripped = text.strip()
+    if "```" in stripped:
+        parts = stripped.split("```")
+        for part in parts[1::2]:
+            code = part
+            if code.startswith("python"):
+                code = code[len("python"):]
+            code = code.strip()
+            if code:
+                return code
+    return stripped
+
+
+async def send_code_as_file(update: Update, context: ContextTypes.DEFAULT_TYPE, thinking_msg, code_text: str):
+    """کد تولیدشده رو به‌صورت فایل .py می‌فرسته (چون تلگرام پیام متنی رو به ۴۰۹۶ کاراکتر محدود می‌کنه)."""
+    code = extract_code(code_text)
+    tmp_path = f"/tmp/generated_bot_{update.effective_chat.id}.py"
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        f.write(code)
+
+    truncated_note = "⚠️ ممکنه ناقص باشه — MAX_TOKENS رو زیاد کن." if "⚠️" in code_text else ""
+    await thinking_msg.edit_text(f"✅ کد ربات آماده شد. فایل رو پایین ببین. {truncated_note}")
+    with open(tmp_path, "rb") as f:
+        await context.bot.send_document(chat_id=update.effective_chat.id, document=f, filename="bot.py")
+    os.remove(tmp_path)
 
 async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_text = update.message.text
     chat_id = update.effective_chat.id
     state = context.user_data.get("state")
 
-    # پیام موقت «در حال فکر کردن» تا کاربر حس نکنه ربات هنگ کرده
     thinking_msg = await update.message.reply_text("🤔 در حال بررسی درخواست شما...")
     await show_typing(context, chat_id)
 
     try:
-        # ---------- حالت ۱: منتظر پاسخ به سوالات قبلی ----------
         if state == "awaiting_answers":
             idea = context.user_data.get("idea", "")
             questions = context.user_data.get("questions", "")
@@ -177,18 +213,16 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await show_typing(context, chat_id)
             code_result = ask_model(BUILD_PROMPT, full_context)
 
-            await thinking_msg.edit_text(code_result)
+            await send_code_as_file(update, context, thinking_msg, code_result)
             context.user_data.clear()
             return
 
-        # ---------- حالت ۲: پیام جدید (منتظر ایده) ----------
         category = classify_message(user_text)
 
         if category != "BUILD_REQUEST":
             await thinking_msg.edit_text(REFUSAL_MESSAGE)
             return
 
-        # بررسی نیاز به سوال قبل از ساخت
         await show_typing(context, chat_id)
         questions = ask_model(QUESTIONS_PROMPT, user_text)
 
@@ -196,7 +230,7 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await thinking_msg.edit_text("⚙️ در حال ساخت کد ربات...")
             await show_typing(context, chat_id)
             code_result = ask_model(BUILD_PROMPT, user_text)
-            await thinking_msg.edit_text(code_result)
+            await send_code_as_file(update, context, thinking_msg, code_result)
             context.user_data.clear()
         else:
             context.user_data["state"] = "awaiting_answers"
@@ -206,6 +240,17 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     except InsufficientCreditsError:
         await thinking_msg.edit_text(CREDIT_ERROR_MESSAGE)
+        context.user_data.clear()
+    except ModelUnavailableError as e:
+        await thinking_msg.edit_text(
+            f"⚠️ مدل «{MODEL}» دیگه در دسترس نیست یا رایگان نبودنش تموم شده.\n"
+            f"جزئیات: {e}\n\n"
+            "به https://openrouter.ai/models سر بزن، فیلتر قیمت رو رو صفر بذار، یه مدل فعال پیدا کن، "
+            "و اسمش رو توی .env این‌طوری بذار:\nMODEL=اسم-دقیق-مدل"
+        )
+        context.user_data.clear()
+    except ModelEmptyResponseError as e:
+        await thinking_msg.edit_text(f"⚠️ {e}\nMAX_TOKENS رو در .env زیاد کن (مثلاً 3000) و دوباره امتحان کن.")
         context.user_data.clear()
     except Exception as e:
         await thinking_msg.edit_text(f"خطا:\n{e}")
@@ -239,11 +284,19 @@ async def handle_webapp_data(update: Update, context: ContextTypes.DEFAULT_TYPE)
     try:
         flow = json.loads(raw)
         code_result = ask_model(FLOW_BUILD_PROMPT, json.dumps(flow, ensure_ascii=False, indent=2))
-        await thinking_msg.edit_text(code_result)
+        await send_code_as_file(update, context, thinking_msg, code_result)
     except json.JSONDecodeError:
         await thinking_msg.edit_text("خطا: داده‌ی دریافتی از GUI معتبر نبود.")
     except InsufficientCreditsError:
         await thinking_msg.edit_text(CREDIT_ERROR_MESSAGE)
+    except ModelUnavailableError as e:
+        await thinking_msg.edit_text(
+            f"⚠️ مدل «{MODEL}» دیگه در دسترس نیست یا رایگان نبودنش تموم شده.\n"
+            f"جزئیات: {e}\n\n"
+            "به https://openrouter.ai/models سر بزن و یه مدل رایگان فعال رو توی .env جایگزین کن (MODEL=...)."
+        )
+    except ModelEmptyResponseError as e:
+        await thinking_msg.edit_text(f"⚠️ {e}\nMAX_TOKENS رو در .env زیاد کن (مثلاً 3000) و دوباره امتحان کن.")
     except Exception as e:
         await thinking_msg.edit_text(f"خطا:\n{e}")
 
