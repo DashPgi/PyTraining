@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>سیم‌کشی ربات — Bot Wiring</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root{
+    --bg: #0e1116;
+    --grid: #1b212b;
+    --panel: #161b22;
+    --panel-2: #1d232c;
+    --line: #2a323d;
+    --text: #e7e5e0;
+    --muted: #8b93a1;
+    --copper: #e8935a;
+    --copper-dim: #7a5138;
+    --cyan: #5fc9d1;
+    --danger: #d9695f;
+    --radius: 10px;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden;}
+
+  #app{display:flex;flex-direction:column;height:100vh;width:100vw;}
+
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--line);
+    flex-shrink:0; z-index:20;
+  }
+  header .brand{display:flex;align-items:center;gap:10px;}
+  header .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--copper);box-shadow:0 0 8px var(--copper);}
+  header h1{font-size:14px;font-weight:600;margin:0;letter-spacing:.02em;font-family:var(--mono);}
+  header .sub{font-size:11px;color:var(--muted);margin-inline-start:8px;}
+  header .actions{display:flex;gap:8px;}
+  button.pill{
+    background:var(--panel-2);border:1px solid var(--line);color:var(--text);
+    padding:8px 14px;border-radius:20px;font-size:12.5px;cursor:pointer;font-family:var(--sans);
+    display:flex;align-items:center;gap:6px;transition:.15s;
+  }
+  button.pill:hover{border-color:var(--copper);color:var(--copper);}
+  button.pill.primary{background:var(--copper);color:#1a0f08;border-color:var(--copper);font-weight:600;}
+  button.pill.primary:hover{filter:brightness(1.08);color:#1a0f08;}
+
+  #body{flex:1;display:flex;min-height:0;position:relative;}
+
+  #palette{
+    width:210px;flex-shrink:0;background:var(--panel);border-inline-end:1px solid var(--line);
+    overflow-y:auto;padding:14px 10px;
+  }
+  #palette h2{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:14px 6px 8px;font-family:var(--mono);}
+  #palette h2:first-child{margin-top:2px;}
+  .node-tpl{
+    display:flex;align-items:center;gap:9px;padding:9px 10px;margin-bottom:6px;border-radius:8px;
+    background:var(--panel-2);border:1px solid var(--line);cursor:grab;font-size:12.5px;user-select:none;
+  }
+  .node-tpl:active{cursor:grabbing;}
+  .node-tpl:hover{border-color:var(--cyan);}
+  .swatch{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+
+  #canvas-wrap{flex:1;position:relative;overflow:hidden;cursor:grab;
+    background-image:radial-gradient(var(--grid) 1.4px, transparent 1.4px);
+    background-size:22px 22px;background-color:var(--bg);
+  }
+  #canvas-wrap.panning{cursor:grabbing;}
+  #world{position:absolute;top:0;left:0;transform-origin:0 0;}
+  svg#wires{position:absolute;top:0;left:0;overflow:visible;pointer-events:none;}
+  .wire{fill:none;stroke:var(--cyan);stroke-width:2.2;opacity:.85;filter:drop-shadow(0 0 3px rgba(95,201,209,.5));}
+  .wire.pending{stroke:var(--copper);stroke-dasharray:5 4;}
+
+  .node{
+    position:absolute;min-width:190px;background:var(--panel-2);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:0 4px 14px rgba(0,0,0,.35);
+    font-size:12.5px;user-select:none;
+  }
+  .node.selected{border-color:var(--copper);box-shadow:0 0 0 1px var(--copper), 0 6px 18px rgba(0,0,0,.4);}
+  .node-head{
+    display:flex;align-items:center;gap:8px;padding:9px 10px;border-bottom:1px solid var(--line);
+    cursor:grab;border-radius:var(--radius) var(--radius) 0 0;
+  }
+  .node-head:active{cursor:grabbing;}
+  .node-head .swatch{width:7px;height:7px;border-radius:2px;}
+  .node-head .label{font-weight:600;font-family:var(--mono);font-size:11.5px;}
+  .node-body{padding:8px 10px 10px;color:var(--muted);font-size:11.5px;line-height:1.5;max-width:220px;}
+  .node-body .empty{color:#5a6270;font-style:italic;}
+  .port{
+    position:absolute;width:15px;height:15px;border-radius:50%;background:var(--panel);
+    border:2px solid var(--cyan);cursor:crosshair;transition:transform .1s, background .1s;
+  }
+  .port:hover{background:var(--cyan);}
+  .port.hover-target{background:var(--copper) !important;border-color:var(--copper) !important;transform:scale(1.6);}
+  .port.out{inset-inline-end:-7px;top:50%;transform:translateY(-50%);}
+  .port.in{inset-inline-start:-7px;top:50%;transform:translateY(-50%);border-color:var(--copper);}
+  .port.in:hover{background:var(--copper);}
+  .port-row{position:relative;display:flex;justify-content:space-between;align-items:center;padding:5px 10px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);}
+  .port-row .port.out{position:absolute;}
+
+  #inspector{
+    width:260px;flex-shrink:0;background:var(--panel);border-inline-start:1px solid var(--line);
+    padding:16px;overflow-y:auto;
+  }
+  #inspector h2{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 12px;font-family:var(--mono);}
+  #inspector .empty-state{color:var(--muted);font-size:12.5px;line-height:1.7;margin-top:6px;}
+  #inspector label{display:block;font-size:11px;color:var(--muted);margin:12px 0 5px;font-family:var(--mono);}
+  #inspector input, #inspector textarea, #inspector select{
+    width:100%;background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
+    color:var(--text);padding:8px 9px;font-size:12.5px;font-family:var(--sans);resize:vertical;
+  }
+  #inspector input:focus, #inspector textarea:focus, #inspector select:focus{outline:none;border-color:var(--copper);}
+  #inspector .del-btn{
+    margin-top:18px;width:100%;background:transparent;border:1px solid var(--danger);color:var(--danger);
+    padding:8px;border-radius:6px;font-size:12px;cursor:pointer;
+  }
+  #inspector .del-btn:hover{background:rgba(217,105,95,.1);}
+
+  #zoom-hint{position:absolute;bottom:12px;left:12px;font-size:10.5px;color:var(--muted);font-family:var(--mono);
+    background:rgba(22,27,34,.85);padding:5px 10px;border-radius:6px;border:1px solid var(--line);}
+
+  #export-modal{
+    position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:50;
+  }
+  #export-modal .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;width:min(560px,92vw);
+    max-height:80vh;display:flex;flex-direction:column;padding:18px 20px;}
+  #export-modal h3{margin:0 0 10px;font-family:var(--mono);font-size:13.5px;}
+  #export-modal p{color:var(--muted);font-size:12px;line-height:1.7;margin:0 0 10px;}
+  #export-modal pre{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:10px;
+    font-size:11px;overflow:auto;flex:1;color:#c8d1da;direction:ltr;text-align:left;}
+  #export-modal .row{display:flex;gap:8px;margin-top:12px;justify-content:flex-end;}
+
+  @media (max-width: 760px){
+    #palette{position:absolute;inset-inline-start:0;top:0;bottom:0;z-index:15;transform:translateX(-105%);transition:.2s;}
+    html[dir="rtl"] #palette.open{transform:translateX(0);}
+    #inspector{position:absolute;inset-inline-end:0;top:0;bottom:0;z-index:15;transform:translateX(105%);transition:.2s;width:78vw;max-width:300px;}
+    #inspector.open{transform:translateX(0);}
+    header h1{font-size:12.5px;}
+    header .sub{display:none;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="brand">
+      <span class="dot"></span>
+      <h1>سیم‌کشی ربات</h1>
+      <span class="sub">نودها رو بکش، وصل کن، ربات بساز</span>
+    </div>
+    <div class="actions">
+      <button class="pill" id="btn-palette-toggle">🧩 نودها</button>
+      <button class="pill" id="btn-clear">🗑 پاک کردن</button>
+      <button class="pill primary" id="btn-generate">⚙️ ساخت ربات</button>
+    </div>
+  </header>
+  <div id="body">
+    <aside id="palette">
+      <h2>ورودی / Trigger</h2>
+      <div class="node-tpl" draggable="true" data-type="trigger_message"><span class="swatch" style="background:#5fc9d1"></span>پیام دریافتی</div>
+      <div class="node-tpl" draggable="true" data-type="trigger_command"><span class="swatch" style="background:#5fc9d1"></span>دستور (Command)</div>
+
+      <h2>منطق / Logic</h2>
+      <div class="node-tpl" draggable="true" data-type="condition"><span class="swatch" style="background:#c9a15f"></span>شرط (If)</div>
+      <div class="node-tpl" draggable="true" data-type="delay"><span class="swatch" style="background:#c9a15f"></span>تاخیر (Delay)</div>
+
+      <h2>اکشن / Action</h2>
+      <div class="node-tpl" draggable="true" data-type="send_message"><span class="swatch" style="background:#e8935a"></span>ارسال پیام</div>
+      <div class="node-tpl" draggable="true" data-type="send_buttons"><span class="swatch" style="background:#e8935a"></span>دکمه / منو</div>
+
+      <h2>داده / Data</h2>
+      <div class="node-tpl" draggable="true" data-type="save_data"><span class="swatch" style="background:#8fc95f"></span>ذخیره داده</div>
+      <div class="node-tpl" draggable="true" data-type="read_data"><span class="swatch" style="background:#8fc95f"></span>خواندن داده</div>
+      <div class="node-tpl" draggable="true" data-type="http_request"><span class="swatch" style="background:#8fc95f"></span>درخواست API</div>
+
+      <h2>هوش مصنوعی / AI</h2>
+      <div class="node-tpl" draggable="true" data-type="ai_response"><span class="swatch" style="background:#a05fc9"></span>پاسخ هوش مصنوعی</div>
+
+      <h2>پایان</h2>
+      <div class="node-tpl" draggable="true" data-type="end"><span class="swatch" style="background:#5a6270"></span>پایان فلو</div>
+    </aside>
+
+    <div id="canvas-wrap">
+      <svg id="wires" width="4000" height="3000"></svg>
+      <div id="world"></div>
+      <div id="zoom-hint">اسکرول: زوم · درگ روی زمینه: جابجایی · درگ از نقطه: اتصال</div>
+    </div>
+
+    <aside id="inspector">
+      <h2>تنظیمات نود</h2>
+      <div id="inspector-body"><p class="empty-state">یک نود رو انتخاب کن تا تنظیماتش این‌جا نمایش داده بشه.</p></div>
+    </aside>
+  </div>
+</div>
+
+<div id="export-modal">
+  <div class="box">
+    <h3>خروجی فلو (JSON)</h3>
+    <p>این ساختار برای هوش مصنوعی ربات‌ساز فرستاده می‌شه تا کد نهایی رو تولید کنه. اگه از داخل تلگرام باز کردی، دکمه‌ی «ارسال به ربات» فعاله؛ در غیر این‌صورت می‌تونی دانلودش کنی.</p>
+    <pre id="export-json"></pre>
+    <div class="row">
+      <button class="pill" id="btn-copy">📋 کپی</button>
+      <button class="pill" id="btn-download">⬇️ دانلود JSON</button>
+      <button class="pill primary" id="btn-send-tg">📨 ارسال به ربات</button>
+      <button class="pill" id="btn-close-modal">بستن</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const NODE_DEFS = {
+  trigger_message: {label:'پیام دریافتی', color:'#5fc9d1', inputs:0, outputs:1,
+    fields:[{key:'note',type:'text',label:'یادداشت (اختیاری)'}]},
+  trigger_command: {label:'دستور', color:'#5fc9d1', inputs:0, outputs:1,
+    fields:[{key:'command',type:'text',label:'نام دستور (مثلاً start)'}]},
+  condition: {label:'شرط (If)', color:'#c9a15f', inputs:1, outputs:2, outLabels:['بله','خیر'],
+    fields:[{key:'expr',type:'textarea',label:'شرط (مثلاً: متن شامل «قیمت» باشه)'}]},
+  delay: {label:'تاخیر', color:'#c9a15f', inputs:1, outputs:1,
+    fields:[{key:'seconds',type:'number',label:'مدت تاخیر (ثانیه)'}]},
+  send_message: {label:'ارسال پیام', color:'#e8935a', inputs:1, outputs:1,
+    fields:[{key:'text',type:'textarea',label:'متن پیام'}]},
+  send_buttons: {label:'دکمه / منو', color:'#e8935a', inputs:1, outputs:1,
+    fields:[{key:'buttons',type:'textarea',label:'دکمه‌ها (هر خط یک دکمه)'}]},
+  save_data: {label:'ذخیره داده', color:'#8fc95f', inputs:1, outputs:1,
+    fields:[{key:'target',type:'select',label:'محل ذخیره',options:['فایل JSON','دیتابیس SQLite','گوگل شیت']},
+             {key:'field',type:'text',label:'چه چیزی ذخیره بشه'}]},
+  read_data: {label:'خواندن داده', color:'#8fc95f', inputs:1, outputs:1,
+    fields:[{key:'source',type:'select',label:'منبع',options:['فایل JSON','دیتابیس SQLite','گوگل شیت']}]},
+  http_request: {label:'درخواست API', color:'#8fc95f', inputs:1, outputs:1,
+    fields:[{key:'url',type:'text',label:'آدرس API'},{key:'method',type:'select',label:'متد',options:['GET','POST']}]},
+  ai_response: {label:'پاسخ هوش مصنوعی', color:'#a05fc9', inputs:1, outputs:1,
+    fields:[{key:'prompt',type:'textarea',label:'دستور به هوش مصنوعی (system prompt)'}]},
+  end: {label:'پایان فلو', color:'#5a6270', inputs:1, outputs:0, fields:[]},
+};
+
+let nodes = [];      // {id, type, x, y, data:{}}
+let links = [];      // {id, from:{node,port}, to:{node,port}}
+let nodeSeq = 1, linkSeq = 1;
+let selectedNodeId = null;
+let scale = 1;
+let camX = 0, camY = 0;
+
+const world = document.getElementById('world');
+const wrap = document.getElementById('canvas-wrap');
+const svg = document.getElementById('wires');
+const inspectorBody = document.getElementById('inspector-body');
+
+function uid(prefix){return prefix + (nodeSeq++);}
+
+
+function addNode(type, x, y){
+  const def = NODE_DEFS[type];
+  if(!def) return;
+  const id = 'n' + (nodeSeq++);
+  nodes.push({id, type, x, y, data:{}});
+  renderNode(nodes[nodes.length-1]);
+  redrawLinks();
+}
+
+function renderNode(node){
+  const def = NODE_DEFS[node.type];
+  const el = document.createElement('div');
+  el.className = 'node';
+  el.id = node.id;
+  el.style.left = node.x + 'px';
+  el.style.top = node.y + 'px';
+
+  let bodyHtml = '<div class="node-body">';
+  const filled = Object.keys(node.data).some(k=>node.data[k]);
+  if(!filled){
+    bodyHtml += '<span class="empty">تنظیمات این نود رو تکمیل کن ›</span>';
+  } else {
+    bodyHtml += Object.entries(node.data).filter(([k,v])=>v).map(([k,v])=>`${k}: ${String(v).slice(0,40)}`).join('<br>');
+  }
+  bodyHtml += '</div>';
+
+  el.innerHTML = `
+    <div class="node-head">
+      <span class="swatch" style="background:${def.color}"></span>
+      <span class="label">${def.label}</span>
+    </div>
+    ${bodyHtml}
+  `;
+
+  // input port
+  if(def.inputs > 0){
+    const p = document.createElement('div');
+    p.className = 'port in';
+    p.dataset.node = node.id; p.dataset.port = 'in';
+    el.appendChild(p);
+  }
+
+  // output ports
+  if(def.outputs === 1){
+    const p = document.createElement('div');
+    p.className = 'port out';
+    p.dataset.node = node.id; p.dataset.port = 'out0';
+    el.appendChild(p);
+  } else if(def.outputs > 1){
+    for(let i=0;i<def.outputs;i++){
+      const row = document.createElement('div');
+      row.className = 'port-row';
+      row.textContent = (def.outLabels && def.outLabels[i]) || ('خروجی ' + (i+1));
+      const p = document.createElement('div');
+      p.className = 'port out';
+      p.style.position='relative'; p.style.insetInlineEnd='auto'; p.style.top='auto'; p.style.transform='none';
+      p.dataset.node = node.id; p.dataset.port = 'out' + i;
+      row.appendChild(p);
+      el.appendChild(row);
+    }
+  }
+
+  world.appendChild(el);
+  makeDraggable(el, node);
+  el.querySelector('.node-head').addEventListener('mousedown', (e)=>selectNode(node.id));
+  el.addEventListener('mousedown', (e)=>{ if(e.target.classList.contains('port')) return; selectNode(node.id); });
+
+  el.querySelectorAll('.port').forEach(p=>{
+    p.addEventListener('mousedown', startLinkDrag);
+    p.addEventListener('touchstart', (e)=>{
+      if(!p.classList.contains('out')) return;
+      e.stopPropagation();
+      dragLink = {fromNode: p.dataset.node, fromPort: p.dataset.port};
+      const t = e.touches[0];
+      updateTempWire(t.clientX, t.clientY);
+    }, {passive:true});
+  });
+}
+
+function makeDraggable(el, node){
+  const head = el.querySelector('.node-head');
+  let dragging = false, sx=0, sy=0, ox=0, oy=0;
+  head.addEventListener('mousedown', (e)=>{
+    dragging = true; sx = e.clientX; sy = e.clientY; ox = node.x; oy = node.y;
+    e.stopPropagation();
+  });
+  window.addEventListener('mousemove', (e)=>{
+    if(!dragging) return;
+    const dx = (e.clientX - sx)/scale, dy = (e.clientY - sy)/scale;
+    node.x = ox + dx; node.y = oy + dy;
+    el.style.left = node.x+'px'; el.style.top = node.y+'px';
+    redrawLinks();
+  });
+  window.addEventListener('mouseup', ()=>{ dragging = false; });
+
+  // touch support (mobile)
+  head.addEventListener('touchstart', (e)=>{
+    const t = e.touches[0];
+    dragging = true; sx = t.clientX; sy = t.clientY; ox = node.x; oy = node.y;
+  }, {passive:true});
+  window.addEventListener('touchmove', (e)=>{
+    if(!dragging) return;
+    const t = e.touches[0];
+    const dx = (t.clientX - sx)/scale, dy = (t.clientY - sy)/scale;
+    node.x = ox + dx; node.y = oy + dy;
+    el.style.left = node.x+'px'; el.style.top = node.y+'px';
+    redrawLinks();
+  }, {passive:true});
+  window.addEventListener('touchend', ()=>{ dragging = false; });
+}
+
+
+const SNAP_RADIUS = 30; // شعاع تشخیص نزدیک‌ترین نقطه ورودی (پیکسل صفحه)
+let dragLink = null; // {fromNode, fromPort}
+let hoverTargetEl = null;
+
+function worldPoint(clientX, clientY){
+  const wr = world.getBoundingClientRect();
+  return { x: (clientX - wr.left)/scale, y: (clientY - wr.top)/scale };
+}
+
+function startLinkDrag(e){
+  e.stopPropagation();
+  e.preventDefault();
+  const el = e.currentTarget;
+  if(!el.classList.contains('out')) return;
+  dragLink = {fromNode: el.dataset.node, fromPort: el.dataset.port};
+  updateTempWire(e.clientX, e.clientY);
+}
+
+function findNearestInPort(clientX, clientY){
+  let best = null, bestDist = SNAP_RADIUS;
+  document.querySelectorAll('.port.in').forEach(p=>{
+    if(dragLink && p.dataset.node === dragLink.fromNode) return; // نمی‌تونه به خودش وصل بشه
+    const r = p.getBoundingClientRect();
+    const cx = r.left + r.width/2, cy = r.top + r.height/2;
+    const dist = Math.hypot(clientX-cx, clientY-cy);
+    if(dist < bestDist){ bestDist = dist; best = p; }
+  });
+  return best;
+}
+
+function updateTempWire(clientX, clientY){
+  if(!dragLink) return;
+  let temp = document.getElementById('temp-wire');
+  if(!temp){
+    temp = document.createElementNS('http://www.w3.org/2000/svg','path');
+    temp.setAttribute('id','temp-wire');
+    temp.setAttribute('class','wire pending');
+    svg.appendChild(temp);
+  }
+  const a = portCenter(dragLink.fromNode, dragLink.fromPort);
+  const b = worldPoint(clientX, clientY);
+  const dx = Math.max(60, Math.abs(b.x-a.x)/2);
+  temp.setAttribute('d', `M ${a.x} ${a.y} C ${a.x+dx} ${a.y}, ${b.x-dx} ${b.y}, ${b.x} ${b.y}`);
+
+  const target = findNearestInPort(clientX, clientY);
+  if(hoverTargetEl && hoverTargetEl !== target) hoverTargetEl.classList.remove('hover-target');
+  if(target) target.classList.add('hover-target');
+  hoverTargetEl = target;
+}
+
+function finishLinkDrag(clientX, clientY){
+  if(!dragLink) return;
+  const target = findNearestInPort(clientX, clientY);
+  if(target){
+    links.push({id:'l'+(linkSeq++), from:{node:dragLink.fromNode, port:dragLink.fromPort}, to:{node:target.dataset.node, port:'in'}});
+  }
+  if(hoverTargetEl){ hoverTargetEl.classList.remove('hover-target'); hoverTargetEl = null; }
+  const temp = document.getElementById('temp-wire');
+  if(temp) temp.remove();
+  dragLink = null;
+  redrawLinks();
+}
+
+window.addEventListener('mousemove', (e)=>{ if(dragLink) updateTempWire(e.clientX, e.clientY); });
+window.addEventListener('mouseup', (e)=>{ if(dragLink) finishLinkDrag(e.clientX, e.clientY); });
+
+window.addEventListener('touchmove', (e)=>{
+  if(!dragLink) return;
+  const t = e.touches[0];
+  updateTempWire(t.clientX, t.clientY);
+}, {passive:true});
+window.addEventListener('touchend', (e)=>{
+  if(!dragLink) return;
+  const t = e.changedTouches[0];
+  finishLinkDrag(t.clientX, t.clientY);
+});
+
+function portCenter(nodeId, portName){
+  const nodeEl = document.getElementById(nodeId);
+  if(!nodeEl) return {x:0,y:0};
+  const portEl = nodeEl.querySelector(`.port[data-port="${portName}"]`);
+  if(!portEl) return {x:0,y:0};
+  const wr = world.getBoundingClientRect();
+  const pr = portEl.getBoundingClientRect();
+  return { x: (pr.left + pr.width/2 - wr.left)/scale, y: (pr.top + pr.height/2 - wr.top)/scale };
+}
+
+function redrawLinks(){
+  svg.innerHTML = '';
+  links.forEach(link=>{
+    const a = portCenter(link.from.node, link.from.port);
+    const b = portCenter(link.to.node, 'in');
+    const dx = Math.max(60, Math.abs(b.x-a.x)/2);
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', `M ${a.x} ${a.y} C ${a.x+dx} ${a.y}, ${b.x-dx} ${b.y}, ${b.x} ${b.y}`);
+    path.setAttribute('class','wire');
+    path.addEventListener('dblclick', ()=>{ links = links.filter(l=>l.id!==link.id); redrawLinks(); });
+    svg.appendChild(path);
+  });
+}
+
+function selectNode(id){
+  selectedNodeId = id;
+  document.querySelectorAll('.node').forEach(n=>n.classList.toggle('selected', n.id===id));
+  const node = nodes.find(n=>n.id===id);
+  const def = NODE_DEFS[node.type];
+
+  let html = `<div style="font-family:var(--mono);font-size:12px;color:var(--copper);margin-bottom:6px;">${def.label}</div>`;
+  if(def.fields.length === 0){
+    html += `<p class="empty-state">این نود تنظیمات اضافه‌ای نداره.</p>`;
+  }
+  def.fields.forEach(f=>{
+    html += `<label>${f.label}</label>`;
+    if(f.type === 'textarea'){
+      html += `<textarea rows="3" data-key="${f.key}">${node.data[f.key]||''}</textarea>`;
+    } else if(f.type === 'select'){
+      html += `<select data-key="${f.key}">` + f.options.map(o=>`<option ${node.data[f.key]===o?'selected':''}>${o}</option>`).join('') + `</select>`;
+    } else {
+      html += `<input type="${f.type}" data-key="${f.key}" value="${node.data[f.key]||''}" />`;
+    }
+  });
+  html += `<button class="del-btn" id="btn-del-node">حذف این نود</button>`;
+  inspectorBody.innerHTML = html;
+
+  inspectorBody.querySelectorAll('[data-key]').forEach(inp=>{
+    inp.addEventListener('input', ()=>{
+      node.data[inp.dataset.key] = inp.value;
+      const el = document.getElementById(node.id);
+      const filled = Object.keys(node.data).some(k=>node.data[k]);
+      el.querySelector('.node-body').innerHTML = filled
+        ? Object.entries(node.data).filter(([k,v])=>v).map(([k,v])=>`${k}: ${String(v).slice(0,40)}`).join('<br>')
+        : '<span class="empty">تنظیمات این نود رو تکمیل کن ›</span>';
+    });
+  });
+  document.getElementById('btn-del-node').addEventListener('click', ()=>{
+    nodes = nodes.filter(n=>n.id!==node.id);
+    links = links.filter(l=>l.from.node!==node.id && l.to.node!==node.id);
+    document.getElementById(node.id).remove();
+    redrawLinks();
+    inspectorBody.innerHTML = '<p class="empty-state">یک نود رو انتخاب کن تا تنظیماتش این‌جا نمایش داده بشه.</p>';
+    if(window.innerWidth < 760) document.getElementById('inspector').classList.remove('open');
+  });
+
+  if(window.innerWidth < 760) document.getElementById('inspector').classList.add('open');
+}
+
+
+document.querySelectorAll('.node-tpl').forEach(tpl=>{
+  tpl.addEventListener('dragstart', (e)=>{
+    e.dataTransfer.setData('text/plain', tpl.dataset.type);
+  });
+});
+wrap.addEventListener('dragover', (e)=>e.preventDefault());
+wrap.addEventListener('drop', (e)=>{
+  e.preventDefault();
+  const type = e.dataTransfer.getData('text/plain');
+  const wr = world.getBoundingClientRect();
+  const x = (e.clientX - wr.left)/scale, y = (e.clientY - wr.top)/scale;
+  addNode(type, x, y);
+});
+
+// موبایل: تپ روی نود پالت = اضافه شدن به وسط صفحه
+document.querySelectorAll('.node-tpl').forEach(tpl=>{
+  tpl.addEventListener('touchend', ()=>{
+    addNode(tpl.dataset.type, 140 + Math.random()*60, 100 + Math.random()*200);
+    document.getElementById('palette').classList.remove('open');
+  });
+});
+
+
+let panning=false, panSX=0, panSY=0, camSX=0, camSY=0;
+wrap.addEventListener('mousedown', (e)=>{
+  if(e.target !== wrap && e.target !== svg) return;
+  panning = true; wrap.classList.add('panning');
+  panSX=e.clientX; panSY=e.clientY; camSX=camX; camSY=camY;
+});
+window.addEventListener('mousemove', (e)=>{
+  if(!panning) return;
+  camX = camSX + (e.clientX-panSX); camY = camSY + (e.clientY-panSY);
+  applyCamera();
+});
+window.addEventListener('mouseup', ()=>{ panning=false; wrap.classList.remove('panning'); });
+
+wrap.addEventListener('wheel', (e)=>{
+  e.preventDefault();
+  const delta = e.deltaY > 0 ? -0.06 : 0.06;
+  scale = Math.min(1.6, Math.max(0.4, scale + delta));
+  applyCamera();
+}, {passive:false});
+
+function applyCamera(){
+  world.style.transform = `translate(${camX}px, ${camY}px) scale(${scale})`;
+  svg.style.transform = `translate(${camX}px, ${camY}px) scale(${scale})`;
+}
+
+
+document.getElementById('btn-palette-toggle').addEventListener('click', ()=>{
+  document.getElementById('palette').classList.toggle('open');
+});
+document.getElementById('btn-clear').addEventListener('click', ()=>{
+  if(!confirm('همه‌ی نودها پاک بشن؟')) return;
+  nodes = []; links = []; world.innerHTML=''; svg.innerHTML='';
+  inspectorBody.innerHTML = '<p class="empty-state">یک نود رو انتخاب کن تا تنظیماتش این‌جا نمایش داده بشه.</p>';
+});
+
+function buildFlowJSON(){
+  return {
+    version: 1,
+    nodes: nodes.map(n=>({id:n.id, type:n.type, label:NODE_DEFS[n.type].label, data:n.data})),
+    links: links.map(l=>({from:l.from, to:l.to})),
+  };
+}
+
+document.getElementById('btn-generate').addEventListener('click', ()=>{
+  if(nodes.length === 0){ alert('اول حداقل چند تا نود اضافه کن.'); return; }
+  const flow = buildFlowJSON();
+  document.getElementById('export-json').textContent = JSON.stringify(flow, null, 2);
+  document.getElementById('export-modal').style.display = 'flex';
+});
+document.getElementById('btn-close-modal').addEventListener('click', ()=>{
+  document.getElementById('export-modal').style.display = 'none';
+});
+document.getElementById('btn-copy').addEventListener('click', ()=>{
+  navigator.clipboard.writeText(document.getElementById('export-json').textContent);
+});
+document.getElementById('btn-download').addEventListener('click', ()=>{
+  const blob = new Blob([document.getElementById('export-json').textContent], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'bot_flow.json'; a.click();
+});
+document.getElementById('btn-send-tg').addEventListener('click', ()=>{
+  const tg = window.Telegram && window.Telegram.WebApp;
+  if(!tg){ alert('این دکمه فقط وقتی از داخل تلگرام باز شده باشه کار می‌کنه.'); return; }
+  tg.sendData(document.getElementById('export-json').textContent);
+  tg.close();
+});
+
+/* راه‌اندازی اولیه تلگرام وب‌اپ (در صورت وجود) */
+if(window.Telegram && window.Telegram.WebApp){
+  window.Telegram.WebApp.ready();
+  window.Telegram.WebApp.expand();
+}
+</script>
+</body>
+</html>
