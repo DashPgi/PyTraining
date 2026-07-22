@@ -1,0 +1,7 @@
+First : {Make a Logic For Compute The Arz's}
+then : {Use Bestest and Fastest Api's For Request's in my app}
+then : {Develop my app to the best way}
+then : {Make a Ui project in figma for my app's gui}
+then : {Run the figma project on my app with QtPy6 and ....}
+then : {Debug with my best Friend "AI" For Saving Time ^^}
+Final : {App is Working with best Programming ,Nice Job Parsa ^^}
