@@ -1,3 +1,3 @@
-this App has two Version for 2 platform
-Desktop Folder is Desktop Version of my app
-Telbot Folder is Telegram bot Version of my app
+this App has two Versions for platforms
+The Desktop Folder contain the Desktop Version of my app
+The Telbot Folder contain the Telegram bot Version of my app
