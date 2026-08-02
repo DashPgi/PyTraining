@@ -23,6 +23,10 @@ class Color:
     blue = "blue"
     white = "white"
     black = "black"
+    class codecolor(Enum):
+        RED = "FF0000"
+        GREEN = "00FF40"
+        BLUE = "0004FF"
 
     def __init__(self, color):
         self.color = color
