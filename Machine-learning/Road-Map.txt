@@ -1,0 +1,59 @@
+---- Step one
++Python
++OOP
+-Numpy
+-Pandas
+-Matplotlib/seaborn
+-Jypyter Notebook
+---- Step two
+-Clearing-data
+-Manage-Lost-Data
+-Future-Engineering
+-Future-Scalling
+-Encoding
+-Data-Partitioning
+----Step three
+-Linear-regreession
+-Logistic-regression
+-KNN
+-Decision-tree
+-Collision Forest
+-Svm
+-Naive-Bayes
+-XGBoost
+-Hyperparameter tuning
+----Step Four
+-Clustering-Kmeans
+-Hierarchical clustering
+-DBscan
+-Decrease-PCA
+-Dependency rules
+-Anomaly detection
+----Step Five
+-Accuracy
+-Precision
+-Recall
+-FCscore
+-ROC-AUC
+-Confusion matrix
+-Cross-validation
+-Learning curves
+-Neural network
+----Step Six
+-Pytoarch-TensorFlow-Keras
+-RNN-LSTM
+-Transformer
+-Transfer-Learning
+-Convolutional Neural Network
+----Step Seven
+-Machine-Vision
+-Process-Natural-Language
+-Reinforcement Learning
+-Recommender system
+-Other Sides
+----Step Eight
+-Flask-FastApi
++git/Github
+-Ci/Cd
+-AWS/GCP/Azure
+-Monitoring,Logging
