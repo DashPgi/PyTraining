@@ -1,7 +1,10 @@
-from symtable import Class
+from abc import ABC,abstractmethod
+# need for abstraction....
 
+class Shape(ABC):
+    def ELEMENT(self, metal):
+        self.metal = metal
 
-class Shape:
     def area(self):
         pass
 
@@ -10,6 +13,8 @@ class Shape:
 
     def volume(self):
         pass
+
+
 
 
 class Color:
@@ -46,10 +51,10 @@ class Square(Shape):
         self.x = x
 
     def area(self):
-        return self.x * 2
+        return self.x ** 2
 
     def perimeter(self):
-        return self.x * self.x
+        return self.x * 4
 
     def volume(self):
         return self.x * self.x * self.x
@@ -59,14 +64,15 @@ class Square(Shape):
         print("This Is a Square")
 
 
-class Shape:
-    pass
+class Triangle(Shape, Color):
+    shape = "triangle" #public
+    _shape = "have a 3 different line" #protected (need object to show itself)
+    __shape = "it is 2D shape" #private(need a method to show itself)
 
-
-class Triangle(Shape):
-    shape = "triangle"
-
-    def __init__(self, a, b, c):
+    def __str__(self):
+        print("This Is a Triangle")
+    def __init__(self, a, b, c, metal):
+        super().ELEMENT(metal)
         self.a = a
         self.b = b
         self.c = c
@@ -76,15 +82,16 @@ class Triangle(Shape):
 
     @classmethod
     def equal_sides(cls, side):
-        return cls(side, side, side)
-
+        return cls(side, side, side, Color.white)
 
 
 R = Rectangle(1, 2, 3)
 S = Square(4)
+T = Triangle(1,2,3,"metalic")
 t = Triangle.equal_sides(5)
 
 print(R.area(), R.perimeter(), R.volume(), R.Color)
 print(S.area())
 print(t.perimeter())
-
+print(T.metal)
+print(R.__str__())
