@@ -26,7 +26,7 @@ print(Array_3D.shape)
 print(Array_3D)
 print(f"Size : {Array_3D.nbytes} Child Type : {Array_3D.dtype} Dimetion : {Array_3D.ndim} Type : {type(Array_3D)}")
 
-Array_3D_2 = np.array([[1,2,3],[4,5,6],[7,8,9]])
+Array_3D_2 = np.array([[[1,2,3],[4,5,6]],[[7,8,9],[7,8,9]]])
 Array_4D = np.stack([Array_3D_2,Array_3D])
 
 print(Array_4D)
@@ -41,3 +41,12 @@ print(f"Size : {Array_5D.nbytes} Child Type : {Array_5D.dtype} Dimetion : {Array
 
 # Shape (Tedade 4D,Tedade 3D,Tedade Row,Tedade Column)
 # stack Array 1 + Array 1 = Array 2 => Nazarie Abaad Hendesi inja Bedard Nmikhore !!
+
+# -------- Mathematics function
+
+# set For all indexes
+A = np.array([16,12,-3])
+print(f"shape : {A.shape}")
+print(f"ABS : {np.abs(A)}")
+print(f"Sqrt : {np.sqrt(A)}")
+print(f"Log : {np.log(A)}")
