@@ -68,3 +68,15 @@ print(f"product : {np.prod(A)}")
 print(f"quantile : {np.quantile(A, q=0.9)}")
 print(f"percentile : {np.percentile(A, q=90)}")
 
+# set for optional dimension
+
+print(f"Maxnumber in every Columns : {np.max(B,axis=0)}") # For Column's
+print(f"Maxnumber in every Rows : {np.max(B,axis=1)}") # For Row's
+# axis = Dimension
+
+D = np.array([A, [4, 5, 6]])
+C = np.stack([B, D])
+
+print(f"maxnumber in Columns : {np.max(C,axis=0)}")
+print(f"maxnumber in Rows : {np.max(C,axis=1)}")
+print(f"maxnumber in Dim 2 : {np.max(C,2)}")
