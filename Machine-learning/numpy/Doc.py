@@ -70,13 +70,41 @@ print(f"percentile : {np.percentile(A, q=90)}")
 
 # set for optional dimension
 
-print(f"Maxnumber in every Columns : {np.max(B,axis=0)}") # For Column's
-print(f"Maxnumber in every Rows : {np.max(B,axis=1)}") # For Row's
+print(f"Maxnumber in every Columns : {np.max(B, axis=0)}")  # For Column's
+print(f"Maxnumber in every Rows : {np.max(B, axis=1)}")  # For Row's
 # axis = Dimension
 
 D = np.array([A, [4, 5, 6]])
 C = np.stack([B, D])
 
-print(f"maxnumber in Columns : {np.max(C,axis=0)}")
-print(f"maxnumber in Rows : {np.max(C,axis=1)}")
-print(f"maxnumber in Dim 2 : {np.max(C,2)}")
+print(f"maxnumber in Columns : {np.max(C, axis=0)}")
+print(f"maxnumber in Rows : {np.max(C, axis=1)}")
+print(f"maxnumber in Dim 2 : {np.max(C, 2)}")
+
+# function for index maker
+
+print(np.zeros((1, 2), dtype="int64"))
+print(np.ones((1, 2), dtype="int64"))
+print(np.full((1, 2), 2, dtype="int64"))
+print(np.empty((1, 2), dtype="int64"))
+
+print(np.arange(1, 15, 2))
+print(np.arange(1, 24, 2).reshape(2, 3, 2))
+
+print(np.linspace(0, 50, 5).reshape(2, 5), dtype="int64")
+
+print(np.random.default_rng(seed=2).integers(low=10, high=20, size=(2, 3)))
+
+# Expanding Dimension's
+
+A = np.array([[1, 2, 3, 5], [4, 5, 6, 4]])
+# 2*4
+B = np.array([[7, 8, 9], [7, 8, 9], [7, 8, 9]])
+# 3*3
+
+A_R = A[:, :, np.newaxis, np.newaxis]
+B_R = B[np.newaxis, np.newaxis, :, :]
+
+C = A_R + B_R
+print(f"C : {C}")
+print(f"C shape : {C.shape}")
