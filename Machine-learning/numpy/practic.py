@@ -1,14 +1,11 @@
 import numpy as np
-from numpy import dtype, integer
 
-print(np.zeros((1,2),dtype="int64"))
-print(np.ones((1,2),dtype="int64"))
-print(np.full((1,2),2,dtype="int64"))
-print(np.empty((1,2),dtype="int64"))
+# indexing
 
-print(np.arange(1,15,2))
-print(np.arange(1,24,2).reshape(2,3,2))
+A = np.random.default_rng(seed=1).integers(low= 0,high = 100,size=(5,5))
 
-print(np.linspace(0,50,5).reshape(2,5),dtype="int64")
-
-print(np.random.default_rng(seed=2).integer(low=10,high=50,size=(3,3,3)))
+print(A)
+print(A[A<30])
+print(A[1,2])
+print(A[[0,2],[1,2]])
+print(A[:,[1,2]])
