@@ -1,18 +1,14 @@
 import numpy as np
+from numpy import dtype, integer
 
-A = np.array([[1, 2, 3], [4, 5, 6]])
+print(np.zeros((1,2),dtype="int64"))
+print(np.ones((1,2),dtype="int64"))
+print(np.full((1,2),2,dtype="int64"))
+print(np.empty((1,2),dtype="int64"))
 
-B = np.array([[6, 4], [5, 4], [3, 2]])
+print(np.arange(1,15,2))
+print(np.arange(1,24,2).reshape(2,3,2))
 
-print(np.shape(A))
-# 2 * 3
-print(np.shape(B))
-# 3*2
+print(np.linspace(0,50,5).reshape(2,5),dtype="int64")
 
-A_R = A[:, :, np.newaxis]
-B_R = B[np.newaxis, :, :]
-
-C = A_R + B_R
-
-print(C)
-print(C.shape)
+print(np.random.default_rng(seed=2).integer(low=10,high=50,size=(3,3,3)))
