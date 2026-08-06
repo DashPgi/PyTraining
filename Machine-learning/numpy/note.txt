@@ -1,8 +1,0 @@
------ Mathematic's Things Should I know
--Variance 
--std 
--cumsum
--product
--quntile
--percentile
--
