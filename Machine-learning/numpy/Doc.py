@@ -111,21 +111,21 @@ print(f"C shape : {C.shape}")
 
 # indexing
 
-A = np.random.default_rng(seed=1).integers(low= 0,high = 100,size=(5,5))
+A = np.random.default_rng(seed=1).integers(low=0, high=100, size=(5, 5))
 
 print(A)
-print(A[A<30])
-print(A[1,2])
-print(A[[0,2],[1,2]])
-print(A[:,[1,2]])
+print(A[A < 30])
+print(A[1, 2])
+print(A[[0, 2], [1, 2]])
+print(A[:, [1, 2]])
 print(f"1 -- : {A[1:]}")
 print(f"1 -- 5 : {A[1:5:2]}")
-print(A[::,1,2])
+print(A[::, 1, 2])
 
 # join and Split
 
-A = np.random.default_rng(seed=1).integers(low=1, high=10,size=(3,3,3),dtype="int64")
-B = np.random.default_rng(seed=1).integers(low=1, high=10,size=(3,3,3),dtype="int64")
+A = np.random.default_rng(seed=1).integers(low=1, high=10, size=(3, 3, 3), dtype="int64")
+B = np.random.default_rng(seed=1).integers(low=1, high=10, size=(3, 3, 3), dtype="int64")
 
 print(A)
 print(B)
@@ -137,12 +137,10 @@ print(f"D : {D}")
 E = np.concatenate((A, B), axis=2)
 print(f"E : {E}")
 
-
-R = np.split(C,1,axis=0)
-C = np.split(C,0,axis=1)
+R = np.split(C, 1, axis=0)
+C = np.split(C, 0, axis=1)
 print(f"R: {R}")
 print(f"C: {C}")
-
 
 # Convert RGBA to Grayscale
 
@@ -160,3 +158,35 @@ print(weight.shape)
 grayscale = image_data @ weight
 
 grayimage = Image.fromarray(grayscale)
+
+import time
+
+# Saving Array's
+
+A = np.random.default_rng(seed=1).integers(low=0, high=50, size=(2, 2))
+B = np.random.default_rng(seed=1).integers(low=0, high=50, size=(2, 2))
+
+startA = time.perf_counter()
+np.save(arr=A, file="A.npy")  # just For one
+endA = time.perf_counter()
+print(endA - startA)
+
+startZ = time.perf_counter()
+np.savez(Barray=B, Array=A, file="Ab.npz")  # For multiArrayes with high speed
+endZ = time.perf_counter()
+print(endZ - startZ)
+
+startZC = time.perf_counter()
+np.savez_compressed(Brr=B, Arr=A, file="ab_com.npz")  # For multiArrayes with Compressed file
+endZC = time.perf_counter()
+print(endZC - startZC)
+
+print(np.load("A.npy"))
+
+Ab = np.load("Ab.npz")
+a = Ab["Barray"]
+b = Ab["Array"]
+
+print(a, b)
+
+np.savetxt()
