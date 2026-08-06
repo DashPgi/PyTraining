@@ -138,5 +138,25 @@ E = np.concatenate((A, B), axis=2)
 print(f"E : {E}")
 
 
-R = np.split(C,1)
-C = np.split(C,
+R = np.split(C,1,axis=0)
+C = np.split(C,0,axis=1)
+print(f"R: {R}")
+print(f"C: {C}")
+
+
+# Convert RGBA to Grayscale
+
+from PIL import Image
+
+image_path = "icon.png"
+org_image = Image.open(image_path)
+image_data = np.asarray(org_image)
+
+weight = np.array([0.2126, 0.7152, 0.0722, 0.0])
+
+print(image_data.shape)
+print(weight.shape)
+
+grayscale = image_data @ weight
+
+grayimage = Image.fromarray(grayscale)
