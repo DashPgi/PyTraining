@@ -1,11 +1,14 @@
----- Step one
-+Python
-+OOP
--Numpy
--Pandas
--Matplotlib/seaborn
--Jypyter Notebook
----- Step two
+# Machine Learning Road Map
+---
+## Step one
+- [x] Python
+- [x] OOP
+- [x] Numpy
+- [ ] Pandas
+- [ ] Matplotlib/seaborn
+- [ ] Jypyter Notebook
+---
+## Step two
 -Clearing-data
 -Manage-Lost-Data
 -Future-Engineering
