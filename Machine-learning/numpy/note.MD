@@ -2,7 +2,7 @@
 
 ---
 
-- [ ] Check-Numpy-Doc
+- [x] Check-Numpy-Doc
 - [ ] Variance 
 - [ ] std 
 - [ ] cumsum
