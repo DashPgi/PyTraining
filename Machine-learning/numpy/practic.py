@@ -1,14 +1,22 @@
 import numpy as np
 
-# need For Studing and Research !!!
+# 1D Array Creation
+A = np.arange(3) # range for generate number in araray
+B = np.arange(0,20,2)
+C = np.linspace(1,4,1)
 
-rng = np.random.default_rng()
-normal = rng.normal(loc=10,scale=3,size=10)
-uniform = rng.uniform(low=0,high=10,size=10)
-exp = rng.exponential(scale=3,size=10)
-bino = rng.binomial(size=10)
+print(C)
+print(B)
+print(A)
 
-print(normal)
-print(uniform)
-print(exp)
-print(bino)
+# 2D Array Creation
+
+A2 = np.eye(3)
+B2 = np.eye(2,3)
+print(A2)
+print(B2)
+
+C2 = np.diag([1,2,3]) # for diagonal
+print(C2)
+D2 = np.array([[1,2,3],[4,5,6]])
+print(np.diag(D2)) # show D2's diagonal
