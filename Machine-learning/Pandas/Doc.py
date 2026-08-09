@@ -48,3 +48,5 @@ iris.plot(kind="scatter", x="a Series", y="another Series")  # ->  for Diagram
 data = pd.DataFrame()
 data.to_csv("data.csv")
 data.to_json("data.json")
+
+# 3 - How do i select a subset of a DataFrame?
