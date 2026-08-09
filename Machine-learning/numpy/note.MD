@@ -8,4 +8,4 @@
 - [ ] cumsum
 - [ ] product
 - [ ] quntile
-- [ ]percentile
+- [ ] percentile
