@@ -68,3 +68,72 @@ taintanic = pd.read_csv("taintanic.csv")
 children =taintanic.loc(taintanic["age"] < 15 , "name")
 adult = taintanic.loc(taintanic["age"] >20 , "name")
 old_citizen = taintanic.iloc[2:5,25:2]
+# groupby
+data = {
+    "Team": ["Iran", "Spain", "France", "USA", "Israel", "German"],
+    "Rank": [9999, 1, 2, 3, 4, 5, ],
+    "Year": [2014, 2020, 2026, 2025, 2020, 2005]
+}
+df = pd.DataFrame(data)
+# df.style.hide_index() # hiding index
+print(df)
+# First step on group by (Split)
+javad = df.groupby("Team").groups
+print(javad.get_groups("iran"))
+
+# Second step on groupby (function's) [Aggregation,transformation,filteration]
+#   agg
+print(javad["Year"].size())
+print(javad["Year"].agg([np.sum]))
+#   transformation
+score = lambda x: (x - x.mean()) / x
+print(df.transform(score))
+#   filteraion
+print(df.filter(lambda x : len(x) >= 3))
+
+
+import matplotlib.pyplot as plt
+
+# Virtualization
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Virtualization
+
+data_GDP = {
+    'Country' : ["Iran","USA","German","China"],
+    'GDP' : [0.3,32,5,20]
+}
+plt.show()
+
+GDP = pd.DataFrame(data_GDP,columns= ["Country","GDP"])
+GDP.plot(x='Country',y='GDP', kind='bar')
+print(GDP)
+population = {
+    "Iran": 2,
+    "USA": 10,
+    "Germany": 9,
+    "China": 7
+}
+
+RankPop = pd.DataFrame(
+    list(population.items()),
+    columns=["country", "Score"]
+)
+
+print(RankPop)
+
+RankPop.plot.pie(
+    y="Score",
+    labels=RankPop["country"],
+    figsize=(5, 5),
+    autopct="%.1f%%",
+    startangle=90
+)
+
+plt.ylabel("")
+plt.show()
+
+# ---- need more doc for that
