@@ -52,22 +52,21 @@ data.to_json("data.json")
 # 3 - How do i select a subset of a DataFrame?
 
 missing_value = ["", " ", "0.0"]
-file = pd.read_csv("data.csv", na_values=missing_value) # -> Replacing mising file into NaN
+file = pd.read_csv("data.csv", na_values=missing_value)  # -> Replacing mising file into NaN
 
-
-file.fillna(axis=0,inplace=True,value=np.nan)
-file.fillna(method = "ffill",axis=0,inplace=True) # -> Forward Fill out
-file.fillna(method = "bfill",axis=0,inplace=True) # -> backgward Fill out
-file.dropna(axis=0, how="any", inplace=True) # -> any => delete all row's have NaN | -> all =>Delete a row's have all Nan
+file.fillna(axis=0, inplace=True, value=np.nan)
+file.fillna(method="ffill", axis=0, inplace=True)  # -> Forward Fill out
+file.fillna(method="bfill", axis=0, inplace=True)  # -> backgward Fill out
+file.dropna(axis=0, how="any",
+            inplace=True)  # -> any => delete all row's have NaN | -> all =>Delete a row's have all Nan
 # linear interpolation => y = (y1+(x-x1))*(|y2-y1|/x2-x1)
 file.interpolate(method="linear", inplace=True)
 file.interpolate(method="polynomial", inplace=True)
 
-
 taintanic = pd.read_csv("taintanic.csv")
-children =taintanic.loc(taintanic["age"] < 15 , "name")
-adult = taintanic.loc(taintanic["age"] >20 , "name")
-old_citizen = taintanic.iloc[2:5,25:2]
+children = taintanic.loc(taintanic["age"] < 15, "name")
+adult = taintanic.loc(taintanic["age"] > 20, "name")
+old_citizen = taintanic.iloc[2:5, 25:2]
 # groupby
 data = {
     "Team": ["Iran", "Spain", "France", "USA", "Israel", "German"],
@@ -89,8 +88,7 @@ print(javad["Year"].agg([np.sum]))
 score = lambda x: (x - x.mean()) / x
 print(df.transform(score))
 #   filteraion
-print(df.filter(lambda x : len(x) >= 3))
-
+print(df.filter(lambda x: len(x) >= 3))
 
 import matplotlib.pyplot as plt
 
@@ -103,13 +101,13 @@ import matplotlib.pyplot as plt
 # Virtualization
 
 data_GDP = {
-    'Country' : ["Iran","USA","German","China"],
-    'GDP' : [0.3,32,5,20]
+    'Country': ["Iran", "USA", "German", "China"],
+    'GDP': [0.3, 32, 5, 20]
 }
 plt.show()
 
-GDP = pd.DataFrame(data_GDP,columns= ["Country","GDP"])
-GDP.plot(x='Country',y='GDP', kind='bar')
+GDP = pd.DataFrame(data_GDP, columns=["Country", "GDP"])
+GDP.plot(x='Country', y='GDP', kind='bar')
 print(GDP)
 population = {
     "Iran": 2,
@@ -160,3 +158,50 @@ pivott = data.pivot_table(
 malted = data.melt(id_vars="Pulse")
 print(pivott)
 
+# Mixing DataFrame
+data2 = pd.read_csv('data.csv').tail()
+data2.index = [0, 3, 2, 6, 7]
+
+print(data)
+
+# left join
+join = data.join(data2, lsuffix="_data", rsuffix="_data2")
+
+# removing right row
+join1 = data.join(
+    data2.set_index("Duration"),
+    on="Duration",
+    lsuffix="_data",
+    rsuffix="_data2"
+)
+
+# right join
+join2 = data2.join(data, lsuffix="_data", rsuffix="_data2")
+
+print(join2)
+
+# inner join
+data["Duration"] = data["rDuration"]
+data2["Duration"] = data2["lDuration"]
+
+d = data.merge(
+    data2,
+    right_on="rDuration",
+    left_on="lDuration",
+    how="left"
+)
+
+print(d)
+
+# outerjoin
+
+dc1 = pd.DataFrame({
+    'key': ['A', 'B', 'C', 'D'],
+    'value': [1, 2, 3, 4]
+})
+dc2 = pd.DataFrame({
+    'key': ['A', 'B', 'C'],
+    'value': [5, 6, 8]
+})
+
+pd.concat([dc1, dc2])
