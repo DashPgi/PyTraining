@@ -205,3 +205,16 @@ dc2 = pd.DataFrame({
 })
 
 pd.concat([dc1, dc2])
+
+# How Handle Time Series data
+data = pd.read_csv('tsd.csv', comment=';').head()
+
+
+print(data)
+data.rename(columns={"timestamp":"datatime"})
+data["datatime"] = pd.to_datetime(data["datatime"])
+
+min = data["datatime"].min()
+max = data["datatime"].max()
+data["month"] = data["datatime"].dt.month
+
