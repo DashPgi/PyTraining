@@ -218,3 +218,4 @@ min = data["datatime"].min()
 max = data["datatime"].max()
 data["month"] = data["datatime"].dt.month
 
+# How Manipulate
