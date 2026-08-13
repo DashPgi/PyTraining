@@ -4,7 +4,7 @@
 - [x] Python
 - [x] OOP
 - [x] Numpy
-- [ ] Pandas
+- [x] Pandas
 - [ ] Matplotlib/seaborn
 - [ ] Jypyter Notebook
 ---
