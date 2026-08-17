@@ -5,3 +5,12 @@ x = np.linspace(-10, 10, 20)
 y = abs(x)
 z = y + 3
 
+fig, ax = plt.subplots()
+
+ax.plot(x, y**3,
+        marker='o',
+        color='green',
+        linestyle='-.',
+        )
+
+plt.show()
