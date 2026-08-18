@@ -73,7 +73,7 @@ fig, ax = plt.subplots()
 ax.bar(Country, GDP)
 plt.show()
 
-# -- Pie
+# -- Pie [Shows parts of a whole]
 
 Pop = np.random.default_rng().integers(low=1, high=100, size=len(Country))
 
@@ -135,7 +135,7 @@ ax.annotate("%x^3%",
 
 plt.show()
 
-# -- Histogram
+# -- Histogram [Shows the distribution of numerical data by dividing values into bins   ]
 
 rand = np.random.randn(10000)
 
@@ -154,13 +154,6 @@ plt.hist(data2,
 plt.show()
 
 # -- Scatter [Shows the relationship between two numerical variables]
-
-'''
-Correlation
-Outlier detection
-Machine learning data
-Comparing two measurements
-'''
 
 data = np.arange(0, 5, 0.5)
 noise = np.random.normal(0, 1, len(data))
