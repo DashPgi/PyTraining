@@ -9,9 +9,9 @@ Set = {1, 2, 3}  # Changeable
 
 # Type of Matplotlib - > 1- HighLevel , 2- OOP
 
-# -- SimpleGrid
-
+# -- SimpleGrid [Used for trends and continuous data, especially when the x-axis has an order such as time]
 # Highlevel :
+
 
 x = np.linspace(-10, 10, 20)
 y = abs(x)
@@ -52,8 +52,7 @@ ax.plot(x, y ** 3,
 
 plt.show()
 
-# -- Bar
-
+# -- Bar [Used to compare different categories]
 # HL :
 
 Country = ["Iran", "USA", "German", "Israel"]
@@ -154,7 +153,14 @@ plt.hist(data2,
 
 plt.show()
 
-# -- Scatter
+# -- Scatter [Shows the relationship between two numerical variables]
+
+'''
+Correlation
+Outlier detection
+Machine learning data
+Comparing two measurements
+'''
 
 data = np.arange(0, 5, 0.5)
 noise = np.random.normal(0, 1, len(data))
