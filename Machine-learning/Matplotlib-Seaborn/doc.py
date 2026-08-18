@@ -69,10 +69,62 @@ plt.show()
 
 # OOP :
 
-fig,ax = plt.subplots()
+fig, ax = plt.subplots()
 
-ax.bar(Country,GDP)
+ax.bar(Country, GDP)
 plt.show()
 
 # -- Pie
 
+Pop = np.random.default_rng().integers(low=1, high=100, size=len(Country))
+
+# -- HL :
+plt.figure(figsize=(8, 8))
+plt.pie(Pop, labels=Country,
+        explode=[0, 0, 0, 0.1],  # for apart
+        colors=["gray", "blue", "orange", "lightblue"])
+plt.show()
+
+# -- OOP :
+
+
+Circle = plt.Circle((0, 0), 0.1,
+                    color="white")
+
+fig, ax = plt.subplots()
+
+ax.pie(Pop,
+       labels=Country,
+       autopct="%1.1f%%",
+       shadow=True,
+       startangle=90,
+       )
+ax.add_artist(Circle)  # -> Make a donat
+plt.show()
+
+# -- Fill Between
+# HL :
+x = np.arange(0, 10, 2)
+y1 = x ** 2
+y2 = x ** 3
+
+plt.plot(x, y1)
+plt.plot(x, y2)
+fill = plt.fill_between(x=x,
+                        y1=y1,
+                        y2=y2,
+                        color="skyblue",
+                        alpha=0.5)
+
+plt.show()
+# OOP :
+fig, ax = plt.subplots()
+
+ax.fill_between(x=x, y1=y1, y2=y2,
+                color="skyblue",
+                alpha=0.5)
+ax.annotate("%x^2%",
+    xy=(3.5, 12),
+    xytext=(3, 1),
+    arrowprops=dict(arrowstyle="->"))
+plt.show()
