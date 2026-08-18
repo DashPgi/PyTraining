@@ -2,9 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 Country = ["Iran","USA","German","Israel"]
-GDP = np.random.default_rng().integers(low=0,high=100,size=len(Country))
+Pop = np.random.default_rng().integers(low=1,high=100,size=len(Country))
 
-fig,ax = plt.subplots()
-
-ax.bar(Country,GDP)
+plt.figure(figsize=(8,8))
+plt.pie(Pop,labels=Country,
+        explode=[0,0,0,0.1], # for apart
+        colors=["gray","blue","orange","lightblue"])
 plt.show()

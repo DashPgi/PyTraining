@@ -73,3 +73,6 @@ fig,ax = plt.subplots()
 
 ax.bar(Country,GDP)
 plt.show()
+
+# -- Pie
+
