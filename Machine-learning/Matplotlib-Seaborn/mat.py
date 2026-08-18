@@ -1,18 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-rand = np.random.randn(10000)
+data = np.arange(0, 5, 0.5)
+noise = np.random.normal(0, 1, len(data))
 
-data2 = rand + 2
-
-plt.hist(rand,
-         bins=50,  # -> Time to Repeat
-         edgecolor="black",
-         )
-plt.hist(data2,
-         edgecolor="white",
-         color="green",
-         bins=50,  # -> Time to Repeat
-         )
-
+y = data ** 2  + noise
+colors = y *100
+scatter = plt.scatter(data, y,
+            c=colors,
+            cmap="plasma")
+plt.colorbar(scatter,label = "Color bar")
 plt.show()
