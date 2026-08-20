@@ -219,5 +219,19 @@ plt.imshow(image)
 print(np.shape(image))
 plt.show()
 
-# -- stem plot
+# -- Step plot
 
+signal = np.arange(10)
+signal2 = np.random.randint(1,5,10)
+plt.step(signal, signal2)
+plt.show()
+
+# -- Polar
+
+tetha = np.linspace(0,np.pi,100)
+r = np.abs(np.sin(4*tetha))
+
+plt.polar(tetha, r)
+plt.show()
+
+# --  3D
