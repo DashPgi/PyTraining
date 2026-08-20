@@ -197,3 +197,27 @@ plt.violinplot([dt, dt2, dt3],
 plt.show()
 
 # -- Contour
+
+h = np.linspace(-5,5,150)
+l = np.linspace(-4,4,150)
+
+X,Y = np.meshgrid(h,l)
+Z = np.sqrt(X**2+Y**2)
+plt.contour(X,Y,Z,levels=0,colors='k')
+plt.contourf(X,Y,Z)
+
+plt.show()
+
+# -- Image Show
+
+fig ,ax = plt.subplots()
+
+ax.axis("off")
+ax.set_title("Matplotlib Seaborn Matplotlib")
+image = plt.imread('test.jpg')
+plt.imshow(image)
+print(np.shape(image))
+plt.show()
+
+# -- stem plot
+
