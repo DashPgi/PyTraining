@@ -235,3 +235,19 @@ plt.polar(tetha, r)
 plt.show()
 
 # --  3D
+
+t = np.linspace(0,10,10)
+
+Sin = np.sin(t)
+Cos = np.cos(t)
+Zed = t
+
+line3d = plt.subplot(projection='3d')
+line3d.plot(Sin, Cos,Zed)
+line3d.scatter(Sin, Cos,Zed,
+               c = Zed,
+               cmap = "plasma")
+line3d.view_init(azim = 45)
+plt.show()
+
+# -- Subplot
