@@ -5,7 +5,7 @@
 - [x] OOP
 - [x] Numpy
 - [x] Pandas
-- [ ] Matplotlib/seaborn
+- [x] Matplotlib/seaborn
 - [ ] Jypyter Notebook
 ---
 ## Step two
