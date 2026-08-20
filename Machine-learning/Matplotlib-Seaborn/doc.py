@@ -166,7 +166,7 @@ scatter = plt.scatter(data, y,
 plt.colorbar(scatter,label = "Color bar")
 plt.show()
 
-# -- Boxplot
+# -- Boxplot [Used to summarize the distribution of numerical data]
 
 data = np.random.normal(loc=0,scale=1,size=150)
 data2 = np.random.normal(loc=1,scale=1.25,size=150)
@@ -175,3 +175,6 @@ data3 = np.random.normal(loc=2,scale=1.75,size=150)
 plt.boxplot([data,data2,data3])
 
 plt.show()
+
+# -- Heatmap
+
