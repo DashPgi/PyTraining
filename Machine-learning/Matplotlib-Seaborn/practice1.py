@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from Demos.win32ts_logoff_disconnected import session
 
 seasons = np.array(["Spring", "Summer", "Autumn", "Winter"])
 product1 = np.array([30, 45, 20, 35])
@@ -40,4 +39,6 @@ ax[0,1].legend(["product-3","product-2","Product-1"])
 ax[1,0].legend(["product-3","product-2","Product-1"])
 ax[1,1].legend(["summer","product-2","Product-1"])
 
+plt.savefig("practice1.png")
 plt.show()
+
