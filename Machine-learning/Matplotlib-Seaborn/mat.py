@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from Demos.win32ts_logoff_disconnected import session
 
 seasons = np.array(["Spring", "Summer", "Autumn", "Winter"])
 product1 = np.array([30, 45, 20, 35])
@@ -25,6 +26,18 @@ ax[0,1].set_xticks(x)
 ax[0,1].set_xticklabels(seasons)
 
 
-ax[1,0].scatter(seasons,[product1,product2,product3],color="blue")
-plt.legend(["product-3","product-2","Product-1"])
+ax[1,0].scatter(seasons,product1,color="orange")
+ax[1,0].scatter(seasons,product2,color="green")
+ax[1,0].scatter(seasons,product3,color="red")
+
+
+ax[1,1].pie(product2,labels=seasons,
+            colors=["pink", "red", "orange", "lightblue"]
+            )
+
+ax[0,0].legend(["product-3","product-2","Product-1"])
+ax[0,1].legend(["product-3","product-2","Product-1"])
+ax[1,0].legend(["product-3","product-2","Product-1"])
+ax[1,1].legend(["summer","product-2","Product-1"])
+
 plt.show()
