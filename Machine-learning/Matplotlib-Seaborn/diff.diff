@@ -1,0 +1,45 @@
+1,43d0
+< import matplotlib.pyplot as plt
+< import numpy as np
+< from Demos.win32ts_logoff_disconnected import session
+< 
+< seasons = np.array(["Spring", "Summer", "Autumn", "Winter"])
+< product1 = np.array([30, 45, 20, 35])
+< product2 = np.array([25, 40, 30, 40])
+< product3 = np.array([20, 35, 25, 30])
+< 
+< 
+< 
+< fig, ax = plt.subplots(2,2)
+< 
+< ax[0,0].plot(seasons,product1,color="orange")
+< ax[0,0].plot(seasons,product2,color="green")
+< ax[0,0].plot(seasons,product3,color="red")
+< 
+< 
+< x = np.arange(len(seasons))
+< width = .25
+< ax[0,1].bar(x,product1,width,color='orange')
+< ax[0,1].bar(x-width,product2,width,color='green')
+< ax[0,1].bar(x+width,product3,width,color='red')
+< 
+< ax[0,1].set_xticks(x)
+< ax[0,1].set_xticklabels(seasons)
+< 
+< 
+< ax[1,0].scatter(seasons,product1,color="orange")
+< ax[1,0].scatter(seasons,product2,color="green")
+< ax[1,0].scatter(seasons,product3,color="red")
+< 
+< 
+< ax[1,1].pie(product2,labels=seasons,
+<             colors=["pink", "red", "orange", "lightblue"]
+<             )
+< 
+< ax[0,0].legend(["product-3","product-2","Product-1"])
+< ax[0,1].legend(["product-3","product-2","Product-1"])
+< ax[1,0].legend(["product-3","product-2","Product-1"])
+< ax[1,1].legend(["summer","product-2","Product-1"])
+< 
+< plt.show()
+\ No newline at end of file
