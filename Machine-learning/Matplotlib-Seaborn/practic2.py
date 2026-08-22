@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+seasons = np.array(["Spring", "Summer", "Autumn", "Winter"])
+product1 = np.array([30, 45, 20, 35])
+product2 = np.array([25, 40, 30, 40])
+product3 = np.array([20, 35, 25, 30])
+
+prd1  = np.sum(product1)
+prd2 = np.sum(product2)
+prd3 = np.sum(product3)
+
+x = np.arange(3)
+
+bar = plt.bar(x, [prd1, prd2, prd3],
+        color=["orange","green","red"],
+        tick_label=["product-1", "product-2", "product-3"])
+hatch = ['/','-','o','.']
+
+for i in range(len(bar)):
+    bar[i].set_hatch(hatch[i])
+
+plt.ylim(0, 150)
+plt.yticks(np.arange(0, 151, 20))
+plt.grid(axis='y')
+plt.legend(["product-1", "product-2", "product-3"])
+
+plt.savefig("practice2.png")
+plt.show()
