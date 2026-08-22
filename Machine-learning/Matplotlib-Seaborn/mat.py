@@ -2,29 +2,36 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-seasons = np.array(["Spring", "Summer", "Autumn", "Winter"])
-product1 = np.array([30, 45, 20, 35])
-product2 = np.array([25, 40, 30, 40])
-product3 = np.array([20, 35, 25, 30])
+np.random.seed(42)
+data1 = np.random.normal(loc=0, scale=0.5, size=150)
+data2 = np.random.normal(loc=1, scale=1.0, size=150)
+data3 = np.random.normal(loc=2, scale=1.5, size=150)
 
-prd1  = np.sum(product1)
-prd2 = np.sum(product2)
-prd3 = np.sum(product3)
+x = np.random.rand(150)
+y = np.random.rand(150)
+colors = y * 100
 
-x = np.arange(3)
+fig,ax = plt.subplots(2,2)
 
-bar = plt.bar(x, [prd1, prd2, prd3],
-        color=["orange","green","red"],
-        tick_label=["product-1", "product-2", "product-3"])
-hatch = ['/','-','o','.']
+violin = ax[0,0].violinplot([data1,data2,data3],showmeans=True,showmedians=True)
+for violin in violin['bodies']:
+    violin.set_facecolor('red')
 
-for i in range(len(bar)):
-    bar[i].set_hatch(hatch[i])
+scatt = ax[0,1].scatter(data1,data2,c=data1,cmap="plasma",edgecolors="white")
+plt.colorbar(scatt)
 
-plt.ylim(0, 150)
-plt.yticks(np.arange(0, 151, 20))
-plt.grid(axis='y')
-plt.legend(["product-1", "product-2", "product-3"])
+ax[1,0].hist(data1,
+             alpha=0.8,
+             color="gray")
+ax[1,0].hist(data2,
+             alpha=0.3,
+             color="lightblue")
 
-plt.savefig("practice2.png")
+
+y = np.sin(2*data1)
+ax[1,1].plot(y,data1,
+             color="violet",)
+
+plt.tight_layout()
+plt.savefig("practic3.png")
 plt.show()
