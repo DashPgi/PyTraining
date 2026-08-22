@@ -250,4 +250,3 @@ line3d.scatter(Sin, Cos,Zed,
 line3d.view_init(azim = 45)
 plt.show()
 
-# -- Subplot
