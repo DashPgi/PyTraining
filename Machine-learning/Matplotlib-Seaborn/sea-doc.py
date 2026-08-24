@@ -67,3 +67,16 @@ sea.rugplot(
     data=titanic_df,
     x="age",
 )
+
+# -- Boxplot :
+
+sea.boxenplot(
+    data=titanic_df,
+    x="class",
+    y="fare",
+    hue="sex",
+    hue_order=["male", "female"],
+    order=["First", "Second", "Third"],
+    showfliers=False,
+    palette="Set2",
+)
