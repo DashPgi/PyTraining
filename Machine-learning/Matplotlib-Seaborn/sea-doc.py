@@ -16,4 +16,15 @@ sea.lineplot(
 )
 plt.legend(bbox_to_anchor=(1.05, 1),title="Linechart")
 
+# -- Barplot :
+
+titanic_df = sea.load_dataset("titanic")
+titanic_df.head()
+
+fig, ax = plt.subplots()
+
+sea.barplot(data=titanic_df,
+            errorbar=None,
+            hue="sex",
+            x="class", y="fare", ax=ax)
 
