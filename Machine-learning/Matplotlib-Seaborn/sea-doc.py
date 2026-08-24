@@ -80,3 +80,25 @@ sea.boxenplot(
     showfliers=False,
     palette="Set2",
 )
+
+# -- ScatterPlot :
+
+fig, ax = plt.subplots(1, 2, figsize=(10, 5))
+
+sea.scatterplot(
+    data=iris_df,
+    x="petal_length",
+    y="petal_width",
+    ax=ax[0],
+)
+ax[0].set_title("Iris Petal")
+ax[1].set_title("Iris Sepal")
+sea.scatterplot(
+    data=iris_df,
+    x="sepal_length",
+    y="sepal_width",
+    hue="species",
+    palette="Set2",
+    ax=ax[1]
+)
+
