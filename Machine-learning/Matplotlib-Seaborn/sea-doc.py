@@ -49,3 +49,15 @@ sea.kdeplot(data=titanic_df,
             multiple="stack",
             ls="--",
             bw_adjust=0.1)
+
+fig, ax = plt.subplots()
+
+sea.kdeplot(
+    data=titanic_df,
+    x="age",
+    y="fare",
+    fill=True,
+    levels=6,
+    cmap="inferno",
+    ax=ax,
+)
