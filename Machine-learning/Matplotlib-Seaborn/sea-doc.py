@@ -102,3 +102,19 @@ sea.scatterplot(
     ax=ax[1]
 )
 
+# -- ViolinPlot :
+
+sea.violinplot(
+    data=titanic_df,
+    x ='class',
+    y = 'age',
+    hue='sex',
+    palette="Set2",
+    inner="box",
+    split=True,
+    hue_order=["male", "female"],
+    gap=0.1,
+    linewidth=1,
+
+    inner_kws={"box_width": 4},
+)
