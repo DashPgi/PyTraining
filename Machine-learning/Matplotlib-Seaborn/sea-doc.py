@@ -61,3 +61,9 @@ sea.kdeplot(
     cmap="inferno",
     ax=ax,
 )
+
+# -- Rugplot :
+sea.rugplot(
+    data=titanic_df,
+    x="age",
+)
