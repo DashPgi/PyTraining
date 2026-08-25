@@ -172,3 +172,22 @@ sea.pointplot(
     x="day",
     y="total_bill",
 )
+
+# -- ECDF :
+
+data = Tips_df["total_bill"]
+Q1 = np.percentile(data, 25)
+Q2 = np.percentile(data, 50)
+Q3 = np.percentile(data, 75)
+
+fig, ax = plt.subplots()
+
+sea.ecdfplot(
+    ax=ax,
+    data=data,
+)
+ax.axvline(Q1, color="violet", linestyle="--")
+ax.axvline(Q2, color="black", linestyle="--")
+ax.axvline(Q3, color="orange", linestyle="--")
+ax.set_yticks(np.arange(0, 1.1, 0.1))
+
