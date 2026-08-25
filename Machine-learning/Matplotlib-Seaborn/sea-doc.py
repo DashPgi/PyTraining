@@ -217,3 +217,15 @@ sea.lmplot(
     x="X",
     y="Y",
 )
+
+# -- RelPlot :
+
+sea.relplot(
+    data=Tips_df,
+    x="total_bill",
+    y="tip",
+    hue="sex",
+    col="time",
+    row="smoker",
+    kind="scatter",
+)
