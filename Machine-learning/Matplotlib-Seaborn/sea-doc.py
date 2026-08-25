@@ -164,3 +164,11 @@ sea.swarmplot(
     hue="smoker",
     dodge=True,
 )
+
+# -- PointPlot :
+
+sea.pointplot(
+    data=Tips_df,
+    x="day",
+    y="total_bill",
+)
