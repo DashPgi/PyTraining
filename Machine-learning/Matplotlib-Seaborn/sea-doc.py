@@ -106,8 +106,8 @@ sea.scatterplot(
 
 sea.violinplot(
     data=titanic_df,
-    x ='class',
-    y = 'age',
+    x='class',
+    y='age',
     hue='sex',
     palette="Set2",
     inner="box",
@@ -130,4 +130,17 @@ sea.countplot(
     hue_order=["male", "female"],
     palette="Set2",
     ax=ax
+)
+
+# -- StripPlot:
+sea.stripplot(
+    data=titanic_df,
+    x="class",
+    y="fare",
+    alpha=0.5,
+    palette="Set2",
+    hue="sex",
+    jitter=True,
+    dodge=True,
+
 )
