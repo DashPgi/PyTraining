@@ -199,3 +199,21 @@ sea.catplot(
     hue="sex",
     kind="box",
 )
+
+# -- LMPlot :
+
+x = np.arange(0, 7, 0.5)
+y = 2 * x + 2
+error = np.random.normal(loc=0, scale=1, size=14)
+y_error = y + error
+
+df = pd.DataFrame({
+    "X": x,
+    "Y": y_error
+})
+
+sea.lmplot(
+    data=df,
+    x="X",
+    y="Y",
+)
