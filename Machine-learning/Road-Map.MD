@@ -6,16 +6,16 @@
 - [x] Numpy
 - [x] Pandas
 - [x] Matplotlib/seaborn
-- [ ] Jypyter Notebook
+- [x] Jypyter Notebook
 ---
 ## Step two
--Clearing-data
--Manage-Lost-Data
--Future-Engineering
--Future-Scalling
--Encoding
--Data-Partitioning
-----Step three
+- [] Clearing-data
+- [] Manage-Lost-Data
+- [] Future-Engineering
+- [] Future-Scalling
+- [] Encoding
+- [] Data-Partitioning
+## Step three
 -Linear-regreession
 -Logistic-regression
 -KNN
