@@ -154,4 +154,13 @@ sea.heatmap(
     fmt="0.1g",
 )
 
+# -- SwarmPlot :
 
+Tips_df = sea.load_dataset("tips")
+sea.swarmplot(
+    data=Tips_df,
+    x="day",
+    y="total_bill",
+    hue="smoker",
+    dodge=True,
+)
