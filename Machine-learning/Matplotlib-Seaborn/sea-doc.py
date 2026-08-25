@@ -118,3 +118,16 @@ sea.violinplot(
 
     inner_kws={"box_width": 4},
 )
+
+# -- CountPlot :
+
+fig, ax = plt.subplots()
+
+sea.countplot(
+    data=titanic_df,
+    x="class",
+    hue='sex',
+    hue_order=["male", "female"],
+    palette="Set2",
+    ax=ax
+)
