@@ -229,3 +229,20 @@ sea.relplot(
     row="smoker",
     kind="scatter",
 )
+
+# -- Pair Grid and Plot :
+
+sea.pairplot(
+    data=Tips_df,
+    diag_kind="kde",
+)
+pg = sea.PairGrid(
+    data=Tips_df,
+    hue="time",
+)
+pg.map_diag(
+    sea.scatterplot, size=Tips_df["sex"]
+)
+pg.map_offdiag(
+    sea.histplot, size=Tips_df["time"]
+)
