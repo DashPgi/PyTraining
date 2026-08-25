@@ -246,3 +246,34 @@ pg.map_diag(
 pg.map_offdiag(
     sea.histplot, size=Tips_df["time"]
 )
+
+# -- Joint Grind and Plot :
+car = sea.load_dataset("car_crashes")
+car.head()
+
+jp = sea.jointplot(
+    data=car,
+    x="alcohol",
+    y="speeding",
+    kind="scatter",
+)
+jp.plot_joint(
+    sea.kdeplot, levels=10
+)
+jp.plot_joint(
+    sea.rugplot, height=0.1,
+    color="red"
+)
+
+penguins = sea.load_dataset("penguins")
+
+fig = sea.JointGrid(
+    data=penguins,
+    x="bill_length_mm",
+    y="bill_depth_mm",
+    hue="species",
+)
+fig.plot_joint(sea.scatterplot, s=50, color="red", alpha=0.5, )
+fig.plot_marginals(sea.kdeplot, fill=True)
+
+
