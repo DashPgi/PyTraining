@@ -191,3 +191,11 @@ ax.axvline(Q2, color="black", linestyle="--")
 ax.axvline(Q3, color="orange", linestyle="--")
 ax.set_yticks(np.arange(0, 1.1, 0.1))
 
+# -- catplot :
+sea.catplot(
+    data=titanic_df,
+    x="class",
+    y="age",
+    hue="sex",
+    kind="box",
+)
