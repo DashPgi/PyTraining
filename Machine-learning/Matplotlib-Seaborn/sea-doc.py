@@ -144,3 +144,14 @@ sea.stripplot(
     dodge=True,
 
 )
+
+# -- HeatmapPlot :
+corr = titanic_df.corr(numeric_only=True)
+
+sea.heatmap(
+    data=corr,
+    annot=True,
+    fmt="0.1g",
+)
+
+
