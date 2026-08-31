@@ -9,7 +9,7 @@
 5. Correcting Deviations
 6. Data validation
 
-## Six Sections of CD
+## Six principles from CD (DAMA)
 
 - Accurany 
     - Question -> How real is my data?
@@ -26,3 +26,10 @@
 - Uniqueness
     - Question -> Is All of my data unique or not duplicated?
     
+## Problem and bugs
+- Duplicated Data
+- Wrong data Type
+- Outliers
+- Structural error
+- Missing or empty Data
+
