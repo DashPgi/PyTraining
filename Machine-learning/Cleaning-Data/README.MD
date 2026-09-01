@@ -54,3 +54,14 @@
 - Excel
 - Python (Panda)
 - SQL
+
+
+# Best Practices and advice
+
+- [x] Define Quality Standards Before You Start
+- [x] apply the rules for all collection
+- [x] keep a backup from raw version of data
+- [x] document each cleanup decision
+- [x] check after each cleanup
+- [x] scripting any task that you do more than twice
+- [x] do it local first!
