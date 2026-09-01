@@ -25,11 +25,19 @@
     - Question -> Is data the same across all systems and instances?
 - Uniqueness
     - Question -> Is All of my data unique or not duplicated?
-    
-## Problem and bugs
+
+---
+
+###  Problem and bugs
 - Duplicated Data
 - Wrong data Type
 - Outliers
 - Structural error
 - Missing or empty Data
+- Incompatible formats
 
+### ? How To Manage Missing data?
+- Remove Record
+- Use Mean, median, and mode
+- Use Specific Values
+- Advance Method
