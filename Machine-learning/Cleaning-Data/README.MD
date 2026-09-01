@@ -26,7 +26,15 @@
 - Uniqueness
     - Question -> Is All of my data unique or not duplicated?
 
----
+
+## Details
+### Tips
+- know all Structures
+- know all precentage of missing data
+- know duplicates
+- know category diversity
+- remove all unnecceasary fields
+- correcting wrong or Incompatible structure
 
 ###  Problem and bugs
 - Duplicated Data
@@ -41,3 +49,8 @@
 - Use Mean, median, and mode
 - Use Specific Values
 - Advance Method
+
+### Tools
+- Excel
+- Python (Panda)
+- SQL
