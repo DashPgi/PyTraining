@@ -9,7 +9,7 @@
 - [x] Jypyter Notebook
 ---
 ## Step two
-- [] Clearing-data
+- [x] Clearing-data
 - [] Manage-Lost-Data
 - [] Future-Engineering
 - [] Future-Scalling
