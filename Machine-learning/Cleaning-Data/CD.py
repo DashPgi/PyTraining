@@ -59,6 +59,8 @@ upper = Q3 + 1.5 * IQR
 data = data[
     (data["performance_score"] >= lower) & (data["performance_score"] <= upper)
     ]
+data.loc[5,"gender"]= "Male"
+data.loc[8,"gender"]= "Female"
 
 print(data.duplicated().any())
 print(data.isna().sum())
@@ -69,3 +71,5 @@ print((data["age"] > 120).sum())
 print((data["employee_id"] < 0).sum())
 if not data["gender"].isin(["Male", "Female"]).all():
     print("gender error")
+
+data.to_csv("employees_clean.csv", index=False)
