@@ -1,0 +1,26 @@
+employee_id,name,age,gender,department,salary,experience,city,hire_date,email,performance_score
+1001,Ali Ahmadi,24.0,Male,IT,1800,1.0,Berlin,2023-05-12,ali@gmail.com,87.0
+1002,Sara Mohammadi,29.0,Female,Data Science,2500,4.0,Munich,2021-08-20,sara@gmail.com,92.0
+1003,Reza Karimi,31.0,Male,DevOps,3200,6.0,Hamburg,2020-03-15,reza@gmail.com,88.0
+1004,Maryam Hosseini,,Female,IT,2100,3.0,Berlin,2022-11-01,maryam@gmail.com,79.0
+1005,John Smith,45.0,Male,Management,5200,20.0,Frankfurt,2010-01-10,john@gmail.com,95.0
+1006,Amir Rezaei,27.0,male,Data Science,2400,3.0,Munich,2022-07-19,amir@gmail.com,85.0
+1007,Nina Weber,34.0,Female,HR,,8.0,Leipzig,2018-09-22,nina@gmail.com,91.0
+1008,Hassan Ali,22.0,Male,IT,1700,0.0,Berlin,2024-02-30,hassan@gmail.com,76.0
+1009,Lisa Muller,28.0,F,DevOps,2900,5.0,Hamburg,2021-04-18,lisa@gmail.com,89.0
+1010,David Brown,39.0,Male,Management,4800,15.0,Frankfurt,2015-06-30,david@gmail.com,93.0
+10011,Ali Ahmadi,24.0,Male,IT,1800,1.0,Berlin,2023-05-12,ali@gmail.com,87.0
+10012,Sara Mohammadi,29.0,Female,Data Science,2500,4.0,Munich,2021-08-20,sara@gmail.com,92.0
+1013,Mehdi Kazemi,200.0,Male,IT,2300,4.0,Cologne,2022-01-12,mehdi@gmail.com,83.0
+1014,Emma Schmidt,26.0,Female,data science,2600,2.0,Munich,2023-03-10,emma@gmail.com,90.0
+1015,Peter Klein,33.0,Male,DevOps,-1500,7.0,Hamburg,2019-10-05,peter@gmail.com,86.0
+1016,Fatemeh Ahmadi,25.0,Female,IT,1900,,Berlin,2023-09-14,,81.0
+1017,Tom Becker,41.0,Male,Management,5100,18.0,Frankfurt,2012-12-01,tom@gmail.com,
+1018,Zahra Moradi,30.0,Female,HR,2200,6.0,Leipzig,2020-05-17,zahra@gmail.com,88.0
+1019,Max Fischer,29.0,Male,IT,2000,3.0,Berlin,2022-06-11,max@gmail.com,82.0
+1020,Lena Wolf,27.0,Female,DevOps,3100,4.0,Hamburg,2021-09-09,lena@gmail.com,94.0
+1021,Omid Ahmadi,26.0,Male,IT,"2,100",2.0,Berlin,2023-01-15,omid@gmail.com,84.0
+1022,Julia Bauer,32.0,Female,HR,2300,9.0,Leipzig,2017-04-21,julia@gmail.com,89.0
+1023,Daniel Koch,38.0,Male,Management,5000,14.0,Frankfurt,2014-08-30,daniel@gmail.com,96.0
+1024,Reza Karimi,31.0,Male,DevOps,3200,6.0,Hamburg,2020-03-15,reza@gmail.com,88.0
+1025,Armin Nouri,28.0,Male,IT,1900,3.0,Berlin,2022-13-10,armin@gmail.com,105.0
