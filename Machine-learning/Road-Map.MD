@@ -10,7 +10,7 @@
 ---
 ## Step two
 - [x] Clearing-data
-- [] Manage-Lost-Data
+- [x] Manage-Lost-Data
 - [] Future-Engineering
 - [] Future-Scalling
 - [] Encoding
