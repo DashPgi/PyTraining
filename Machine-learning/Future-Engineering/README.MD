@@ -72,3 +72,16 @@ Feature engineering is the process of using domain knowledge to extract or const
 - Use Selectkbeast
 - Importance of features from models
 - RFE `Recursive Feature Elimination`
+
+## Dimensionality Reduction
+**PCA** ``Principal Component Analysis``:
+Converting correlated features into independent principal components.
+
+**UMAP / t-SNE** :
+for visualization, not modeling.
+
+**Autoencoder** : 
+Deep learning for feature compression.
+
+
+- Monitoring in production
