@@ -1,4 +1,4 @@
-# Future Engineering
+# feature Engineering
 
 ## What is FE?
 
@@ -12,4 +12,42 @@ Feature engineering is the process of using domain knowledge to extract or const
 - If FE does't exist, even the powerfull algorithm will fail
 - without FE -> More Problem -> More Bugs and less Accuracy
 
-##
+## feature Engineering Cycle
+
+1. Understanding the Problem
+2. Data Collecting
+3. Clearing Data
+3. Exploration analysis
+    - Discovering patterns, correlations, distributions.
+5. Fe
+    - Build
+    - Transform 
+6. Select features
+7. Test on Models
+    - Choosinga best model for understanding new features
+8. Supervision
+
+## Techniques
+
+- Manage Data
+- Encoding Data
+    - One-hot Encoding : for nominal datas
+    - Label Encoding : for ordered datas
+    - Target Encoding : for  Replacing each category with the mean of the target variable for that category
+- Numerical Transformation 
+    - Scalling : Standard & min/max & Robust
+    - Binning
+    - Log Transform
+- Manage Outliers
+ - Remove
+ - Scapping
+ - Convert with Log or Sqrt
+- Datetime Features
+- Feature Construction
+    - using domain knowledge for mixing or Derivative data to create new features
+- Text Features
+    - Text length
+    - Number of keywords
+    - Presence of special characters 
+    - TF-IDF or Word Embeddings: To convert text into a numeric vector.
+-
