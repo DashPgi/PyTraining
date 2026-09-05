@@ -30,24 +30,37 @@ Feature engineering is the process of using domain knowledge to extract or const
 ## Techniques
 
 - Manage Data
+    - Delete
+    - Imputation
+    - Pointer
+
 - Encoding Data
     - One-hot Encoding : for nominal datas
     - Label Encoding : for ordered datas
     - Target Encoding : for  Replacing each category with the mean of the target variable for that category
+
 - Numerical Transformation 
     - Scalling : Standard & min/max & Robust
     - Binning
     - Log Transform
+
 - Manage Outliers
- - Remove
- - Scapping
- - Convert with Log or Sqrt
+    - Remove
+    - Scapping
+    - Convert with Log or Sqrt
+
 - Datetime Features
+
 - Feature Construction
     - using domain knowledge for mixing or Derivative data to create new features
+
 - Text Features
     - Text length
     - Number of keywords
     - Presence of special characters 
     - TF-IDF or Word Embeddings: To convert text into a numeric vector.
--
+    
+- Time-Series Features 
+    - Lag
+    - Rolling windows
+    - Season features
