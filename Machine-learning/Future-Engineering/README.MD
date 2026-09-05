@@ -59,8 +59,16 @@ Feature engineering is the process of using domain knowledge to extract or const
     - Number of keywords
     - Presence of special characters 
     - TF-IDF or Word Embeddings: To convert text into a numeric vector.
-    
+
 - Time-Series Features 
     - Lag
     - Rolling windows
     - Season features
+
+## Feature Selection
+**Goal: Preserve useful features and remove noise to prevent overfitting and reduce computational cost.**
+- Use Variance
+- Deleting data with high Solidarity
+- Use Selectkbeast
+- Importance of features from models
+- RFE `Recursive Feature Elimination`
