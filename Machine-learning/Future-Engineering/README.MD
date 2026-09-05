@@ -83,5 +83,12 @@ for visualization, not modeling.
 **Autoencoder** : 
 Deep learning for feature compression.
 
+## Data Leakage Prevention
+**Data Leakage** means the unwanted use of future or target information in features → **Model in higher education, in disaster testing!**
 
+### Best Practices
+- Use domain knowledge 
+- Repeat and test
+- Documentation
+- use pipeline
 - Monitoring in production
