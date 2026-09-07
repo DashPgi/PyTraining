@@ -11,8 +11,8 @@
 ## Step two
 - [x] Clearing-data
 - [x] Manage-Lost-Data
-- [] Future-Engineering
-- [] Future-Scalling
+- [x] Feature-Engineering
+- [] Feature-Scalling
 - [] Encoding
 - [] Data-Partitioning
 ## Step three
