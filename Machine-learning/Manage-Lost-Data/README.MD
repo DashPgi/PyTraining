@@ -51,3 +51,69 @@
 | Any percentage     | MNAR             | Any type    | Missingness Indicator + specialized model |
 | Time Series        | MAR/MNAR         | Numerical   | Forward/Backward Fill or GRU-D            |
 | Categorical Data   | MAR              | Categorical | Mode or KNN with Encoding                 |
+
+### Deep Learning
+
+Neural networks can be used for complex missing-data problems, especially with large datasets.
+
+Examples:
+
+- Autoencoders
+- RNNs
+- GRUs
+- Transformers
+
+---
+
+## 6. Missingness Indicator
+
+Sometimes the fact that a value is missing is itself informative.
+
+A Missingness Indicator is an additional feature that records whether the original value was missing.
+
+For example:
+
+**0 → Value was present**
+
+**1 → Value was missing**
+
+This can be particularly useful when the reason for missingness contains predictive information.
+
+---
+
+## 7. Group-Wise Imputation
+
+Instead of using one statistic for the entire dataset, missing values can be imputed separately within meaningful groups.
+
+For example, missing salary values could be filled using the median salary of the corresponding department rather than the median salary of the entire dataset.
+
+This approach can preserve important differences between groups.
+
+---
+
+## 8. Time-Series Missing Data
+
+For time-series data, the temporal order must be considered when handling missing values.
+
+Common approaches include:
+
+- Forward Fill
+- Backward Fill
+- Interpolation
+- Kalman Filtering
+- Time-aware Machine Learning models
+- GRU-D
+
+The appropriate method depends on the nature of the time series and the reason for the missing values.
+
+---
+
+## 9. Data Leakage
+
+Imputation must be performed carefully to avoid **Data Leakage**.
+
+Imputation statistics or models should be learned using the training data only and then applied to validation and test data.
+
+Using information from the test set during imputation can cause overly optimistic model performance.
+
+A proper Machine Learning pipeline should separate the fitting of the imputation method from its application to unseen data.
