@@ -101,3 +101,17 @@ X_test_fe = fe_pipeline.transform(X_test)
 
 print("after train", X_train_fe.shape)
 print("final column", X_train_fe.columns.tolist())
+
+X_train_fe["spend_per_purchase"] = np.where(
+    X_train_fe["num_purchases"] == 0,
+    0,
+    X_train_fe["total_spent"] / X_train_fe["num_purchases"].replace(0, np.nan)
+)
+X_train_fe["spend_per_purchase"] = X_train_fe["spend_per_purchase"].fillna(0)
+
+X_test_fe["spend_per_purchase"] = np.where(
+    X_test_fe["num_purchases"] == 0,
+    0,
+    X_test_fe["total_spent"] / X_test_fe["num_purchases"].replace(0, np.nan)
+)
+X_test_fe["spend_per_purchase"] = X_test_fe["spend_per_purchase"].fillna(0)
