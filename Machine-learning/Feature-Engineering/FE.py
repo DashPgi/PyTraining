@@ -62,3 +62,25 @@ winsorizer = Winsorizer(
     fold=1.5,
     variables=["age", "income", "num_purchases", "total_spent"],
 )
+
+
+rare_encoder = RareLabelEncoder(
+    tol=0.03,
+    n_categories=5,
+    variables=["city", "referral_source"],
+)
+
+log_transformer = LogTransformer(variables=["income", "total_spent"])
+
+
+math_features = MathFeatures(
+    variables=["total_spent", "num_purchases"],
+    func="sum",  # فقط برای نمونه؛ برای نسبت زیر از pandas خام استفاده می‌کنیم
+    new_variables_names=["total_spent_plus_purchases"],
+)
+
+
+onehot_encoder = FE_OneHotEncoder(
+    variables=categorical_vars,
+    drop_last=True,  # جلوگیری از dummy variable trap
+)
