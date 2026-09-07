@@ -37,12 +37,28 @@ $$
 **good for :** 
 `Logistic Regression, SVM, KNN, PCA, Neural Network and many linear models.`
 ​
-## Min Max 
+### Min Max 
 -> It usually takes the data into the range 0 to 1.
 
 $$
 x' = \frac{x - x_{\min}}{x_{\max} - x_{\min}}
 $$
 ​
+++ **Pros**: Has a clear and understandable range 
+
+-- **Weakness**: Very sensitive to outliers; if there is a very large abnormal return, most of the normal values ​​will be compressed near zero
+
+**good for :**
+``When you need a limited range, the data inherently has a lower and upper limit, or some neural networks.``
+
+### Robust
+-> This method uses the median and IQR instead of the mean and standard deviation; therefore, the effect of outliers is less.
+
+$$
+x' = \frac{x - \operatorname{median}(x)}{\operatorname{IQR}(x)}
+$$
  
+ **good for :**
+ ``Columns like income, house price, or purchase amount that have serious outliers. Scaling doesn't remove the outlier itself; it just doesn't allow the scale to severely distort the entire column.``
 ​
+### Normalization 
