@@ -62,3 +62,23 @@ $$
  ``Columns like income, house price, or purchase amount that have serious outliers. Scaling doesn't remove the outlier itself; it just doesn't allow the scale to severely distort the entire column.``
 ​
 ### Normalization 
+-> Here, unlike the above methods, we scale each row, not each column; the length of each sample vector is 1.
+
+$$
+x' = \frac{x}{\lVert x \rVert}
+$$
+
+* This method is useful for textual data such as TF-IDF, cosine similarity, and some information retrieval problems, but it is not a replacement for StandardScaler for regular tabular data.
+
+## Important !!
+
+**The most important rule: Avoid Data Leakage
+First you need to split the data into train and test. Then you learn the scaler only on X_train and apply the same scaler to X_test.**
+
+## In the end
+| Term | What it usually does | Applied to |
+|---|---|---|
+| **Standardization** | Mean 0, standard deviation 1 | Each column |
+| **Min-Max Scaling** | Converts values to a range of 0 to 1 | Each column |
+| **Robust Scaling** | Based on the median and IQR | Each column |
+| **Vector Normalization** | Makes the length of each sample equal to 1 | Each row |
