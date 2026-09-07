@@ -75,12 +75,29 @@ log_transformer = LogTransformer(variables=["income", "total_spent"])
 
 math_features = MathFeatures(
     variables=["total_spent", "num_purchases"],
-    func="sum",  # فقط برای نمونه؛ برای نسبت زیر از pandas خام استفاده می‌کنیم
+    func="sum",
     new_variables_names=["total_spent_plus_purchases"],
 )
 
 
 onehot_encoder = FE_OneHotEncoder(
     variables=categorical_vars,
-    drop_last=True,  # جلوگیری از dummy variable trap
+    drop_last=True,
 )
+
+fe_pipeline = Pipeline([
+    ("missing_indicator", missing_indicator),
+    ("numeric_imputer", numeric_imputer),
+    ("categorical_imputer", categorical_imputer),
+    ("winsorizer", winsorizer),
+    ("rare_encoder", rare_encoder),
+    ("log_transformer", log_transformer),
+    ("math_features", math_features),
+    ("onehot_encoder", onehot_encoder),
+])
+
+X_train_fe = fe_pipeline.fit_transform(X_train, y_train)
+X_test_fe = fe_pipeline.transform(X_test)
+
+print("after train", X_train_fe.shape)
+print("final column", X_train_fe.columns.tolist())
