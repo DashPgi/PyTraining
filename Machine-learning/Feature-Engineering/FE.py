@@ -32,4 +32,14 @@ data["review_word_count"] = data["product_review"].fillna("").str.split().apply(
 data["has_review"] = data["product_review"].notna().astype(int)
 data = data.drop(columns=["product_review"])
 
-data['age'] = data['age'].median()
+y = data["is_churned"]
+X = data.drop(columns=["is_churned", "customer_id"])
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+numeric_vars = ["age", "income", "num_purchases", "total_spent", "avg_rating",
+                "tenure_days", "days_since_last_purchase",
+                "review_length", "review_word_count"]
+categorical_vars = ["gender", "city", "membership_type", "referral_source"]
