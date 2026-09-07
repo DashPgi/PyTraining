@@ -43,3 +43,22 @@ numeric_vars = ["age", "income", "num_purchases", "total_spent", "avg_rating",
                 "tenure_days", "days_since_last_purchase",
                 "review_length", "review_word_count"]
 categorical_vars = ["gender", "city", "membership_type", "referral_source"]
+
+missing_indicator = AddMissingIndicator(
+    variables=["age", "income", "avg_rating"], missing_only=True
+)
+
+numeric_imputer = MeanMedianImputer(
+    imputation_method="median", variables=["age", "income", "avg_rating"]
+)
+
+categorical_imputer = CategoricalImputer(
+    imputation_method="missing", variables=categorical_vars
+)
+
+winsorizer = Winsorizer(
+    capping_method="iqr",
+    tail="both",
+    fold=1.5,
+    variables=["age", "income", "num_purchases", "total_spent"],
+)
