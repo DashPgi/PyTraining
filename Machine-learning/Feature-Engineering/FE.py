@@ -115,3 +115,13 @@ X_test_fe["spend_per_purchase"] = np.where(
     X_test_fe["total_spent"] / X_test_fe["num_purchases"].replace(0, np.nan)
 )
 X_test_fe["spend_per_purchase"] = X_test_fe["spend_per_purchase"].fillna(0)
+
+scale_cols = X_train_fe.select_dtypes(include=[np.number]).columns.tolist()
+
+scaler = StandardScaler()
+X_train_fe[scale_cols] = scaler.fit_transform(X_train_fe[scale_cols])
+X_test_fe[scale_cols] = scaler.transform(X_test_fe[scale_cols])
+
+print("nice job :")
+print(X_train_fe.shape)
+print(X_train_fe.head())
