@@ -1,7 +1,18 @@
-import numpy as np
 import pandas as pd
-import feature_engine as fe
-import sklearn as sk
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+from feature_engine.imputation import (
+    MeanMedianImputer,
+    CategoricalImputer,
+    AddMissingIndicator,
+)
+from feature_engine.outliers import Winsorizer
+from feature_engine.encoding import RareLabelEncoder, OneHotEncoder as FE_OneHotEncoder
+from feature_engine.transformation import LogTransformer
+from feature_engine.creation import MathFeatures, CyclicalFeatures
 
 pd.set_option('display.max_columns', None)
 data = pd.read_csv("raw_customer_dataset.csv")
@@ -125,3 +136,5 @@ X_test_fe[scale_cols] = scaler.transform(X_test_fe[scale_cols])
 print("nice job :")
 print(X_train_fe.shape)
 print(X_train_fe.head())
+
+X_train_fe.to_csv("Customer_dataset.csv", index=False)
