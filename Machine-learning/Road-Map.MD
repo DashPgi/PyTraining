@@ -12,7 +12,7 @@
 - [x] Clearing-data
 - [x] Manage-Lost-Data
 - [x] Feature-Engineering
-- [] Feature-Scalling
+- [x] Feature-Scalling
 - [] Encoding
 - [] Data-Partitioning
 ## Step three
