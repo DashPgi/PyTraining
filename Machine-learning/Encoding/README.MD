@@ -69,7 +69,26 @@ In production you may see a new category; use handle_unknown in encoders and hav
     - Extracting cyclic features (hour, day of the week, month) and converting them with cyclic encoding with sine/cosine functions to maintain time continuity (e.g. 23 hours is close to 0 hours).
 - Continuous numbers
     - They usually do not require encoding, but scaling (Standardization/MinMax) and sometimes nonlinear transformations (Log, Box-Cox) are useful to improve model convergence.
+
+## Train/Test
+
+**Train/test split means dividing the data into two separate parts before training the model**
+- train for learning the parameters and test for honestly evaluating performance on “unseen” data. This prevents the huge error of “false optimism” (apparent overfitting) and gives a true measure of the model’s generalization ability.
+
+### Why Train/test?
+- **Generalizability assessment**
+    - A model that only performs well on trained data will fail in the real world; the test set is a simulation of future/unknown data.
+- **Prevent dataleakage**
+    - If test (or future) data infiltrates the train during preprocessing or encoding, the metrics become unrealistic and overly optimistic.
+- **Meaningful decisions**
+    - The choice between models, hyperparameters, and preprocessing strategies should be based on valid criteria, not the chance of a particular split.
+
+### Big Three
+- **Train** : The model learns its parameters here (coefficients, tree nodes, network weights).
+- **Validation** : Used to tune hyperparameters, select features, and compare models; multiple touches are allowed.
+- **Test** : Used only once, at the end, for the final report; should not be used to make decisions or change the model.
 ## Best Practices
+
 * **Build a Pipeline** : Put all preprocessing steps (including encoding) in a sklearn Pipeline with ColumnTransformer to apply the same to train and test and avoid leakage.
 
 * **Manage rare classes** : Merge very low frequency classes into an "Other" class or use Target/Frequency Encoding to reduce noise.
