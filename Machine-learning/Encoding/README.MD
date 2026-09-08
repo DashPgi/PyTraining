@@ -87,6 +87,31 @@ In production you may see a new category; use handle_unknown in encoders and hav
 - **Train** : The model learns its parameters here (coefficients, tree nodes, network weights).
 - **Validation** : Used to tune hyperparameters, select features, and compare models; multiple touches are allowed.
 - **Test** : Used only once, at the end, for the final report; should not be used to make decisions or change the model.
+
+| Data size | Common suggestion | Why |
+| --------------------------- | ------------------------------------------------- | -------------------------------------------------- |
+| Small (<10K samples) | 60% train / 20% val / 20% test or better: K-Fold CV | Data is sparse; holdout gets noisy, CV is more stable |
+| Medium (10K to 1M) | 70–80% train / 10–15% val / 10–15% test | Good balance between training and evaluation |
+| Large (>1M) | 98% train / 1% val / 1% test | Even 1% of millions of samples is enough |
+
+## Type of Split 
+
+- **Stratified Split** : In classification with unbalanced classes, the ratio of classes in train/test is maintained to ensure fair evaluation.
+- **Temporal Split** : For temporal data, never split randomly; train should be past and test should be future to avoid temporal leakage.
+- **Grouped Split** : When multiple rows belong to the same group (a user, a patient, a device), the group should not be in both train and test; otherwise the evaluation will be unrealistic.
+
+## The golden rule to prevent leakage
+
+All preprocessing (including encoding, scaling, imputation) is done only on train fit, then the same transformers are applied (transformed) on val/test. Implement this easily and safely with Pipeline + ColumnTransformer in sklearn.
+
+**Leakage symptoms:**
+
+- Accuracy/"near perfect" metrics on a non-trivial task.
+
+- A feature with an unreasonably high importance (probably containing target or future information).
+
+- The model performs very well on train/test, but poorly in production.
+
 ## Best Practices
 
 * **Build a Pipeline** : Put all preprocessing steps (including encoding) in a sklearn Pipeline with ColumnTransformer to apply the same to train and test and avoid leakage.
