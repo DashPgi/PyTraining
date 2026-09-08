@@ -43,7 +43,32 @@
     - Reduced dimensions compared to OHE
     - Collisions may occur in the hash.
 
+## Tips
+### Identify the variable type
+Nominal → OHE or Binary/Hash; Ordinal → Ordinal Encoding with explicit ordering; Binary → Label Encoding is safe 
 
+### Measure Cardinality
+If the number of categories is large (>15), OHE overestimates the dimensions; in this case, Target Encoding (with caution), Frequency Encoding, or Hashing are better.
+
+### What's model type
+
+Tree models (such as XGBoost, LightGBM) with Label Encoding on Nominal usually have no problem, but linear models, SVM, KNN and neural networks are sensitive to false order and OHE/Target performs better.
+
+### Prevent Dataleakge
+
+Always split the data into train/validation/test before encoding. For Target Encoding, be sure to use cross-validation within the train and never use the entire target data to calculate the average of the clusters.
+
+### Unknown categories at inference time
+
+In production you may see a new category; use handle_unknown in encoders and have a fallback strategy (like "Other" category or overall average).
+
+## Encoding for text, time, and numeric data
+- Text
+    - Vectorization methods such as Bag-of-Words, TF-IDF, or pre-trained embeddings (such as Word2Vec, FastText, or Transformer models) are used. These transform text into numerical vectors with statistical/semantic meaning.
+- Data/Time
+    - Extracting cyclic features (hour, day of the week, month) and converting them with cyclic encoding with sine/cosine functions to maintain time continuity (e.g. 23 hours is close to 0 hours).
+- Continuous numbers
+    - They usually do not require encoding, but scaling (Standardization/MinMax) and sometimes nonlinear transformations (Log, Box-Cox) are useful to improve model convergence.
 ## Best Practices
 * **Build a Pipeline** : Put all preprocessing steps (including encoding) in a sklearn Pipeline with ColumnTransformer to apply the same to train and test and avoid leakage.
 
