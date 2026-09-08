@@ -13,7 +13,7 @@
 - [x] Manage-Lost-Data
 - [x] Feature-Engineering
 - [x] Feature-Scalling
-- [] Encoding
+- [x] Encoding
 - [] Data-Partitioning
 ## Step three
 -Linear-regreession
