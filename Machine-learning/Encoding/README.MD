@@ -42,3 +42,16 @@
     - Maps categories to binary codes or fixed hashes
     - Reduced dimensions compared to OHE
     - Collisions may occur in the hash.
+
+
+## Best Practices
+* **Build a Pipeline** : Put all preprocessing steps (including encoding) in a sklearn Pipeline with ColumnTransformer to apply the same to train and test and avoid leakage.
+
+* **Manage rare classes** : Merge very low frequency classes into an "Other" class or use Target/Frequency Encoding to reduce noise.
+
+* **Use smoothing and K-Fold for Target Encoding** : to avoid overfitting to high-level classes.
+
+* **Use Dummy Variables in linear models** : i.e. remove a column after OHE to avoid multicollinearity.
+
+* **Monitor drift in production** : the distribution of classes may change over time; keep encoders and fallback strategies up to date.
+
