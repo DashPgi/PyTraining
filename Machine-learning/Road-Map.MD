@@ -14,7 +14,7 @@
 - [x] Feature-Engineering
 - [x] Feature-Scalling
 - [x] Encoding
-- [] Data-Partitioning
+- [x] Data-Partitioning
 ## Step three
 -Linear-regreession
 -Logistic-regression
