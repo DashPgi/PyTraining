@@ -1,5 +1,5 @@
 # Machine Learning Road Map
----
+
 ## Step one
 - [x] Python
 - [x] OOP
@@ -15,17 +15,19 @@
 - [x] Feature-Scalling
 - [x] Encoding
 - [x] Data-Partitioning
+---
 ## Step three
--Linear-regreession
--Logistic-regression
--KNN
--Decision-tree
--Collision Forest
--Svm
--Naive-Bayes
--XGBoost
--Hyperparameter tuning
-----Step Four
+- [] Linear-regreession
+- [] Logistic-regression
+- [] KNN
+- [] Decision-tree
+- [] Collision Forest
+- [] Svm
+- [] Naive-Bayes
+- [] XGBoost
+- [] Hyperparameter tuning
+---
+## Step Four
 -Clustering-Kmeans
 -Hierarchical clustering
 -DBscan
