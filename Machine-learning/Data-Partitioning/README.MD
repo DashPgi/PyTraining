@@ -48,3 +48,13 @@ The destination partition is determined by applying a hash function to the key.
 ### Functional Partitioning
 Partitioning based on type of function or workload (e.g., separating transactional databases from reporting databases).
 - Microservice systems with separate responsibilities.
+
+## Challenges and Warning 
+
+- **Hotspots** : If the data distribution is not uniform, some partitions will be overloaded.
+
+- **Multi-partition query complexity** : Queries that require multiple partitions will be slower and more complex.
+
+- **Rebalancing** : As data grows or changes, data may need to be moved between partitions.
+
+- **Consistency** : Maintaining data consistency across partitions is challenging (especially in distributed systems).
