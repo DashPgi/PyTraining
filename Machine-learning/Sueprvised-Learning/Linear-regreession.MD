@@ -37,6 +37,15 @@ we take the difference between the actual value and the predicted value and try 
 
 **The smaller and more patternless and more the Residual, the model is better**
 
+### Common criteria
+
+| Metric | Meaning | Better |
+| ------ | ---------------------------------------------- | ------- |
+| MAE    | Mean Absolute Error                            | Lower   |
+| MSE    | Mean Squared Error; more sensitive to large errors | Lower   |
+| RMSE   | Root MSE; in the target variable's original units | Lower   |
+| R²     | Approximate percentage of output variation explained by the model | Closer to 1 |
+
 ## Tips
 
 - **The relationship between inputs and outputs must be close to linear**
@@ -45,3 +54,15 @@ we take the difference between the actual value and the predicted value and try 
 - **The errors should not have a highly unusual distribution, especially if the goal is statistical analysis and hypothesis testing**
 - **Multicollinearity**
 - **Less Outliers**
+
+
+## When is it not suitable?
+**Linear regression is not a good choice if** :
+
+- The output is categorical, such as "pass/fail" or "spam/not spam"; in this case, Logistic Regression is usually more appropriate.
+
+- The relationship is highly non-linear and cannot be improved through feature transformation or the creation of new features.
+
+- There are numerous outliers in the data.
+
+- The output represents a count, such as the number of calls or accidents; count models like Poisson Regression might be more suitable.
