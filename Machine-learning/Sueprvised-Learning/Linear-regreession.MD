@@ -24,6 +24,8 @@ $$
 ### How Models Learn?
 
 The model selects the $\beta$ coefficients such that the prediction line or plane is as close as possible to the actual data. Typically, the least squares criterion is used:
+
+#### Mean Squared Error
 $$
 MSE = \frac1{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2
 $$
@@ -35,7 +37,26 @@ $$
 $$e_i = Error , Residual $$
 we take the difference between the actual value and the predicted value and try to minimize it.
 
+#### Mean Absolute Error
+
+$$
+MAE = \frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y_i}|
+$$
+
+#### Root Mean Squared Erorr
+$$
+RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y_i})^2}
+$$
+
+#### R2
+$$
+R^2 = 1-\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}
+{\sum_{i=1}^{n}(y_i-\bar{y})^2}
+$$
+
 **The smaller and more patternless and more the Residual, the model is better**
+
+
 
 ### Common criteria
 
