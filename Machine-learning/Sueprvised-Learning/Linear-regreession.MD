@@ -33,5 +33,15 @@ MSE = \frac1{n}\sum_{i=1}^{n}e_i^2
 $$
 
 $$e_i = Error , Residual $$
+we take the difference between the actual value and the predicted value and try to minimize it.
 
 **The smaller and more patternless and more the Residual, the model is better**
+
+## Tips
+
+- **The relationship between inputs and outputs must be close to linear**
+- **The observations must be Independent**
+- **Homogeneity of variance**
+- **The errors should not have a highly unusual distribution, especially if the goal is statistical analysis and hypothesis testing**
+- **Multicollinearity**
+- **Less Outliers**
