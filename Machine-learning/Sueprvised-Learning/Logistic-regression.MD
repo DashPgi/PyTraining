@@ -72,3 +72,15 @@ $$
 $$
 **It causes our output to fall within the range {0, 1}**
 $$0 < \sigma < 1$$
+
+## Decision Boundary
+*This ensures the output falls within the range {0, 1} like $\sigma$*
+
+Decision Boundary
+Our model effectively creates a linear boundary in the feature space. For a threshold of 0.5, the decision boundary is where:
+
+𝜎(𝑤ᵀ𝑥 + 𝑏) = 0.5 ⇒ 𝑤ᵀ𝑥 + 𝑏 = 0
+
+This means all points satisfying 𝑤ᵀ𝑥 + 𝑏 = 0 lie on the boundary; one side represents Class 1, and the other represents Class 0
+
+Example: If we have only one feature (hours of study), the decision boundary is a point on the x-axis (e.g., 5 hours). More than 5 hours → Pass; less → Fail
