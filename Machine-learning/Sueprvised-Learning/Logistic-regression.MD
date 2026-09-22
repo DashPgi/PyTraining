@@ -68,5 +68,7 @@ $w^Tx$ : $w_1x_1+w_2x_2+w_3x_3$
 **The negative sign causes the value to be input into the exponential function.**
 ### Sigmoid Functions
 $$
-\sigma(z)=\
+\sigma(z)=\frac{1}{1+e^{-z}}
 $$
+**It causes our output to fall within the range {0, 1}**
+$$0 < \sigma < 1$$
