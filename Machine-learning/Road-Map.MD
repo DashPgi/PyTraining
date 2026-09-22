@@ -17,7 +17,7 @@
 - [x] Data-Partitioning
 ---
 ## Step three
-- [] Linear-regreession
+- [x] Linear-regreession
 - [] Logistic-regression
 - [] KNN
 - [] Decision-tree
