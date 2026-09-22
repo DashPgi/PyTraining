@@ -79,8 +79,57 @@ $$0 < \sigma < 1$$
 Decision Boundary
 Our model effectively creates a linear boundary in the feature space. For a threshold of 0.5, the decision boundary is where:
 
-𝜎(𝑤ᵀ𝑥 + 𝑏) = 0.5 ⇒ 𝑤ᵀ𝑥 + 𝑏 = 0
+$$𝜎(𝑤ᵀ𝑥 + 𝑏) = 0.5 ⇒ 𝑤ᵀ𝑥 + 𝑏 = 0$$
 
 This means all points satisfying 𝑤ᵀ𝑥 + 𝑏 = 0 lie on the boundary; one side represents Class 1, and the other represents Class 0
 
 Example: If we have only one feature (hours of study), the decision boundary is a point on the x-axis (e.g., 5 hours). More than 5 hours → Pass; less → Fail
+
+## Cost Function
+In linear regression, we use Mean Squared Error (MSE); however, in logistic regression, **MSE becomes non-convex and disrupts optimization**
+
+Instead, we use the binary cross-entropy cost function, which converges and is derived from the maximum likelihood principle.
+
+For a single sample $((x^{(i)} y^{(i)}))$ :
+
+$$
+L\left(\hat{y}^{(i)}, y^{(i)}\right)
+=
+\begin{cases}
+-\log\left(\hat{y}^{(i)}\right), & \text{if } y^{(i)} = 1 \\
+-\log\left(1-\hat{y}^{(i)}\right), & \text{if } y^{(i)} = 0
+\end{cases}
+$$
+
+which can be written as a single formula:
+
+$$
+L
+=
+-\left[
+y^{(i)}\log\left(\hat{y}^{(i)}\right)
++
+\left(1-y^{(i)}\right)
+\log\left(1-\hat{y}^{(i)}\right)
+\right]
+$$
+
+### For the entire dataset
+
+The average over \(m\) examples:
+
+$$
+J(w,b)
+=
+-\frac{1}{m}
+\sum_{i=1}^{m}
+\left[
+y^{(i)}\log\left(\hat{y}^{(i)}\right)
++
+\left(1-y^{(i)}\right)
+\log\left(1-\hat{y}^{(i)}\right)
+\right]
+$$
+```
+help:)
+```
