@@ -51,3 +51,28 @@ It is used for categorical or binary data. It counts the number of positions whe
 2. Choose an odd number: For classification, it is best to use an odd K to avoid a tie in the voting
 
 3. Rule of thumb: Setting K ≈ √n (where n is the number of training samples) is usually a good starting point
+
+## With python
+```
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+knn = KNeighborsClassifier(n_neighbors=5, metric='euclidean')
+knn.fit(X_train_scaled, y_train)
+
+predictions = knn.predict(X_test_scaled)
+
+accuracy = knn.score(X_test_scaled, y_test)
+print(f"Accuracy: {accuracy:.2f}")
+```
