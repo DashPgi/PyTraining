@@ -150,7 +150,7 @@ y^{(i)}\log\left(\hat{y}^{(i)}\right)
 \right]
 $$
 ```
-help:)
+help:))
 ```
 
 ## Training Algorithm
