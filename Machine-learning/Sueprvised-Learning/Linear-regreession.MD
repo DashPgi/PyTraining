@@ -88,7 +88,7 @@ $$
 
 - The output represents a count, such as the number of calls or accidents; count models like Poisson Regression might be more suitable.
 
-# with python
+# With python
 ```
 import pandas as pd
 from sklearn.model_selection import train_test_split
