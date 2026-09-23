@@ -109,12 +109,11 @@ In linear regression, we use Mean Squared Error (MSE); however, in logistic regr
 
 Instead, we use the binary cross-entropy cost function, which converges and is derived from the maximum likelihood principle.
 
-For a single sample $((x^{(i)} y^{(i)}))$ :
+For a single sample $\left(x^{(i)}, y^{(i)}\right)$:
 
 $$
 L\left(\hat{y}^{(i)}, y^{(i)}\right)
-====================================
-
+=
 \begin{cases}
 -\log\left(\hat{y}^{(i)}\right), & \text{if } y^{(i)} = 1 \\
 -\log\left(1-\hat{y}^{(i)}\right), & \text{if } y^{(i)} = 0
@@ -126,10 +125,9 @@ which can be written as a single formula:
 $$
 L
 =
-
--\left\[
+-\left[
 y^{(i)}\log\left(\hat{y}^{(i)}\right)
-\+
++
 \left(1-y^{(i)}\right)
 \log\left(1-\hat{y}^{(i)}\right)
 \right]
@@ -137,22 +135,20 @@ $$
 
 ### For the entire dataset
 
-The average over (m) examples:
+The average over $m$ examples:
 
 $$
 J(w,b)
-======
-
+=
 -\frac{1}{m}
-\sum\_{i=1}^{m}
-\left\[
+\sum_{i=1}^{m}
+\left[
 y^{(i)}\log\left(\hat{y}^{(i)}\right)
-\+
++
 \left(1-y^{(i)}\right)
 \log\left(1-\hat{y}^{(i)}\right)
 \right]
 $$
-
 ```
 help:)
 ```
@@ -201,3 +197,33 @@ b := b - α ∂J/∂b
 Iteration:
 
 Repeat steps 2 through 5 for a specified number of iterations until the cost converges.
+
+# With Python
+```
+import numpy as np
+
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+def compute_cost(y, y_hat):
+    m = len(y)
+    return -np.mean(y * np.log(y_hat) + (1 - y) * np.log(1 - y_hat))
+
+def train_logistic_regression(X, y, lr=0.1, epochs=1000):
+    m, n = X.shape
+    w = np.zeros(n)
+    b = 0.0
+    
+    for _ in range(epochs):
+        z = X @ w + b
+        y_hat = sigmoid(z)
+        
+        dw = (X.T @ (y_hat - y)) / m
+        db = np.mean(y_hat - y)
+        
+        w -= lr * dw
+        b -= lr * db
+    
+    return w, b
+
+```
