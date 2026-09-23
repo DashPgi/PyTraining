@@ -19,7 +19,7 @@
 ## Step three
 - [x] Linear-regreession
 - [x] Logistic-regression
-- [] KNN
+- [x] KNN
 - [] Decision-tree
 - [] Collision Forest
 - [] Svm
