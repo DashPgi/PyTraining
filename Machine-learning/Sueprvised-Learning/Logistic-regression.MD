@@ -5,6 +5,16 @@
 *this model is used for the probability of a sample belonging to a specific category*
 *ForExample : (1,0) or (yes,no) or (spam,not spam)*
 
+## Types
+#### Binary Logistic Regression
+ Two classes (0/1) — what we have discussed so far
+
+#### Multinomial Logistic Regression
+More than two classes (Softmax Regression)
+
+#### Ordinal Logistic Regression
+Ordered classes (low/medium/high)
+
 ## Fomula
 
 $$
