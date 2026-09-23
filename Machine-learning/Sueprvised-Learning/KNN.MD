@@ -36,3 +36,18 @@ $$
 **if p = 1 => Euclidean**
 
 **if p = 2 => Manhattan**
+### 4. Hamming Distance
+It is used for categorical or binary data. It counts the number of positions where two vectors differ
+
+---
+| K Value               | Effect                                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------- |
+| Very small K (e.g., 1) | The model becomes overly sensitive to the training data (Overfitting). It learns noise as well. |
+| Very large K          | The model becomes too simple (Underfitting). It fails to learn decision boundaries effectively. |
+| Balanced K            | Strikes a good balance between bias and variance. |
+## How find best K value?
+1. Cross-Validation: The best approach. You test various values ​​of K and select the one that yields the lowest error on the test data
+
+2. Choose an odd number: For classification, it is best to use an odd K to avoid a tie in the voting
+
+3. Rule of thumb: Setting K ≈ √n (where n is the number of training samples) is usually a good starting point
