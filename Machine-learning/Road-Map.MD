@@ -20,7 +20,7 @@
 - [x] Linear-regreession
 - [x] Logistic-regression
 - [x] KNN
-- [] Decision-tree
+- [x] Decision-tree
 - [] Collision Forest
 - [] Svm
 - [] Naive-Bayes
