@@ -28,13 +28,14 @@
 - [] Hyperparameter tuning
 ---
 ## Step Four
--Clustering-Kmeans
--Hierarchical clustering
--DBscan
--Decrease-PCA
--Dependency rules
--Anomaly detection
-----Step Five
+- [] Clustering-Kmeans
+- [] Hierarchical clustering
+- [] DBscan
+- [] Decrease-PCA
+- [] Dependency rules
+- [] Anomaly detection
+---
+## Step Five
 -Accuracy
 -Precision
 -Recall
