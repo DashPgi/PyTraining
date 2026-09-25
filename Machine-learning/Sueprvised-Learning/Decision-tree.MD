@@ -19,3 +19,18 @@ ForExample in binary we have :
 The last node of the tree that show us final prediction 
 ### Depth
 The number of tree levels is from the root to the deepest leaf
+## How does DT learn? 
+1. All data is placed at the root
+
+2. The model examines all possible features and thresholds
+
+3. It selects the best split
+
+4. The data is divided into two or more segments.
+
+5. The same process is repeated for each segment.
+
+6. Tree growth stops when a stopping condition is met.
+
+## Impurity
+The most important concept in a decision tree is impurity
