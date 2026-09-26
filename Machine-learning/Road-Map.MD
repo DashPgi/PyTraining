@@ -7,7 +7,7 @@
 - [x] Pandas
 - [x] Matplotlib/seaborn
 - [x] Jypyter Notebook
----
+
 ## Step two
 - [x] Clearing-data
 - [x] Manage-Lost-Data
@@ -15,7 +15,7 @@
 - [x] Feature-Scalling
 - [x] Encoding
 - [x] Data-Partitioning
----
+
 ## Step three
 - [x] Linear-regreession
 - [x] Logistic-regression
@@ -26,7 +26,7 @@
 - [] Naive-Bayes
 - [] XGBoost
 - [] Hyperparameter tuning
----
+
 ## Step Four
 - [] Clustering-Kmeans
 - [] Hierarchical clustering
