@@ -133,3 +133,9 @@ $y$ = Real value
 $\hat{y}$ = Predicted value
 
 $D$ = Error's value
+
+$if$
+$y=\hat{y} \rightarrow PD = 0$
+
+## Classification Tree
+in this method, **the goal is predict a class**
