@@ -101,3 +101,35 @@ IG = \text{Entropy(parent)} -
 \sum_j \frac{N_j}{N}\text{Entropy(child}_j\text{)}
 $$
 **The higher the Information Gain, the better the split. Information Gain is the difference in entropy before and after the split**
+
+## Tree Criteria for Regression
+In Decision Tree Regression, the output is numerical and continuous; therefore, we no longer use Gini and Entropy
+
+**Common metrics include**:
+
+- Squared Error (MSE)
+
+- Absolute Error (MAE)
+
+- Poisson Deviance for certain count-based problems
+
+what is Poisson Deviance?
+
+Poisson deviance is an error metric used in regression problems, particularly when the target variable is a non-negative count value
+
+### Formula :
+ 
+$$
+D\left(y,\hat{y}\right)
+=
+2\left[
+y\log\left(\frac{y}{\hat{y}}\right)
+-
+\left(y-\hat{y}\right)
+\right]
+$$
+$y$ = Real value
+
+$\hat{y}$ = Predicted value
+
+$D$ = Error's value
