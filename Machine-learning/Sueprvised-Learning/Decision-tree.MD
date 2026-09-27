@@ -174,3 +174,35 @@ $\lvert Leaves(T) \rvert$ = number of the tree's leaves
 
 $if$
 $\alpha = 0 \rightarrow$ **The complexity does not penalized**
+
+## Advantages of Decision Trees
+- They are understandable and explainable
+
+- Their rules can be clearly presented to humans
+
+- They learn non-linear relationships
+
+- They generally do not require feature scaling
+
+- They are applicable to both classification and regression tasks
+
+- They naturally handle interactions between features
+
+- They work with numerical and encoded categorical data
+
+- They are easier to interpret than many complex models
+
+## Disadvantages of Decision Trees
+- They are prone to overfitting
+
+- They are sensitive to small changes in the data
+
+- Different trees may result in vastly different structures
+
+- Decision boundaries are typically step-like and axis-aligned
+
+- Random Forest or Gradient Boosting are often preferred for better generalization
+
+- Simple feature importance metrics can be misleading
+
+- A single tree usually underperforms compared to ensemble methods
