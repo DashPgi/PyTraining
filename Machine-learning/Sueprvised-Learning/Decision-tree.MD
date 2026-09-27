@@ -156,5 +156,21 @@ If the decision tree overretricted, the model can't learn the real patterns.
 Means remove the unnecessary nodes for decrease complexity and preventing overfitting
 ### Pre-Pruning
 Constrain the tree from the start
-###
+### Post-Pruning
 First the tree grow up then we remove the unnecessary nodes
+
+### Cost-Complexity Pruning
+in this way, the goal is not just a decrease errors data,**tree complexity is also penalized**
+
+#### Functions Formula : 
+$$
+R_\alpha(T) = R(T) + \alpha \lvert Leaves(T) \rvert
+$$
+$R(T)$ = tree's error
+
+$\alpha$ = intensity of penalize
+
+$\lvert Leaves(T) \rvert$ = number of the tree's leaves
+
+$if$
+$\alpha = 0 \rightarrow$ **The complexity does not penalized**
