@@ -81,3 +81,13 @@ $$ Entropy = 0 \rightarrow uncertainty = 0$$
 $if$
 
 $$ Entropy > 0 \rightarrow uncertainty > 0$$
+
+## Information Gain
+indicates how much uncertainty a split has reduced
+
+### Formula :
+$$
+IG = \text{Entropy(parent)} -
+\sum_j \frac{N_j}{N}\text{Entropy(child}_j\text{)}
+$$
+**The higher the Information Gain, the better the split. Information Gain is the difference in entropy before and after the split**
