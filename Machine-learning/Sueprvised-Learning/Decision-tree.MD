@@ -82,6 +82,16 @@ $if$
 
 $$ Entropy > 0 \rightarrow uncertainty > 0$$
 
+## Gini Vs Entropy
+| Feature          | Gini                      | Entropy                                    |
+| ---------------- | ------------------------- | ------------------------------------------ |
+| Metric Type      | Impurity                  | Uncertainty                                |
+| Formula          | $1 - \sum p_i^2$          | $-\sum p_i \log_2 p_i$                     |
+| Computation Speed| Slightly faster           | Slightly slower                            |
+| Zero Value       | Pure node                 | Pure node                                  |
+| Usage            | Very common in CART       | Based on Information Gain                  |
+| Practical Result | Usually similar to Entropy| Usually similar to Gini                    |
+
 ## Information Gain
 indicates how much uncertainty a split has reduced
 
