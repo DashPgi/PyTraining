@@ -151,3 +151,10 @@ In this method, **the goal is predict a numeric value**
 The decision tree can memorize the training data so simply
 ### Underfitting in tree
 If the decision tree overretricted, the model can't learn the real patterns.
+
+## Pruning  
+Means remove the unnecessary nodes for decrease complexity and preventing overfitting
+### Pre-Pruning
+Constrain the tree from the start
+###
+First the tree grow up then we remove the unnecessary nodes
