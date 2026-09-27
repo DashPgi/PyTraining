@@ -54,8 +54,30 @@ $$
 $$
 $if$
 
-$Gini -Close-to-0 = Puritier$
+$$Gini -Close-to-0 = Puritier$$
 
 $if$
 
-$Gini-bigger-than-0 = Impuritier$
+$$Gini-bigger-than-0 = Impuritier$$
+
+## Entropy 
+It measures the degree of disorder or uncertainty in a node
+
+### Formula :
+$$
+\text{Entropy} = -\sum_{i=1}^{C} p_i \log_2(p_i)
+$$
+
+$for-two-class$
+
+$$
+\text{Entropy} = -\left(p_A\log_2(p_A) + p_B\log_2(p_B)\right)
+$$
+
+$if$
+
+$$ Entropy = 0 \rightarrow uncertainty = 0$$
+
+$if$
+
+$$ Entropy > 0 \rightarrow uncertainty > 0$$
