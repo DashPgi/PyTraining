@@ -206,3 +206,52 @@ $\alpha = 0 \rightarrow$ **The complexity does not penalized**
 - Simple feature importance metrics can be misleading
 
 - A single tree usually underperforms compared to ensemble methods
+
+# With Python
+```
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+X = [
+    [18, 10],
+    [20, 12],
+    [22, 15],
+    [25, 18],
+    [30, 25],
+    [35, 35],
+    [40, 45],
+    [45, 50],
+    [50, 60],
+    [55, 70]
+]
+
+y = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.3,
+    random_state=42,
+    stratify=y
+)
+
+model = DecisionTreeClassifier(
+    max_depth=3,
+    random_state=42
+)
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+new_customer = [[32, 40]]
+prediction = model.predict(new_customer)
+
+if prediction[0] == 1:
+    print("the customer definitly buy it")
+else:
+    print("the customer dont buy it")
+```
