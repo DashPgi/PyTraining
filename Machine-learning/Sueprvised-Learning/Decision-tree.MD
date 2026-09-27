@@ -34,3 +34,28 @@ The number of tree levels is from the root to the deepest leaf
 
 ## Impurity
 The most important concept in a decision tree is impurity
+
+**We must dicrease impurity with decision-tree**
+## Gini Impurity
+One of the most common metrics for classification is Gini Impurity.
+
+### Formula : 
+$$
+\text{Gini} = 1 - \sum_{i=1}^{C} p_i^2
+$$
+
+$C$ = a number of classes
+
+$iP$ = The proportion of class 𝑖 instances at the node
+
+$for-two-class$ : 
+$$
+\text{Gini} = 1 - \left(p_1^2 + p_2^2\right)
+$$
+$if$
+
+$Gini -Close-to-0 = Puritier$
+
+$if$
+
+$Gini-bigger-than-0 = Impuritier$
