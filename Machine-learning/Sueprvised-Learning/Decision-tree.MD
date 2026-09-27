@@ -139,3 +139,12 @@ $y=\hat{y} \rightarrow PD = 0$
 
 ## Classification Tree
 in this method, **the goal is predict a class**
+## Regression Tree
+in this method, **the goal is predict a numeric value**
+
+## Overfitting and Underfitting
+**Underfitting** = when a model is so simple that even can't learn the main patterns of training datas
+
+**Overfitting** = when a model memorizes the training data to an excessive degree and instead of learning the general data, even learns noise and random details 
+
+### Overfitting in tree
