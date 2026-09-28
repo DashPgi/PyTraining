@@ -20,3 +20,20 @@ A ensemble learning algorithm that which employs a combination of decision trees
 $For$ **$Classification$** : Each tree predicts a class, and the class that receives the most votes becomes the final output
 
 $For$ **$Regression$** : We calculate the average of the predictions from all the trees
+
+# Advantage of Random Forest 
+| Advantage | Explanation
+| ------------------------- | ------------------------------------------------------------ |
+| High accuracy |Usually more accurate than a single Decision Tree |
+| Resistant to Overfitting | because it uses the average of several trees|
+| Working with big data |Works well with large and high-dimensional data |
+| The importance of features |It can show the importance of each feature in the prediction  |
+| Little need for preprocessing| It is not sensitive to data normalization or scaling
+| Outlier resistant |Outliers have little effect on the final  
+# Disadvantages of Random Forest
+| Drawback             | Explanation                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| Prediction speed     | With hundreds of trees, prediction is slower than with a simple model            |
+| Interpretability     | Not as interpretable as a simple decision tree (relatively a "black box")        |
+| Memory               | Results in a larger model compared to simpler algorithms                         |
+| Text/Image data      | Not as powerful as Deep Learning for raw data like text or images                |
