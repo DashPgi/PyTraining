@@ -21,7 +21,7 @@
 - [x] Logistic-regression
 - [x] KNN
 - [x] Decision-tree
-- [] Collision Forest
+- [x] Random-Forest
 - [] Svm
 - [] Naive-Bayes
 - [] XGBoost

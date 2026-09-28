@@ -212,7 +212,7 @@ $\alpha = 0 \rightarrow$ **The complexity does not penalized**
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
-
+    
 X = [
     [18, 10],
     [20, 12],
@@ -253,5 +253,5 @@ prediction = model.predict(new_customer)
 if prediction[0] == 1:
     print("the customer definitly buy it")
 else:
-    print("the customer dont buy it") 
+    print("the customer dont buy it")
 ```
