@@ -49,6 +49,7 @@ $For$ **$Regression$** : We calculate the average of the predictions from all th
 | bootstrap         | Whether to use bootstrapping       | True                          |
 
 # With Python 
+
 ```
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
