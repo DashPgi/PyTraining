@@ -8,3 +8,9 @@ A ensemble learning algorithm that which employs a combination of decision trees
 - Each tree is trained on a subset of the data and features
 - Ultimately, we aggregate the opinions of all the trees (**voting**)
 # How does it works?
+### 1. Bootstrap Sampling 
+- We draw several random samples with replacement from the original data
+- We use all of data randomly for each tree even with repeatition
+    - ForExample : we have 1000 dataset ,set 1000 dataset randomly for every smiple or tree
+- Some data are selected multiple times, while others are not selected at all
+### 2. Crea
