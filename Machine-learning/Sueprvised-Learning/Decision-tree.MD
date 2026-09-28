@@ -254,4 +254,5 @@ if prediction[0] == 1:
     print("the customer definitly buy it")
 else:
     print("the customer dont buy it")
+    
 ```
