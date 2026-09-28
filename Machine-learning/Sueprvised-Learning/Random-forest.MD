@@ -47,3 +47,27 @@ $For$ **$Regression$** : We calculate the average of the predictions from all th
 | min_samples_leaf  | Minimum samples in leaf nodes      | 1–5                           |
 | max_features      | Number of random features per split| √p (classification), p/3 (regression) |
 | bootstrap         | Whether to use bootstrapping       | True                          |
+
+# With Python 
+```
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# ساخت مدل Random Forest
+rf = RandomForestClassifier(
+    n_estimators=100,  
+    max_depth=10,      
+    random_state=42       
+)
+
+rf.fit(X_train, y_train)
+
+y_pred = rf.predict(X_test)
+
+print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
+
+importances = rf.feature_importances_
+```
