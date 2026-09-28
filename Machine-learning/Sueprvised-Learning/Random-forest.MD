@@ -37,3 +37,13 @@ $For$ **$Regression$** : We calculate the average of the predictions from all th
 | Interpretability     | Not as interpretable as a simple decision tree (relatively a "black box")        |
 | Memory               | Results in a larger model compared to simpler algorithms                         |
 | Text/Image data      | Not as powerful as Deep Learning for raw data like text or images                |
+
+## Important Parametics
+| Parameter         | Description                        | Suggested Value               |
+| ----------------- | ---------------------------------- | ----------------------------- |
+| n_estimators      | Number of trees in the forest      | 100–500                       |
+| max_depth         | Maximum depth of each tree         | None or 10–20                 |
+| min_samples_split | Minimum samples to split a node    | 2–10                          |
+| min_samples_leaf  | Minimum samples in leaf nodes      | 1–5                           |
+| max_features      | Number of random features per split| √p (classification), p/3 (regression) |
+| bootstrap         | Whether to use bootstrapping       | True                          |
