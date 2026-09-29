@@ -4,7 +4,7 @@
 One of the most important algorithm for classification,regression and recognization outliers .
 
 ### Concept
-The concept is finding the boundary with the maximum possible distance
+The concept is finding the boundary with the maximum possible distance **($Margin$)**
 
 ### How does work?
 Suppose we have datasets that any samples are belong between two class :
@@ -25,3 +25,10 @@ $$b+w^Tx = f(x)$$
 $$\hat{y} = \begin{cases}+1 & \text{if} f(x) >0 \\ -1 & \text{if}f(x) <0 \end{cases}$$
 $\rightarrow final-decision :$
 $$b+w^Tx = 0$$
+
+## What is support vector?
+The points that closer to decision border and marginal border 
+
+$if \rightarrow$ We remove points far from the border $\rightarrow$ it is possible that the model not change
+
+$but-if \rightarrow$ We remove SV $\rightarrow$ The model may change
