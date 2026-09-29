@@ -22,7 +22,7 @@
 - [x] KNN
 - [x] Decision-tree
 - [x] Random-Forest
-- [] Svm
+- [x] Svm
 - [] Naive-Bayes
 - [] XGBoost
 - [] Hyperparameter tuning
