@@ -32,3 +32,19 @@ The points that closer to decision border and marginal border
 $if \rightarrow$ We remove points far from the border $\rightarrow$ it is possible that the model not change
 
 $but-if \rightarrow$ We remove SV $\rightarrow$ The model may change
+
+**In Ideally way**, the boundary limits are as follows:
+$$b+w^Tx = +1$$
+$$and$$
+$$b+w^Tx = -1$$
+
+The decision boundary between them :
+$$b+w^Tx = 0$$
+The distance between two marginal boundaries is equal to :
+$$
+\frac{x}{\|w\|}
+$$
+
+Therefore, **if we want to maximize the margin, we must minimize ∥w∥** :
+$$w\|min \frac{1}{2}|\ ^2$$ 
+For this model ,we call it **Hard-Margin SVM**
