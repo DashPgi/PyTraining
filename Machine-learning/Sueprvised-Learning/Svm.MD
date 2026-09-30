@@ -177,3 +177,28 @@ If we have *k* class :
 $$\frac{k(k-1)}{2}$$
 ## One vs Rest
 For each class, we build a model that pits that class against all other classes
+
+## Advantages of SVM
+SVM is highly effective in the following scenarios:
+
+- There is a large number of features
+
+- The number of samples is moderate
+
+- The boundary between classes is clear or modelable
+
+- The data has been prepared with appropriate scaling
+
+- Kernel-based models are required
+
+### Key advantages:
+
+- Ability to create linear and non-linear boundaries
+
+- Strong performance in high-dimensional spaces
+
+- Use of support vectors rather than relying directly on all data points
+
+- Complexity control via the C parameter and kernels
+
+- Suitable for both classification and regression
