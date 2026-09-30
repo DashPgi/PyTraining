@@ -154,3 +154,26 @@ $$If \rightarrow yf(x)<0$$
 $$ Then \rightarrow L > 1$$
 
 Thus, SVM does not focus solely on misclassified samples; it also penalizes samples that are correctly classified but lie close to the boundary
+
+$$
+\min_{w,b}
+\frac{1}{2}\|w\|^2
++
+C\sum_{i=1}^{n}
+\max\left(0, 1-y_i\left(w^T x_i+b\right)\right)
+$$
+
+- The first part is regularization, which keeps the model simple
+
+- The second part is the hinge loss
+
+# Linear SVM
+If the data can be separated approximately by a line or hyperplane, we use a linear SVM 
+# Multi Class SVM
+SVM was originally designed for binary classification, but methods such as these are used for multi-class classification :
+## One vs One
+A model is trained for each pair of classes 
+If we have *k* class :
+$$\frac{k(k-1)}{2}$$
+## One vs Rest
+For each class, we build a model that pits that class against all other classes
