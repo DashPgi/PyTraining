@@ -126,3 +126,20 @@ Typical result:
 - Greater robustness against noise
 
 - Higher risk of underfitting
+
+#  Hinge Loss
+Another formula for understanding SVM : 
+$$
+L(y, f(x)) = \max(0, 1 - yf(x))
+$$
+
+So $\rightarrow$ :
+$$f(x)=w 
+T
+ x+b$$
+
+### Senrios
+#### First Senario :
+A completely correct sample, well away from the margin : 
+$$if \rightarrow yf(x)≥1$$
+$$then \rightarrow L = 0$$
