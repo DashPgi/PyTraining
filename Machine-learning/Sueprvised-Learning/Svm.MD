@@ -141,5 +141,16 @@ T
 ### Senrios
 #### First Senario :
 A completely correct sample, well away from the margin : 
-$$if \rightarrow yf(x)≥1$$
-$$then \rightarrow L = 0$$
+$$If \rightarrow yf(x)≥1$$
+$$Then \rightarrow L = 0$$
+#### Second Senario :
+The example is correct, but it falls within the margin :
+$ If \rightarrow 0 < yf(x) < 1 $$
+$$Then \rightarrow L>0$$
+$Then \rightarrow $ the loss is positive, because the sample is correct but too close to the boundary
+
+#### Third Senario :
+$$If \rightarrow yf(x)<0$$
+$$ Then \rightarrow L > 1$$
+
+Thus, SVM does not focus solely on misclassified samples; it also penalizes samples that are correctly classified but lie close to the boundary
