@@ -202,3 +202,22 @@ SVM is highly effective in the following scenarios:
 - Complexity control via the C parameter and kernels
 
 - Suitable for both classification and regression
+
+## Disadvantages of SVM
+SVM is not always the best choice
+
+Key disadvantages:
+
+- It can be slow on very large datasets
+
+- Selecting C, gamma, and the kernel requires experimentation
+
+-  It is sensitive to feature scaling
+
+-  Non-linear models are difficult to interpret
+
+- It may overfit in the presence of significant noise if settings are inappropriate
+
+- Additional processing is required to obtain probability estimates
+
+- When the number of samples is very large, models such as Logistic Regression, SGD, or tree-based methods may be more suitable
