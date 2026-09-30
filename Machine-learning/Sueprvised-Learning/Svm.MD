@@ -78,3 +78,51 @@ In Soft-Margin SVM, we allow some samples to:
 - Fall within the margin
 
 - Even be misclassified
+
+To do this, we add variables $\xi_i$, which we call slack variables :
+ $$
+y_i\left(w^T x_i + b\right) \geq 1 - \xi_i
+$$
+### Goal's Function : 
+$$
+\min_{w,b,\xi}
+\frac{1}{2}\|w\|^2
++
+C\sum_{i=1}^{n}\xi_i
+$$
+Here, C is very important.
+
+#### The Concept of Parameter C
+Parameter C determines the balance between two objectives:
+
+- A large margin
+
+- Low training errors
+
+*In Scikit-learn documentation, C is described as a parameter that balances the penalty for errors against the simplicity of the decision boundary*
+
+$If$ **C is large**:
+The model penalizes training errors more heavily
+
+Typical result:
+
+- Smaller margin.
+
+- Greater effort to correctly classify training data.
+
+- Higher sensitivity to noise.
+
+- Higher risk of overfitting.
+
+$If$ **C is small**:
+The model is more tolerant of errors
+
+Typical result:
+
+- Larger margin
+
+- Simpler model
+
+- Greater robustness against noise
+
+- Higher risk of underfitting
