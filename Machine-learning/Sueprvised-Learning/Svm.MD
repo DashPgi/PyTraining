@@ -73,3 +73,8 @@ But this way **isn't good for real world** cause :
 For this situation we use Soft-Margin SVM
 
 ## Soft Margin
+In Soft-Margin SVM, we allow some samples to:
+
+- Fall within the margin
+
+- Even be misclassified
