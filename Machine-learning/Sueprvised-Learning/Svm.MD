@@ -48,3 +48,28 @@ $$
 Therefore, **if we want to maximize the margin, we must minimize ∥w∥** :
 $$w\|min \frac{1}{2}|\ ^2$$ 
 For this model ,we call it **Hard-Margin SVM**
+
+## Hard Margin
+In Hard-Margin SVM, we assume:
+
+- The data are perfectly separable
+
+- There is no noise
+
+- No sample lies on the wrong side
+
+- All samples must lie outside the margin
+
+Optimization problem:
+$$
+\min_{w,b} \frac{1}{2}\|w\|^2
+$$
+But this way **isn't good for real world** cause : 
+- Datas have noise 
+- Datas have overlap
+- Datas have outliers
+- Datas are not completely detachable
+
+For this situation we use Soft-Margin SVM
+
+## Soft Margin
