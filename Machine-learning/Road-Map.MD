@@ -23,7 +23,7 @@
 - [x] Decision-tree
 - [x] Random-Forest
 - [x] Svm
-- [] Naive-Bayes
+- [x] Naive-Bayes
 - [] XGBoost
 - [] Hyperparameter tuning
 - [] scikit-learn
