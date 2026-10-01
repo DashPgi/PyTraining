@@ -301,3 +301,46 @@ $$
 - Interpretability is crucial
 
 - The data contains significant missing values ​​and complex noise
+
+# With Python
+```
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+
+pipeline = Pipeline([
+    ("scaler", StandardScaler()),
+    ("model", SVC())
+])
+
+params = {
+    "model__kernel": ["linear", "rbf"],
+    "model__C": [0.1, 1, 10, 100],
+    "model__gamma": ["scale", "auto", 0.01, 0.1]
+}
+
+grid = GridSearchCV(
+    pipeline,
+    params,
+    cv=5,
+    scoring="f1_macro",
+    n_jobs=-1
+)
+
+grid.fit(X_train, y_train)
+
+predictions = grid.predict(X_test)
+
+print("Best params:", grid.best_params_)
+print(classification_report(y_test, predictions))
+```
