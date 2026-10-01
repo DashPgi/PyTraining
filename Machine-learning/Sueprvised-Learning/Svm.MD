@@ -290,16 +290,14 @@ $$
 
 
 
-SVM is not a suitable first choice when:
+### Bad when :
 
+- You have millions of samples
 
+- You require fast and frequent training
 
-You have millions of samples.
+- The data consists primarily of raw categorical variables
 
-You require fast and frequent training.
+- Interpretability is crucial
 
-The data consists primarily of raw categorical variables.
-
-Interpretability is crucial.
-
-The data contains significant missing values ​​and complex noise.
+- The data contains significant missing values ​​and complex noise
