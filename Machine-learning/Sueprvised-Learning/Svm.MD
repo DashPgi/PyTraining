@@ -221,3 +221,85 @@ Key disadvantages:
 - Additional processing is required to obtain probability estimates
 
 - When the number of samples is very large, models such as Logistic Regression, SGD, or tree-based methods may be more suitable
+
+# Formula's
+
+### Decision function
+
+$$
+f(x)=w^Tx+b
+$$
+
+### borders
+
+$$
+w^Tx+b=1
+$$
+$$And$$
+$$
+w^Tx+b=-1
+$$
+
+### Margin
+
+$$
+\frac{2}{\|w\|}
+$$
+
+### Hard-Margin Objective
+
+$$
+\min \frac{1}{2}\|w\|^2
+$$
+
+*With condition* :
+
+$$
+y_i(w^Tx_i+b)\geq1
+$$
+
+### Soft-Margin Objective
+
+$$
+\min \frac{1}{2}\|w\|^2+C\sum_i \xi_i
+$$
+
+### Hinge Loss
+
+$$
+\max(0,1-y_i(w^Tx_i+b))
+$$
+
+### RBF Kernel
+
+$$
+K(x,z)=\exp(-\gamma\|x-z\|^2)
+$$
+
+## When Svm is good and when is bad?
+### Good when :
+- The features are numerical
+
+- You properly scale the data
+
+- The decision boundary is complex, but the dataset is not excessively large
+
+- You want to use a linear or kernel-based model
+
+- The number of features is large relative to the number of samples
+
+
+
+SVM is not a suitable first choice when:
+
+
+
+You have millions of samples.
+
+You require fast and frequent training.
+
+The data consists primarily of raw categorical variables.
+
+Interpretability is crucial.
+
+The data contains significant missing values ​​and complex noise.
