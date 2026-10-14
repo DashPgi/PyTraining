@@ -1,1 +1,1 @@
-import scikit 
+import scikit as sc
