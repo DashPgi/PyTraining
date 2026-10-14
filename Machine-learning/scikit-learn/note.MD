@@ -1,3 +1,4 @@
 # Scikit Learn
 
 ## Classification
+## Regression
