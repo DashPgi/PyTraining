@@ -20,3 +20,12 @@ $P(B∣A)$: **Likelihood** : the probability of observing B if A is true
 $P(A)$:**Prior probability** : the initial probability of A (before observing)
 
 $P(B)$: **Evidence** : the total probability of B (typically acts as a normalizer)
+
+
+$In-Classification : $
+
+$$
+P(y\mid X)=\frac{P(X\mid y)\cdot P(y)}{P(X)}
+$$
+
+**We select the class that has the highest** $P(y|X)$
