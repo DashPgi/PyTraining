@@ -39,3 +39,11 @@ P(X\mid y)=P(x_1\mid y)\cdot P(x_2\mid y)\cdot \ldots \cdot P(x_n\mid y)
 $$
 
 This means the probability of the set of all features is equal to the product of the probabilities of the individual features *(cause we assume they are independent)*
+
+## Type Of Naive Bayes
+
+| Type                    | Application                        | Distribution Assumption | Example                            |
+| ----------------------- | ---------------------------------- | ----------------------- | ---------------------------------- |
+| Gaussian Naive Bayes    | Continuous data (e.g., height, weight, temperature) | Normal (Gaussian) distribution | Predicting disease based on numerical symptoms |
+| Multinomial Naive Bayes | Discrete data (e.g., word counts)  | Multinomial distribution | Text classification, sentiment analysis |
+| Bernoulli Naive Bayes   | Binary data (0 or 1)               | Bernoulli distribution  | Presence or absence of a word in a text |
