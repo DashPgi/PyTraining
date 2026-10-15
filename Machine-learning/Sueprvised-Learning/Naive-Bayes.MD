@@ -47,3 +47,11 @@ This means the probability of the set of all features is equal to the product of
 | Gaussian Naive Bayes    | Continuous data (e.g., height, weight, temperature) | Normal (Gaussian) distribution | Predicting disease based on numerical symptoms |
 | Multinomial Naive Bayes | Discrete data (e.g., word counts)  | Multinomial distribution | Text classification, sentiment analysis |
 | Bernoulli Naive Bayes   | Binary data (0 or 1)               | Bernoulli distribution  | Presence or absence of a word in a text |
+
+
+### Advantage :
+- Fast in train and predict
+- Good for  sparse data
+- It is excellent for high-dimensional
+- It outputs probabilities (not just the class)
+- Good for multi class
