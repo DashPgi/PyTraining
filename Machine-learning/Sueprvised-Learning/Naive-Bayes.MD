@@ -4,4 +4,14 @@ A Supervised learning algorithm , It employs Bayes' Theorem to calculate the pro
 
 It is called "naive" because this algorithm assumes that all features are independent of one another—meaning that a change in one feature does not affect another. *While this assumption does not always hold true in the real world, it works very well in practice*
 
-#
+# Bayes’ Theorem
+This concept tells us how to update the probability of an event in light of new evidence
+
+
+$Formula$ :
+$$
+P(A\mid B)=\frac{P(B\mid A)\cdot P(A)}{P(B)}
+$$
+
+$P(A∣B)$: **Posterior probability** : the probability of A given B (what we want to calculate)
+
