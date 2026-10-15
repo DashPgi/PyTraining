@@ -29,3 +29,13 @@ P(y\mid X)=\frac{P(X\mid y)\cdot P(y)}{P(X)}
 $$
 
 **We select the class that has the highest** $P(y|X)$
+
+
+
+## Why Naive?
+In the real world, features are often dependent. For example, in an email, the words "winner" and "prize" usually appear together. However, Naive Bayes assumes:    
+$$
+P(X\mid y)=P(x_1\mid y)\cdot P(x_2\mid y)\cdot \ldots \cdot P(x_n\mid y)
+$$
+
+This means the probability of the set of all features is equal to the product of the probabilities of the individual features *(cause we assume they are independent)*
