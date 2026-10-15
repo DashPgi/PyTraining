@@ -55,3 +55,15 @@ This means the probability of the set of all features is equal to the product of
 - It is excellent for high-dimensional
 - It outputs probabilities (not just the class)
 - Good for multi class
+
+### Disadvantage : 
+- The assumption of feature independence is often incorrect in the real world
+- If a feature has not been observed in the training data, its probability becomes zero
+- It performs poorly on data where the dependency between features is important (such as images)
+
+# Use for :
+- Spam filter
+- Message categorization
+- Sentiment analysis
+- Media/news categorization
+- Recommender systems
