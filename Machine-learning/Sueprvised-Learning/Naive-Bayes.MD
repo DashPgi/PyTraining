@@ -15,3 +15,8 @@ $$
 
 $P(A∣B)$: **Posterior probability** : the probability of A given B (what we want to calculate)
 
+$P(B∣A)$: **Likelihood** : the probability of observing B if A is true
+
+$P(A)$:**Prior probability** : the initial probability of A (before observing)
+
+$P(B)$: **Evidence** : the total probability of B (typically acts as a normalizer)
