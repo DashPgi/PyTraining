@@ -24,7 +24,7 @@
 - [x] Random-Forest
 - [x] Svm
 - [x] Naive-Bayes
-- [x] XGBoost
+- [] XGBoost
 - [] Hyperparameter tuning
 - [] scikit-learn
 
