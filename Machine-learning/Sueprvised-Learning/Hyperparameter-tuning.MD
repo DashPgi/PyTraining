@@ -38,3 +38,7 @@ In **RandomizedSearchCV**, instead of testing every possible combination, we per
 
 ## Bayesian Optimization
 *Grid Search* tries everything indiscriminately, while *Random Search* operates randomly. **Bayesian Optimization**, however, uses the results from previous experiments to estimate which region of the search space is likely to yield better outcomes; consequently, it typically achieves good results with fewer experiments
+
+
+## Hyperband and Early Stopping
+The concept behind Hyperband is as follows: initially allocate a small budget to a large number of configurations, discard the underperforming ones early, and dedicate more resources to the promising candidates. This approach is highly effective for models that are time-consuming to train, such as neural networks
