@@ -30,7 +30,11 @@ If you perform a single Train/Validation split, the result might depend on that 
 
 
 ## Grid Search
-**GridSearchCV** tests all specified combinations. If you have 3 values ​​for **C** and 3 values ​​for **gamma**, it will build exactly 3 × 3 = 9 models. This method is thorough and straightforward, but it becomes computationally expensive very quickly as the number of hyperparameters increases.
+**GridSearchCV** tests all specified combinations. If you have 3 values ​​for **C** and 3 values ​​for **gamma**, it will build exactly 3 × 3 = 9 models. This method is thorough and straightforward, but it becomes computationally expensive very quickly as the number of hyperparameters increases
 
 ## Random Search
-In **RandomizedSearchCV**, instead of testing every possible combination, we perform random sampling from specified ranges or distributions. It typically identifies high-quality combinations using a smaller number of trials—especially when only a few hyperparameters are truly significant.
+In **RandomizedSearchCV**, instead of testing every possible combination, we perform random sampling from specified ranges or distributions. It typically identifies high-quality combinations using a smaller number of trials—especially when only a few hyperparameters are truly significant
+
+
+## Bayesian Optimization
+*Grid Search* tries everything indiscriminately, while *Random Search* operates randomly. **Bayesian Optimization**, however, uses the results from previous experiments to estimate which region of the search space is likely to yield better outcomes; consequently, it typically achieves good results with fewer experiments
