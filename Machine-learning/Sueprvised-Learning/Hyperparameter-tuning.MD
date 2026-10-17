@@ -27,3 +27,9 @@ If you perform a single Train/Validation split, the result might depend on that 
 - Low standard deviation = consistent performance
 
 - If the mean is good but the test performance is poor, you likely have overfitting or data leakage
+
+
+## Grid Search
+**GridSearchCV** tests all specified combinations. If you have 3 values ​​for **C** and 3 values ​​for **gamma**, it will build exactly 3 × 3 = 9 models. This method is thorough and straightforward, but it becomes computationally expensive very quickly as the number of hyperparameters increases.
+
+python
