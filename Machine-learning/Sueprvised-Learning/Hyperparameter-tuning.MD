@@ -42,3 +42,14 @@ In **RandomizedSearchCV**, instead of testing every possible combination, we per
 
 ## Hyperband and Early Stopping
 The concept behind Hyperband is as follows: initially allocate a small budget to a large number of configurations, discard the underperforming ones early, and dedicate more resources to the promising candidates. This approach is highly effective for models that are time-consuming to train, such as neural networks
+
+
+# In another algorithm 
+| Model               | Key Hyperparameters                                                             | Primary Effect                         |
+| ------------------- | ------------------------------------------------------------------------------- | -------------------------------------- |
+| KNN                 | n_neighbors, weights, metric                                                    | Number of neighbors and weighting scheme |
+| Decision Tree       | max_depth, min_samples_split, min_samples_leaf, ccp_alpha                       | Controlling complexity and overfitting   |
+| Random Forest       | n_estimators, max_depth, max_features, min_samples_leaf                         | Diversity and depth of trees           |
+| SVM                 | C, gamma, kernel                                                                | Decision boundary, flexibility, and error penalty |
+| Logistic Regression | C, penalty, solver                                                              | Strength of regularization             |
+| XGBoost             | n_estimators, learning_rate, max_depth, subsample, colsample_bytree, reg_lambda | Learning rate, complexity, and regularization |
