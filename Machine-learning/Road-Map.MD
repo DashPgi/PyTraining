@@ -25,7 +25,7 @@
 - [x] Svm
 - [x] Naive-Bayes
 - [] XGBoost
-- [] Hyperparameter tuning
+- [x] Hyperparameter tuning
 - [] scikit-learn
 
 ## Step Four
