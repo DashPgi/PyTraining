@@ -14,3 +14,6 @@ Hyperparameters are values ​​that you set before training—the model does n
 - Preventing Underfitting
 - Improving Generalization
     - **The goal** : better score on the validation/test set, not just on the training set!
+#### Golden Tip :
+Tuning is not a good replace for preprocessing or feature engineering!!
+If we haven't good data or have data leak ,also the bestest tuning cant save our model !
