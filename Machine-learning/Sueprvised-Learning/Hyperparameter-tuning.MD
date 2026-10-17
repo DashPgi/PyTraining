@@ -20,4 +20,10 @@ If we haven't good data or have data leak ,also the bestest tuning cant save our
 
 
 ## Cross-Validation: The Heart of Tuning
-If you perform a single Train/Validation split, the result might depend on that specific data partition. In K-Fold Cross-Validation, the training data is divided into $K$ segments; in each iteration, one segment serves as the validation set while the others are used for training. Finally, the average of the $K$ scores is reported.
+If you perform a single Train/Validation split, the result might depend on that specific data partition. In K-Fold Cross-Validation, the training data is divided into $K$ segments; in each iteration, one segment serves as the validation set while the others are used for training. Finally, the average of the $K$ scores is reported 
+
+- High mean = good performance
+
+- Low standard deviation = consistent performance
+
+- If the mean is good but the test performance is poor, you likely have overfitting or data leakage
