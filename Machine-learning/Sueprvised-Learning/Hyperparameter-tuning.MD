@@ -32,4 +32,5 @@ If you perform a single Train/Validation split, the result might depend on that 
 ## Grid Search
 **GridSearchCV** tests all specified combinations. If you have 3 values ​​for **C** and 3 values ​​for **gamma**, it will build exactly 3 × 3 = 9 models. This method is thorough and straightforward, but it becomes computationally expensive very quickly as the number of hyperparameters increases.
 
-python
+## Random Search
+In **RandomizedSearchCV**, instead of testing every possible combination, we perform random sampling from specified ranges or distributions. It typically identifies high-quality combinations using a smaller number of trials—especially when only a few hyperparameters are truly significant.
