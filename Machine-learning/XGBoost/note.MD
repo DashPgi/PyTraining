@@ -41,7 +41,9 @@ Built-in regularization to reduce overfitting
 
 Relatively good handling of missing values
 
+Feature Importance
 
+Data Categorical
 
 | Parameter        | Role                                   | Effect of Increasing the Value                                             |
 | ---------------- | -------------------------------------- | -------------------------------------------------------------------------- |
