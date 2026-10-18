@@ -42,10 +42,15 @@ $$
 - Relatively good handling of missing values
 
 - Early Stopping
-- Feature Importance
-    - Select
+    - If the model does not improve on the validation data for several steps, training should be stopped
 
-Data Categorical
+- Feature Importance
+    - Select the most important feature 
+
+- Data Categorical
+    - **One-Hot Encoding**: For small category
+    - **Ordinal/Label Encoding**: For ordinal categories, such as Low < Medium < High
+    - **Target Encoding**: Use with caution and only in conjunction with cross-validation, as it carries a risk of data leakage
 
 | Parameter        | Role                                   | Effect of Increasing the Value                                             |
 | ---------------- | -------------------------------------- | -------------------------------------------------------------------------- |
