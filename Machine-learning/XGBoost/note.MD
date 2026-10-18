@@ -11,6 +11,15 @@ Best and fastest way for train Gradient Boosted Decision Trees Model
 
 ## Concept : 
 It trains several relatively simple decision trees in sequence, with each new tree attempting to correct the errors of the previous ones
-### Tip
-In **Bagging/Random Forest**, trees are constructed largely independently and in parallel, and their results are combined via averaging or voting. In **Boosting**, however, models are built sequentially
 
+In **Bagging/Random Forest**, trees are constructed largely independently and in parallel, and their results are combined via averaging or voting. In **Boosting**, however, models are built sequentially :
+
+### 1. It builds a simple initial model
+
+### 2. It examines the errors of that model
+
+### 3. It trains the next model to perform better on those specific errors
+
+It repeats this process.
+
+Ultimately, the final prediction is the sum of the contributions from all the trees.
