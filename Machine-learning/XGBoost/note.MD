@@ -23,3 +23,9 @@ In **Bagging/Random Forest**, trees are constructed largely independently and in
 ### 4. It repeats this process
 
 ### 5. Ultimately, the final prediction is the sum of the contributions from all the trees
+
+$Formula :$
+
+$$
+\hat{y}_i=\sum_{k=1}^{K} f_k(x_i)
+$$
