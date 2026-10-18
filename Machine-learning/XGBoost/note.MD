@@ -29,3 +29,14 @@ $Formula :$
 $$
 \hat{y}_i=\sum_{k=1}^{K} f_k(x_i)
 $$
+
+
+# Advantage :
+
+High speed and scalability, even with big data
+
+Support for CPU and GPU, and a scikit-learn-compatible interface
+
+Built-in regularization to reduce overfitting
+
+Relatively good handling of missing values
