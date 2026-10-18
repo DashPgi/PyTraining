@@ -33,15 +33,17 @@ $$
 
 # Advantage :
 
-High speed and scalability, even with big data
+- High speed and scalability, even with big data
 
-Support for CPU and GPU, and a scikit-learn-compatible interface
+- Support for CPU and GPU, and a scikit-learn-compatible interface
 
-Built-in regularization to reduce overfitting
+- Built-in regularization to reduce overfitting
 
-Relatively good handling of missing values
+- Relatively good handling of missing values
 
-Feature Importance
+- Early Stopping
+- Feature Importance
+    - Select
 
 Data Categorical
 
