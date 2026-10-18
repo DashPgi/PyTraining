@@ -40,3 +40,17 @@ Support for CPU and GPU, and a scikit-learn-compatible interface
 Built-in regularization to reduce overfitting
 
 Relatively good handling of missing values
+
+
+
+| Parameter        | Role                                   | Effect of Increasing the Value                                             |
+| ---------------- | -------------------------------------- | -------------------------------------------------------------------------- |
+| n_estimators     | Number of trees                        | Generally improves accuracy, but increases the risk of overfitting and training time |
+| learning_rate    | Step size for error correction         | A smaller value is usually more stable, but requires more trees            |
+| max_depth        | Depth of each tree                     | Deeper trees capture more complex patterns but are prone to overfitting    |
+| min_child_weight | Minimum weight of samples in a leaf    | A larger value makes the model more conservative                           |
+| subsample        | Proportion of samples used per tree    | Values ​​< 1 introduce randomness and improve resistance to overfitting      |
+| colsample_bytree | Proportion of features used per tree   | Values ​​< 1 increase the diversity among trees                              |
+| gamma            | Minimum improvement required for a split | A larger value leads to simpler trees                                      |
+| reg_alpha        | L1 regularization                      | Imposes a heavier penalty on less important features                       |
+| reg_lambda       | L2 regularization                      | Controls weights and enhances model stability                              |
