@@ -20,6 +20,6 @@ In **Bagging/Random Forest**, trees are constructed largely independently and in
 
 ### 3. It trains the next model to perform better on those specific errors
 
-It repeats this process.
+### 4. It repeats this process
 
-Ultimately, the final prediction is the sum of the contributions from all the trees.
+### 5. Ultimately, the final prediction is the sum of the contributions from all the trees
