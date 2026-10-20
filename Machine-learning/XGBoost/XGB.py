@@ -7,5 +7,5 @@ X_train, X_test, y_train, y_test = train_test_split(data['data'], data['target']
 bst = xgb.XGBClassifier(n_estimators=2, max_depth=2, learning_rate=1, objective='binary:logistic')
 # fit model
 bst.fit(X_train, y_train)
-# make predictions
+
 preds = bst.predict(X_test)
