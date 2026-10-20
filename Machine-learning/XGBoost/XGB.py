@@ -1,5 +1,5 @@
 import xgboost  as xgb  
-from scikit-learn import load_iris
+from scikit_learn import load_iris
 from sklearn.model_selection import train_test_split
 data = load_iris()
 X_train, X_test, y_train, y_test = train_test_split(data['data'], data['target'], test_size=.2)
