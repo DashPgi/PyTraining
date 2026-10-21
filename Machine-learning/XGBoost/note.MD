@@ -64,4 +64,3 @@ $$
 | reg_alpha        | L1 regularization                      | Imposes a heavier penalty on less important features                       |
 | reg_lambda       | L2 regularization                      | Controls weights and enhances model stability                              |
 
-
