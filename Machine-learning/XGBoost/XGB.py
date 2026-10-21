@@ -9,3 +9,5 @@ bst = xgb.XGBClassifier(n_estimators=2, max_depth=2, learning_rate=1, objective=
 bst.fit(X_train, y_train)
 
 preds = bst.predict(X_test)
+
+# and then we can evaluate the model
