@@ -10,4 +10,3 @@ bst.fit(X_train, y_train)
 
 preds = bst.predict(X_test)
 
-# and then we can evaluate the model
