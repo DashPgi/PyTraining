@@ -1,1 +1,2 @@
-import scikit as sc
+# Iris.data ->  Feature or X
+# iris.target -> Target or Y
