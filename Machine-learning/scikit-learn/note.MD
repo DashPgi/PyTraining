@@ -12,6 +12,10 @@ In this type model learn with rewards and punishments
 --- 
 also we have two type of output from models :
 
+- Classifications 
+  - Outputs are class
+- Regression 
+  - Output are numeric
 ## Classification
 ## Regression
 ## Model Selection
