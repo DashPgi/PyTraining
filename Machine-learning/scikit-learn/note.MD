@@ -24,6 +24,12 @@ In this type model learn with rewards and punishments
 - Target or Y
 - Sample
 
+## Step By Step
+### 1. create a model 
+### 2. Train the model
+### 3. Make prediction
+### 4. Evaluate the model
+
 ## Classification
 ## Regression
 ## Model Selection
