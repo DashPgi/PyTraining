@@ -1,5 +1,6 @@
 from sklearn.datasets import load_iris
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 iris = load_iris()
 
@@ -19,3 +20,4 @@ x_train,x_test,y_train,y_test = train_test_split(
 # Model.fit(x_train, y_train) -> Train the model on the training data
 # Model.predict(x_test) -> Make predictions on the test data
 # accuracy_score(y_test, y_pred) -> Evaluate the model's performance by comparing the predicted labels with the true labels
+
