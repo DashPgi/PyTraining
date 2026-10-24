@@ -2,7 +2,9 @@ from pyexpat import model
 from sklearn.datasets import load_iris
 import pandas as pd
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 iris = load_iris()
 
@@ -29,13 +31,17 @@ x_train,x_test,y_train,y_test = train_test_split(
 
 Modelknn = KNeighborsClassifier(n_neighbors=3)
 
-model.fit(x_train,y_train)
+Modelknn.fit(x_train,y_train)
 
-predict = model.predict(x_test)
+predict = Modelknn.predict(x_test)
 
 accknn = accuracy_score(y_test,predict)
 
-print(f"accuracy: {accknn}")
+# Tree
+
+Modeltree = DecisionTreeClassifier(max_depth=3)
+Modeltree.fit(x_train,y_train)
+
 
 
 # Classification
