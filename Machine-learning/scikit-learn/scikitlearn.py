@@ -35,6 +35,9 @@ predict = model.predict(x_test)
 
 accknn = accuracy_score(y_test,predict)
 
+print(f"accuracy: {accknn}")
+
+
 # Classification
 
 # Regression
