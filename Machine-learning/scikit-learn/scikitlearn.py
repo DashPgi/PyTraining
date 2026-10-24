@@ -44,7 +44,8 @@ Modeltree.fit(x_train,y_train)
 predict = Modeltree.predict(x_test)
 acctree = accuracy_score(y_test,predict)
 
-
+print(f"knn's accuracy: {accknn}")
+print(f"tree's accuracy: {acctree}")
 
 
 # Classification
