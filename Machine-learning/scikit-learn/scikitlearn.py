@@ -1,6 +1,7 @@
 from pyexpat import model
 from sklearn.datasets import load_iris
 import pandas as pd
+from sklearn.metrics import accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
 
 iris = load_iris()
@@ -29,6 +30,11 @@ x_train,x_test,y_train,y_test = train_test_split(
 Modelknn = KNeighborsClassifier(n_neighbors=3)
 
 model.fit(x_train,y_train)
+
+predict = model.predict(x_test)
+
+accknn = accuracy_score(y_test,predict)
+
 # Classification
 
 # Regression
