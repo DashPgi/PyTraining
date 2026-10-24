@@ -41,6 +41,9 @@ accknn = accuracy_score(y_test,predict)
 
 Modeltree = DecisionTreeClassifier(max_depth=3)
 Modeltree.fit(x_train,y_train)
+predict = Modeltree.predict(x_test)
+acctree = accuracy_score(y_test,predict)
+
 
 
 
