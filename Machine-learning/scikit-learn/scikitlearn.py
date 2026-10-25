@@ -52,7 +52,22 @@ acctree = accuracy_score(y_test,predict)
 
 datasets = np.ndarray([3,2])
 scaler = StandardScaler()
+scaler.transform(datasets)
 scaled = scaler.fit_transform(datasets)
+
+
+data = np.array([[25, 30],
+                 [40, 80],
+                 [60, 150]])
+
+scaler = StandardScaler()
+scaler.fit(data)
+
+print("میانگین‌ها:", scaler.mean_)
+print("انحراف معیارها:", scaler.scale_)
+
+new_person = np.array([[40, 80]])
+print("بعد از تبدیل:", scaler.transform(new_person))
 
 
 # Classification
