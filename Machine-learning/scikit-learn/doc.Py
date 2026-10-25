@@ -1,6 +1,7 @@
 from sklearn.datasets import load_iris
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 iris = load_iris()
 
@@ -20,3 +21,6 @@ Model = somemodel() # -> Create a model instance
 Model.fit(x_train, y_train) # -> Train the model on the training data
 Model.predict(x_test) # -> Make predictions on the test data
 accuracy_score(y_test, y_pred) # -> Evaluate the model's performance by comparing the predicted labels with the true labels
+
+scaler = StandardScaler() # -> row's outlier / ( row's mean - value ) = new value
+scaler.transform(data) # -> Change data with new data and feature that scaler learned
