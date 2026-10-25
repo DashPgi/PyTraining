@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
@@ -69,7 +69,16 @@ ydata = np.array([1000, 1450, 1900, 2300, 2650])
 Linerregin = LinearRegression()
 Linerregin.fit(xdata, ydata)
 
-print("Coefficient : ", Linerregin.coef_)
-print("const : ", Linerregin.intercept_)
-print("100 home :", Linerregin.predict([[100]]))
+# print("Coefficient : ", Linerregin.coef_)
+# print("const : ", Linerregin.intercept_)
+# print("100 home :", Linerregin.predict([[100]]))
+
+# Cross Validation
+
+KNN_score = cross_val_score(Modelknn, x_train, y_train, cv=5)
+Tree_score = cross_val_score(Modeltree, x_train, y_train, cv=5)
+
+print("Tree's CV",KNN_score)
+print("Tree's CV",Tree_score)
+
 # Model Selection
