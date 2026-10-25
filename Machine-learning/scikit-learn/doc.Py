@@ -35,3 +35,5 @@ r2_score(y_test, pred) # -> r^2
 # -- Validation
 
 cross_val_score(mode) # -> cross Validation
+
+# -- Pipeline

@@ -78,7 +78,10 @@ Linerregin.fit(xdata, ydata)
 KNN_score = cross_val_score(Modelknn, x_train, y_train, cv=5)
 Tree_score = cross_val_score(Modeltree, x_train, y_train, cv=5)
 
-print("Tree's CV",KNN_score)
-print("Tree's CV",Tree_score)
+# print("Tree's CV",KNN_score)
+# print("Tree's CV",Tree_score)
+
+# Pipeline
+
 
 # Model Selection
