@@ -63,9 +63,7 @@ scaler.fit(data)
 # Classification
 
 # Regression
-xdata = np.array([[25, 30],
-                  [40, 80],
-                  [60, 150]])
+xdata = np.array([[50], [70], [90], [110], [130]])
 ydata = np.array([1000, 1450, 1900, 2300, 2650])
 
 Linerregin = LinearRegression()

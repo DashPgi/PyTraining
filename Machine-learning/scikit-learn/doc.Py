@@ -24,3 +24,5 @@ accuracy_score(y_test, y_pred) # -> Evaluate the model's performance by comparin
 
 scaler = StandardScaler() # -> row's outlier / ( row's mean - value ) = new value
 scaler.transform(data) # -> Change data with new data and feature that scaler learned
+Linerregin.coef_ # -> Coefficient
+Linerregin.intercept_ # constant number
