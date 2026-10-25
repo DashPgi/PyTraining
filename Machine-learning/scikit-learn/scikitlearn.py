@@ -50,12 +50,6 @@ acctree = accuracy_score(y_test,predict)
 # print(f"knn's accuracy: {accknn}")
 # print(f"tree's accuracy: {acctree}")
 
-datasets = np.ndarray([3,2])
-scaler = StandardScaler()
-scaler.transform(datasets)
-scaled = scaler.fit_transform(datasets)
-
-
 data = np.array([[25, 30],
                  [40, 80],
                  [60, 150]])
