@@ -25,8 +25,13 @@ accuracy_score(y_test, y_pred) # -> Evaluate the model's performance by comparin
 # -- Data's
 scaler = StandardScaler() # -> row's outlier / ( row's mean - value ) = new value
 scaler.transform(data) # -> Change data with new data and feature that scaler learned
-Linerregin.coef_ # -> Coefficient
-Linerregin.intercept_ # constant number
+Linerregin.coef_ # -> Coefficient or Slope of a line
+Linerregin.intercept_ # constant number or Intercept
 
 mean_absolute_error(y_test, pred) # -> MAE
 r2_score(y_test, pred) # -> r^2
+
+
+# -- Validation
+
+cross_val_score(mode) # -> cross Validation
