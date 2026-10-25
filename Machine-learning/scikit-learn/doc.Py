@@ -22,7 +22,11 @@ Model.fit(x_train, y_train) # -> Train the model on the training data
 Model.predict(x_test) # -> Make predictions on the test data
 accuracy_score(y_test, y_pred) # -> Evaluate the model's performance by comparing the predicted labels with the true labels
 
+# -- Data's
 scaler = StandardScaler() # -> row's outlier / ( row's mean - value ) = new value
 scaler.transform(data) # -> Change data with new data and feature that scaler learned
 Linerregin.coef_ # -> Coefficient
 Linerregin.intercept_ # constant number
+
+mean_absolute_error(y_test, pred) # -> MAE
+r2_score(y_test, pred) # -> r^2
