@@ -4,7 +4,10 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
+import numpy as np
+
 
 iris = load_iris()
 
@@ -44,8 +47,12 @@ Modeltree.fit(x_train,y_train)
 predict = Modeltree.predict(x_test)
 acctree = accuracy_score(y_test,predict)
 
-print(f"knn's accuracy: {accknn}")
-print(f"tree's accuracy: {acctree}")
+# print(f"knn's accuracy: {accknn}")
+# print(f"tree's accuracy: {acctree}")
+
+datasets = np.ndarray([3,2])
+scaler = StandardScaler()
+scaled = scaler.fit_transform(datasets)
 
 
 # Classification
