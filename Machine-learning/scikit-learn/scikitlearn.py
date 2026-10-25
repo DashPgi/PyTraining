@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LinearRegression
@@ -82,6 +83,14 @@ Tree_score = cross_val_score(Modeltree, x_train, y_train, cv=5)
 # print("Tree's CV",Tree_score)
 
 # Pipeline
+pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('knn', KNeighborsClassifier(n_neighbors=5)),
+])
+pipeline.fit(x_train, y_train)
+pipe_score = cross_val_score(pipeline, x_train, y_train, cv=5)
 
+print("accuracy: ", pipeline.score(x_train, y_train))
+print("score: ", pipe_score.score(x_train, y_train))
 
 # Model Selection
