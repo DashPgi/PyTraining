@@ -32,4 +32,7 @@ In this type model learn with rewards and punishments
 
 ## Classification
 ## Regression
+a numeric output
+
+Fit the best line through the points
 ## Model Selection
