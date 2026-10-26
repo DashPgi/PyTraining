@@ -101,6 +101,7 @@ wineknn = KNeighborsClassifier(n_neighbors=5)
 wineknn.fit(wine.data, wine.target)
 winepipe = Pipeline([
     ('scaler', StandardScaler()),
+    ('knn', KNeighborsClassifier(n_neighbors=5))
 ])
 winepipe.fit(wine.data, wine.target)
 
