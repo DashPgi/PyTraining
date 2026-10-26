@@ -36,4 +36,14 @@ r2_score(y_test, pred) # -> r^2
 
 cross_val_score(mode) # -> cross Validation
 
+grid = GridSearchCV(
+    estimator=wineknn, # -> Impressive our model
+    param_grid=param_grid, # -> the Parameters that must be trained
+    cv=5,
+    scoring='accuracy' # -> Comparing criterion
+
+)
 # -- Pipeline
+
+
+
