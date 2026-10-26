@@ -2,10 +2,12 @@
 
 # 🐍 PyTraining
 
-**My daily Python gym — practicing, breaking things, and building small projects along the way.**
+**My daily Python gym — practicing, breaking things, and building real projects along the way.**
 
 ![Python](https://img.shields.io/badge/Python-3670A0?style=flat&logo=python&logoColor=ffdd54)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626.svg?style=flat&logo=Jupyter&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
 </div>
@@ -14,61 +16,68 @@
 
 ## 📖 About
 
-This is where I train — every day, a little bit of Python. Some days it's a small script,
-other days it's a full mini-project. Nothing here is meant to be "perfect production code" —
+This is where I train — a little Python every day. Some days it's a small script,
+other days it's a full mini-project. Nothing here is meant to be "perfect production code":
 it's a training log, a sandbox, and a portfolio-in-progress all at once.
 
 ---
 
 ## 🗂️ What's inside
 
-| Project / Folder | What it is |
+| Folder | What it is |
 |---|---|
-| 🧮 [`Lvl-1/Calculator`](./Lvl-1/Calculator) | A desktop calculator built with **Tkinter**, styled with a dark theme, full keyboard support, and error handling (division by zero, invalid expressions, etc.) |
-| 🤖 [`RoutinBot`](./RoutinBot) | A **Telegram bot** that sends a daily auto-generated date/reminder sticker on a schedule — built with `python-telegram-bot`, `APScheduler`, and `Pillow` for image generation |
-| 🛠️ [`BotCraetor`](./BotCraetor) | An app with **two versions**: a Desktop version and a Telegram bot version of the same idea — exploring how the same logic can power different interfaces |
-| 📊 [`Machine-learning`](./Machine-learning) | My personal ML learning space — NumPy, Pandas, Matplotlib/Seaborn, OOP fundamentals, and Jupyter notebooks, following the roadmap in [`Machine-learning/Road-Map.MD`](./Machine-learning/Road-Map.MD) |
+| 🧮 [`Lvl-1/Calculator`](./Lvl-1/Calculator) | Desktop calculator built with **Tkinter** — dark theme, keyboard support, error handling |
+| 🤖 [`RoutinBot`](./RoutinBot) | **Telegram bot** that sends a daily auto-generated date sticker — `python-telegram-bot`, `APScheduler`, `Pillow` |
+| 🛠️ [`BotCraetor`](./BotCraetor) | One idea, two interfaces: a **Desktop** app and a **Telegram bot** (`Telbot`) with an HTML UI |
+| 📊 [`Machine-learning`](./Machine-learning) | My full ML learning path — see below |
+
+### 📊 Machine Learning track
+
+Follows the roadmap in [`Machine-learning/Road-Map.MD`](./Machine-learning/Road-Map.MD):
+
+| Stage | Folders |
+|---|---|
+| Foundations | `OOP`, `numpy`, `Pandas`, `Matplotlib-Seaborn`, `Jupyter-notebook` |
+| Preprocessing | `Preprocessing/` — Cleaning, Missing Data, Feature Engineering, Scaling, Encoding, Partitioning |
+| Supervised Learning | `Sueprvised-Learning/` — Linear & Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Naive Bayes, Hyperparameter Tuning |
+| Libraries | `XGBoost`, `scikit-learn` |
+
+**Up next:** Unsupervised learning (K-Means, DBSCAN, PCA), model evaluation, and deep learning.
 
 ---
 
 ## 🧠 Skills I'm practicing here
 
-- Core Python (variables, control flow, functions, OOP, exception handling)
+- Core Python — OOP, functions, exception handling
 - GUI development with **Tkinter**
-- Telegram bot development (`python-telegram-bot`, async handlers, schedulers)
-- Image generation & manipulation with **Pillow**
-- Data analysis foundations: **NumPy**, **Pandas**, **Matplotlib/Seaborn**
-- Working with `.env` files and environment variables for secrets
+- Telegram bot development (async handlers, schedulers)
+- Image generation with **Pillow**
+- Data analysis with **NumPy**, **Pandas**, **Matplotlib/Seaborn**
+- Machine learning with **scikit-learn** and **XGBoost**
+- Keeping secrets out of code with `.env` files
 
 ---
 
 ## 🎯 Current focus (see [`Todo.txt`](./Todo.txt))
 
-I'm currently working on a personal finance/exchange-rate app, step by step:
-1. Build the core computation logic
-2. Integrate the fastest & most reliable APIs
-3. Design a clean GUI in Figma
-4. Rebuild the GUI in **PyQt6**
-5. Debug and refine with AI pair-programming
-6. Ship a polished, working app 🚀
+A personal exchange-rate app, built step by step: core logic → fast APIs → Figma GUI design → PyQt6 interface → debugging → ship 🚀
 
 ---
 
 ## 🚀 Running a project
 
-Each sub-project is self-contained. General steps:
-
 ```bash
 git clone https://github.com/DashPgi/PyTraining.git
 cd PyTraining/<project-folder>
-pip install -r requirements.txt   # if present
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install <the packages the project imports>
 python app.py
 ```
 
-> Some projects (like RoutinBot) require a `.env` file with your own bot token — see the project's code for the expected variable names.
+> Bots (RoutinBot, BotCraetor) need a `.env` file with your own token, e.g. `BOT_TOKEN=...`. Never commit it — it's already in `.gitignore`.
 
 ---
 
-## 🤝 Notes
+## 📜 License
 
-This repo will keep growing as I keep training. If you spot something that could be cleaner or more Pythonic, issues and suggestions are always welcome!
+Released under the [MIT License](./LICENSE).
