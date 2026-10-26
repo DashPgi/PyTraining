@@ -91,18 +91,21 @@ pipeline = Pipeline([
 pipeline.fit(x_train, y_train)
 pipe_score = cross_val_score(pipeline, x_train, y_train, cv=5)
 
-print("accuracy: ", pipeline.score(x_train, y_train))
-print("score: ", pipe_score.score(x_train, y_train))
+# print("accuracy: ", pipeline.score(x_train, y_train))
+# print("score: ", pipe_score.score(x_train, y_train))
 
 
 wine = load_wine()
 
 wineknn = KNeighborsClassifier(n_neighbors=5)
 wineknn.fit(wine.data, wine.target)
-winescaler = StandardScaler()
-winescaler.fit(wine.data)
+winepipe = Pipeline([
+    ('scaler', StandardScaler()),
+])
+winepipe.fit(wine.data, wine.target)
 
-winescaler_score = cross_val_score(winescaler, wine.data, wine.target, cv=5)
+winepipe_score = cross_val_score(winepipe, wine.data, wine.target, cv=5)
 wineknn_score = cross_val_score(wineknn, wine.data, wine.target, cv=5)
 
+print(f"Knn : {wineknn_score} and Pipeline: {winepipe_score}")
 # Model Selection
