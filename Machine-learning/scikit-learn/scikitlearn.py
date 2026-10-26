@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LinearRegression
 from sklearn.datasets import load_iris
+from sklearn.datasets import load_wine
 import numpy as np
 
 iris = load_iris()
@@ -92,5 +93,16 @@ pipe_score = cross_val_score(pipeline, x_train, y_train, cv=5)
 
 print("accuracy: ", pipeline.score(x_train, y_train))
 print("score: ", pipe_score.score(x_train, y_train))
+
+
+wine = load_wine()
+
+wineknn = KNeighborsClassifier(n_neighbors=5)
+wineknn.fit(wine.data, wine.target)
+winescaler = StandardScaler()
+winescaler.fit(wine.data)
+
+winescaler_score = cross_val_score(winescaler, wine.data, wine.target, cv=5)
+wineknn_score = cross_val_score(wineknn, wine.data, wine.target, cv=5)
 
 # Model Selection
