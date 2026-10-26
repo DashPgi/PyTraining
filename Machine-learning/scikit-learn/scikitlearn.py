@@ -121,7 +121,11 @@ grid = GridSearchCV(
     param_grid=param_grid,
     cv=5,
     scoring='accuracy'
-
 )
+
+grid.fit(x_train, y_train)
+
+print(grid.best_params_)
+print(grid.best_score_)
 
 # Model Selection

@@ -41,8 +41,10 @@ grid = GridSearchCV(
     param_grid=param_grid, # -> the Parameters that must be trained
     cv=5,
     scoring='accuracy' # -> Comparing criterion
-
 )
+
+print(grid.best_params_) # -> Best parameter mixing
+print(grid.best_score_) # -> mean of best validation's score
 # -- Pipeline
 
 
