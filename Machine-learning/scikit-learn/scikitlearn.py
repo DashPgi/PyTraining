@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -108,5 +108,20 @@ winepipe.fit(wine.data, wine.target)
 winepipe_score = cross_val_score(winepipe, wine.data, wine.target, cv=5)
 wineknn_score = cross_val_score(wineknn, wine.data, wine.target, cv=5)
 
-print(f"Knn : {wineknn_score} and Pipeline: {winepipe_score}")
+# print(f"Knn : {wineknn_score} and Pipeline: {winepipe_score}")
+
+# GridCV
+
+param_grid = {
+    'n_neighbors': [3, 5, 7, 9],
+    'weights': ['uniform', 'distance']
+}
+grid = GridSearchCV(
+    estimator=wineknn,
+    param_grid=param_grid,
+    cv=5,
+    scoring='accuracy'
+
+)
+
 # Model Selection
