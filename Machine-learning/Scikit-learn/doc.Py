@@ -15,7 +15,7 @@ x_train,x_test,y_train,y_test = train_test_split(
     stratify=y # -> Ensures that the proportion of each class is maintained in both training and testing sets
 )
 
-# ---
+# --- 
 
 Model = somemodel() # -> Create a model instance
 Model.fit(x_train, y_train) # -> Train the model on the training data
