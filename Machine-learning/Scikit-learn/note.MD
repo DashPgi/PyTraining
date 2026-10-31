@@ -60,4 +60,12 @@ For *two-Class* Problems
 | **Really-Yes** | True  | False  |
 | **Really-No**  | False | True |
 
+- TP = Y + RY
+- FN = RY + N
+- FP = Y + RN
+- TN = N + RN
+
+####  Important : 
+- Precision : TP / (TP + FP)
+- 
 ## Model Selection
