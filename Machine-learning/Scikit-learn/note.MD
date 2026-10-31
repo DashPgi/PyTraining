@@ -49,4 +49,5 @@ Use the test data only once, at the very end. All selection and tuning processes
 Suppose you build a model to detect a rare disease that affects only 1% of the population. What is the accuracy of a model that always predicts "healthy"? 99%! Yet, it is completely useless, as it fails to identify a single actual case
 
 This situation is known as "imbalanced data." That is why we need more precise metrics
+
 ## Model Selection
