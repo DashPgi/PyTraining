@@ -38,16 +38,16 @@ Fit the best line through the points
 
 ## Pipeline 
 
- A pipeline combines multiple steps into a single "unified model." It handles the sequential execution of these steps; most importantly, during the `fit` phase, it learns exclusively from the training data, while during the `predict` phase, it only performs transformations
+ A pipeline combines multiple steps into a single **unified model** It handles the sequential execution of these steps; most importantly, during the `fit` phase, it learns exclusively from the training data, while during the `predict` phase, it only performs transformations
 
 --- 
 
 ### Tip 
-Use the test data only once, at the very end. All selection and tuning processes—including GridSearch—must be performed exclusively on the training set using cross-validation (CV). If you repeatedly modify your model based on the test results, you have effectively "memorized" the test set, and it no longer provides an honest estimate
+Use the test data only once, at the very end. All selection and tuning processes—including GridSearch—must be performed exclusively on the training set using cross-validation (CV). If you repeatedly modify your model based on the test results, you have effectively **memorizedx** the test set, and it no longer provides an honest estimate
 
 ### Why accuracy isn't enough?
 Suppose you build a model to detect a rare disease that affects only 1% of the population. What is the accuracy of a model that always predicts "healthy"? 99%! Yet, it is completely useless, as it fails to identify a single actual case
 
-This situation is known as "imbalanced data." That is why we need more precise metrics
+This situation is known as **imbalanced data** That is why we need more precise metrics
 
 ## Model Selection
