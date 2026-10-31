@@ -50,4 +50,14 @@ Suppose you build a model to detect a rare disease that affects only 1% of the p
 
 This situation is known as **imbalanced data** That is why we need more precise metrics
 
+### Confusion Matrix
+For *two-Class* Problems
+
+#### We have four way : 
+
+| Yes | No|
+| --- | --- |
+| Really-Yes| --- |
+| Really-No | --- |
+
 ## Model Selection
