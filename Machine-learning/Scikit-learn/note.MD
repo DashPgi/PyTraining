@@ -67,5 +67,6 @@ For *two-Class* Problems
 
 ####  Important : 
 - Precision : TP / (TP + FP)
-- 
+- Recall : TP / (TP + FN)
+- F1 : mean -> ( Precision + Recall)
 ## Model Selection
