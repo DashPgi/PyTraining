@@ -55,9 +55,9 @@ For *two-Class* Problems
 
 #### We have four way : 
 
-| Yes | No|
-| --- | --- |
-| Really-Yes| --- |
-| Really-No | --- |
+| --- | Yes   | No   |
+|---- |-------|------|
+| **Really-Yes** | True  | False  |
+| **Really-No**  | False | True |
 
 ## Model Selection
