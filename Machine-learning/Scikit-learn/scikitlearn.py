@@ -8,6 +8,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LinearRegression
 from sklearn.datasets import load_iris
 from sklearn.datasets import load_wine
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, classification_report
 import numpy as np
 
 iris = load_iris()
@@ -125,11 +128,27 @@ grid = GridSearchCV(
 
 grid.fit(x_train, y_train)
 
-print(grid.best_params_)
-print(grid.best_score_)
+# print(grid.best_params_)
+# print(grid.best_score_)
 
 
 # Confusion Matrix
 
+data = load_breast_cancer()
+X, y = data.data, data.target
+print("Classes", data.target_names)   # ['malignant' 'benign']
 
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+model = Pipeline([
+    ("scaler", StandardScaler()),
+    ("clf", LogisticRegression(max_iter=1000)),
+])
+model.fit(X_train, y_train)
+pred = model.predict(X_test)
+
+print(confusion_matrix(y_test, pred))
+print(classification_report(y_test, pred, target_names=data.target_names))
 # Model Selection
