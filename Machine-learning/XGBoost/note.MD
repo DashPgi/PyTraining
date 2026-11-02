@@ -16,7 +16,8 @@ For understandin this model, we must know 3 concepts :
 - Decision Tree
     - Simple model that answring just with y/n and dicision with that
 - Ensemble
-    -
+    - instead of one model, we mixing a lot of weaknest model that being strongest together 
+    
 In **Bagging/Random Forest**, trees are constructed largely independently and in parallel, and their results are combined via averaging or voting. In **Boosting**, however, models are built sequentially :
 
 ### 1. It builds a simple initial model
