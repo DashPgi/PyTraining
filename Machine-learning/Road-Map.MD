@@ -26,7 +26,7 @@
 - [x] Naive-Bayes
 - [] XGBoost
 - [x] Hyperparameter tuning
-- [] scikit-learn
+- [x] scikit-learn
 
 ## Step Four
 - [] Clustering-Kmeans
