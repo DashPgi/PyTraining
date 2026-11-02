@@ -14,6 +14,9 @@ It trains several relatively simple decision trees in sequence, with each new tr
 
 For understandin this model, we must know 3 concepts : 
 - Decision Tree
+    - Simple model that answring just with y/n and dicision with that
+- Ensemble
+    -
 In **Bagging/Random Forest**, trees are constructed largely independently and in parallel, and their results are combined via averaging or voting. In **Boosting**, however, models are built sequentially :
 
 ### 1. It builds a simple initial model
